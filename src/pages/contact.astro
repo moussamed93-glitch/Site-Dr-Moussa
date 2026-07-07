@@ -5,9 +5,8 @@ import { SITE } from '../data/site';
 import { resolveImage } from '../lib/images';
 import { renderInline } from '../lib/richtext';
 import page from '../data/pages/contact.json';
-import fallbackImg from '../assets/images/accueil-angle.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 ---
 
 <Base

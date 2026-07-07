@@ -5,9 +5,8 @@ import CtaRdv from '../../components/CtaRdv.astro';
 import { SERVICES } from '../../data/site';
 import { resolveImage } from '../../lib/images';
 import page from '../../data/pages/services.json';
-import fallbackImg from '../../assets/images/medecin-examen.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 ---
 
 <Base

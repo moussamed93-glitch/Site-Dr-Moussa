@@ -1,16 +1,14 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { SITE } from '../data/site';
 import { resolveImage } from '../lib/images';
 import page from '../data/pages/le-medecin.json';
-import fallbackImg from '../assets/images/medecin-cabinet.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
-const portraitImg = resolveImage(page.bio.image) ?? fallbackImg;
-const examenImg = resolveImage(page.science.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
+const portraitImg = resolveImage(page.bio.image);
+const examenImg = resolveImage(page.science.image);
 
 const physicianLd = {
   '@context': 'https://schema.org',
@@ -57,12 +55,7 @@ const physicianLd = {
   <section class="section">
     <div class="container bio-grid">
       <figure class="bio-media reveal">
-        <Image
-          src={portraitImg}
-          alt={page.bio.imageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 768px) 100vw, 40vw"
-        />
+        <img src={portraitImg} alt={page.bio.imageAlt} loading="lazy" decoding="async" />
       </figure>
       <div class="bio-text reveal">
         <p class="eyebrow">{page.bio.eyebrow}</p>
@@ -93,12 +86,7 @@ const physicianLd = {
         <a href="/activite-scientifique/" class="line-link">Voir l'activité scientifique</a>
       </div>
       <figure class="science-media reveal">
-        <Image
-          src={examenImg}
-          alt={page.science.imageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 768px) 100vw, 42vw"
-        />
+        <img src={examenImg} alt={page.science.imageAlt} loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>

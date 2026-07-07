@@ -1,12 +1,12 @@
 {
   "hero": {
-    "image": "/src/assets/images/medecin-cabinet.jpg",
+    "image": "/images/medecin-cabinet.jpg",
     "eyebrow": "Le médecin",
     "title": "Dr Mohamed Moussa",
     "lead": "Docteur en médecine, diplômé de la Faculté de Médecine de Tunis — spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."
   },
   "bio": {
-    "image": "/src/assets/images/medecin-portrait.jpg",
+    "image": "/images/medecin-portrait.jpg",
     "imageAlt": "Portrait professionnel du Dr Mohamed Moussa à son bureau",
     "eyebrow": "Parcours",
     "title": "Soigner les yeux, expliquer, accompagner",
@@ -24,7 +24,7 @@
     "title": "Se former en continu, pour mieux soigner",
     "text1": "Le Dr Moussa participe régulièrement à des congrès nationaux et internationaux — Congrès National d'Ophtalmologie de la Société Tunisienne d'Ophtalmologie, congrès régionaux et conférences internationales — où il présente des communications scientifiques.",
     "text2": "Cette activité scientifique régulière lui permet de maintenir une pratique fondée sur les recommandations internationales les plus récentes et les innovations technologiques en ophtalmologie.",
-    "image": "/src/assets/images/medecin-examen.jpg",
+    "image": "/images/medecin-examen.jpg",
     "imageAlt": "Le Dr Moussa réalisant un examen sur l'unité de réfraction du cabinet"
   }
 }

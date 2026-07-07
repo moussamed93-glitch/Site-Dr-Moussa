@@ -20,10 +20,10 @@ locale: fr
 site_url: https://dr-moussa-ophtalmologue.netlify.app
 logo_url: /favicon.svg
 
-# Les photos téléversées vont dans src/assets/images : elles sont alors
-# optimisées par Astro (webp, tailles responsives) et résolues via src/lib/images.ts.
-media_folder: 'src/assets/images'
-public_folder: '/src/assets/images'
+# Les photos téléversées vont dans public/images : elles sont servies en ligne,
+# donc prévisualisables dans le backoffice, et référencées via src/lib/images.ts.
+media_folder: 'public/images'
+public_folder: '/images'
 
 collections:
   # ------------------------------------------------------------------

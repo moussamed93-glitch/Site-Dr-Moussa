@@ -5,9 +5,8 @@ import PageHero from '../../components/PageHero.astro';
 import CtaRdv from '../../components/CtaRdv.astro';
 import { resolveImage } from '../../lib/images';
 import page from '../../data/pages/blog.json';
-import fallbackImg from '../../assets/images/salle-attente.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()

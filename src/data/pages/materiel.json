@@ -1,6 +1,6 @@
 {
   "hero": {
-    "image": "/src/assets/images/materiel-vue.jpg",
+    "image": "/images/materiel-vue.jpg",
     "eyebrow": "Notre matériel",
     "title": "Des équipements de dernière génération",
     "lead": "Réfraction, tonométrie, imagerie : un plateau technique complet pour réaliser l'ensemble du bilan sur place, en une seule visite."
@@ -9,6 +9,6 @@
   "pratiqueTitle": "Tout le bilan, en une seule visite",
   "pratiqueText1": "Réfraction, tension oculaire, épaisseur cornéenne, examen microscopique et photographies : l'ensemble des mesures est réalisé au cabinet, dans la même consultation, sans déplacement supplémentaire.",
   "pratiqueText2": "Les images de votre œil sont conservées dans votre dossier et comparées à chaque visite — une exigence de suivi que permet la numérisation complète du plateau technique.",
-  "pratiqueImage": "/src/assets/images/medecin-examen.jpg",
+  "pratiqueImage": "/images/medecin-examen.jpg",
   "pratiqueImageAlt": "Le Dr Moussa aux commandes d'un instrument de mesure NIDEK"
 }

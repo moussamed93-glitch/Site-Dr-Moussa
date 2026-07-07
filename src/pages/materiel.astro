@@ -1,16 +1,14 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { resolveImage } from '../lib/images';
 import equipData from '../data/equipments.json';
 import page from '../data/pages/materiel.json';
-import fallbackImg from '../assets/images/materiel-vue.jpg';
 
 const equipments = equipData.equipments;
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
-const examenImg = resolveImage(page.pratiqueImage) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
+const examenImg = resolveImage(page.pratiqueImage);
 ---
 
 <Base
@@ -70,12 +68,7 @@ const examenImg = resolveImage(page.pratiqueImage) ?? fallbackImg;
         <p>{page.pratiqueText2}</p>
       </div>
       <figure class="pratique-media reveal">
-        <Image
-          src={examenImg}
-          alt={page.pratiqueImageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 768px) 100vw, 42vw"
-        />
+        <img src={examenImg} alt={page.pratiqueImageAlt} loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>

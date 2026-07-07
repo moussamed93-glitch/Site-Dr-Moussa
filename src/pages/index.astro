@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import Stars from '../components/Stars.astro';
@@ -8,16 +7,15 @@ import { REVIEWS } from '../data/reviews';
 import home from '../data/home.json';
 import { resolveImage } from '../lib/images';
 import { renderInline } from '../lib/richtext';
-import fallbackImg from '../assets/images/medecin-cabinet.jpg';
 
-const heroImg = resolveImage(home.heroImage) ?? fallbackImg;
-const servicesImg = resolveImage(home.servicesImage) ?? fallbackImg;
-const portraitImg = resolveImage(home.medecinImage) ?? fallbackImg;
-const trustImg = resolveImage(home.trustImage) ?? fallbackImg;
+const heroImg = resolveImage(home.heroImage);
+const servicesImg = resolveImage(home.servicesImage);
+const portraitImg = resolveImage(home.medecinImage);
+const trustImg = resolveImage(home.trustImage);
 
 const discover = home.discover.map((d) => ({
   href: d.link,
-  img: resolveImage(d.image) ?? fallbackImg,
+  img: resolveImage(d.image),
   title: d.title,
   text: d.text,
   alt: d.alt,
@@ -51,11 +49,9 @@ const discover = home.discover.map((d) => ({
         </div>
       </div>
       <figure class="hero-media reveal">
-        <Image
+        <img
           src={heroImg}
           alt={home.heroImageAlt}
-          widths={[600, 900, 1400]}
-          sizes="(max-width: 900px) 100vw, 48vw"
           loading="eager"
           fetchpriority="high"
         />
@@ -67,12 +63,7 @@ const discover = home.discover.map((d) => ({
   <section class="section services" aria-labelledby="titre-services">
     <div class="container services-grid">
       <figure class="services-media reveal">
-        <Image
-          src={servicesImg}
-          alt={home.servicesImageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 860px) 100vw, 42vw"
-        />
+        <img src={servicesImg} alt={home.servicesImageAlt} loading="lazy" decoding="async" />
         <figcaption class="services-caption">
           <span class="services-caption-num">{home.servicesCaptionNum}</span>
           <span class="services-caption-text">{home.servicesCaptionText}</span>
@@ -103,12 +94,7 @@ const discover = home.discover.map((d) => ({
   <section class="section medecin" aria-labelledby="titre-medecin">
     <div class="container medecin-grid">
       <figure class="medecin-media reveal">
-        <Image
-          src={portraitImg}
-          alt={home.medecinImageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 768px) 100vw, 42vw"
-        />
+        <img src={portraitImg} alt={home.medecinImageAlt} loading="lazy" decoding="async" />
       </figure>
       <div class="medecin-text reveal">
         <p class="eyebrow">Le médecin</p>
@@ -132,12 +118,7 @@ const discover = home.discover.map((d) => ({
   <section class="section trust" aria-labelledby="titre-confiance">
     <div class="container trust-grid">
       <figure class="trust-media reveal">
-        <Image
-          src={trustImg}
-          alt={home.trustImageAlt}
-          widths={[480, 700, 1000]}
-          sizes="(max-width: 860px) 100vw, 42vw"
-        />
+        <img src={trustImg} alt={home.trustImageAlt} loading="lazy" decoding="async" />
         <span class="trust-veil" aria-hidden="true"></span>
         <figcaption class="trust-rating">
           <Stars class="trust-stars" />
@@ -197,12 +178,7 @@ const discover = home.discover.map((d) => ({
         {
           discover.map((d, i) => (
             <a href={d.href} class="tile reveal" style={`animation-delay:${i * 60}ms`}>
-              <Image
-                src={d.img}
-                alt={d.alt}
-                widths={[480, 800, 1200]}
-                sizes="(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 25vw"
-              />
+              <img src={d.img} alt={d.alt} loading="lazy" decoding="async" />
               <span class="tile-veil" aria-hidden="true" />
               <span class="tile-label">
                 <span class="tile-title">{d.title}</span>

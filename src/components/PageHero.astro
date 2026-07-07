@@ -1,14 +1,11 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
-
 interface Crumb {
   name: string;
   href: string;
 }
 
 interface Props {
-  image: ImageMetadata;
+  image: string;
   eyebrow: string;
   title: string;
   lead?: string;
@@ -42,11 +39,9 @@ const { image, eyebrow, title, lead, crumbs, focus = 'center 35%', compact = fal
         {lead && <p class="ph-lead">{lead}</p>}
       </div>
       <figure class="ph-media">
-        <Image
+        <img
           src={image}
           alt=""
-          widths={[480, 800, 1200]}
-          sizes="(max-width: 900px) 100vw, 42vw"
           loading="eager"
           fetchpriority="high"
           style={`object-position: ${focus};`}

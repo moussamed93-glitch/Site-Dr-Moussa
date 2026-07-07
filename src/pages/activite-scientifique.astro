@@ -1,25 +1,22 @@
 ---
-import type { ImageMetadata } from 'astro';
-import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { resolveImage } from '../lib/images';
-import fallbackImg from '../assets/images/congres-sto-2025.jpg';
 import commData from '../data/communications.json';
 import page from '../data/pages/activite-scientifique.json';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 
-// Textes ET photos sont éditables dans le backoffice ; chaque photo est résolue
-// (et optimisée par Astro) à partir du nom de fichier choisi dans le CMS.
+// Textes ET photos sont éditables dans le backoffice ; chaque photo est référencée
+// par une URL résolue à partir du nom de fichier choisi dans le CMS.
 const communications = commData.communications.map((c) => ({
-  src: resolveImage(c.image) ?? fallbackImg,
+  src: resolveImage(c.image),
   alt: `Le Dr Moussa — ${c.congress}`,
   congress: c.congress,
   subject: c.subject,
   year: c.year,
-})) satisfies { src: ImageMetadata; alt: string; congress: string; subject: string; year: string }[];
+}));
 ---
 
 <Base
@@ -67,12 +64,7 @@ const communications = commData.communications.map((c) => ({
         {
           communications.map((c, i) => (
             <figure class="comm reveal" style={`animation-delay:${i * 70}ms`}>
-              <Image
-                src={c.src}
-                alt={c.alt}
-                widths={[480, 800, 1200]}
-                sizes="(max-width: 720px) 100vw, 50vw"
-              />
+              <img src={c.src} alt={c.alt} loading="lazy" decoding="async" />
               <figcaption>
                 <span class="comm-year">{c.year}</span>
                 <p class="comm-congress">{c.congress}</p>

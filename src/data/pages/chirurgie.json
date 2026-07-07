@@ -1,6 +1,6 @@
 {
   "hero": {
-    "image": "/src/assets/images/bloc-2.jpg",
+    "image": "/images/bloc-2.jpg",
     "eyebrow": "Chirurgie",
     "title": "Une activité chirurgicale réelle et régulière",
     "lead": "Le Dr Moussa assure lui-même les interventions, du bilan pré-opératoire au suivi post-opératoire au cabinet."
@@ -27,8 +27,8 @@
   "blocTitle": "La précision du geste, en images",
   "blocNote": "Photographies réalisées dans le respect strict de l'anonymat des patients.",
   "blocPhotos": [
-    { "image": "/src/assets/images/bloc-1.jpg", "alt": "Le Dr Moussa opérant sous microscope Zeiss Lumera T au bloc opératoire" },
-    { "image": "/src/assets/images/bloc-3.jpg", "alt": "Le Dr Moussa concentré pendant une intervention de chirurgie oculaire" },
-    { "image": "/src/assets/images/bloc-4.jpg", "alt": "Le Dr Moussa et son équipe pendant une intervention chirurgicale" }
+    { "image": "/images/bloc-1.jpg", "alt": "Le Dr Moussa opérant sous microscope Zeiss Lumera T au bloc opératoire" },
+    { "image": "/images/bloc-3.jpg", "alt": "Le Dr Moussa concentré pendant une intervention de chirurgie oculaire" },
+    { "image": "/images/bloc-4.jpg", "alt": "Le Dr Moussa et son équipe pendant une intervention chirurgicale" }
   ]
 }

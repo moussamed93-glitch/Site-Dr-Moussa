@@ -4,9 +4,8 @@ import PageHero from '../components/PageHero.astro';
 import { SITE } from '../data/site';
 import { resolveImage } from '../lib/images';
 import page from '../data/pages/rendez-vous.json';
-import fallbackImg from '../assets/images/salle-attente.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 ---
 
 <Base

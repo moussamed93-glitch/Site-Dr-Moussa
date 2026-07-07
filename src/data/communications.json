@@ -1,25 +1,25 @@
 {
   "communications": [
     {
-      "image": "/src/assets/images/congres-sto-2025.jpg",
+      "image": "/images/congres-sto-2025.jpg",
       "congress": "42ème Congrès National d'Ophtalmologie — Société Tunisienne d'Ophtalmologie",
       "subject": "Précision des formules de calcul d'implant intraoculaire dans le kératocône",
       "year": "2025"
     },
     {
-      "image": "/src/assets/images/congres-sto-panel.jpg",
+      "image": "/images/congres-sto-panel.jpg",
       "congress": "42ème Congrès National d'Ophtalmologie — Tunis",
       "subject": "Kératométrie et astigmatisme irrégulier : recommandations pratiques",
       "year": "2025"
     },
     {
-      "image": "/src/assets/images/congres-epomec.jpg",
+      "image": "/images/congres-epomec.jpg",
       "congress": "10th EPOMEC — Evolving Practice of Ophthalmology Middle East Conference, Dubaï",
       "subject": "Communication scientifique internationale",
       "year": "2024"
     },
     {
-      "image": "/src/assets/images/congres-amos.jpg",
+      "image": "/images/congres-amos.jpg",
       "congress": "Congrès de l'Amicale des Médecins Ophtalmologistes de Sfax (AMOS)",
       "subject": "Communication orale — chirurgie de la cataracte",
       "year": "2024"

@@ -6,9 +6,8 @@ import { SITE } from '../data/site';
 import { resolveImage } from '../lib/images';
 import { renderInline } from '../lib/richtext';
 import page from '../data/pages/ophtalmologue-mnihla.json';
-import fallbackImg from '../assets/images/accueil-logo.jpg';
 
-const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const heroImg = resolveImage(page.hero.image);
 const zones = page.zones;
 ---
 
