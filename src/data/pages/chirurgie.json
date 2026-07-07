@@ -1,0 +1,7 @@
+{
+  "blocPhotos": [
+    { "image": "/src/assets/images/bloc-1.jpg", "alt": "Le Dr Moussa opérant sous microscope Zeiss Lumera T au bloc opératoire" },
+    { "image": "/src/assets/images/bloc-3.jpg", "alt": "Le Dr Moussa concentré pendant une intervention de chirurgie oculaire" },
+    { "image": "/src/assets/images/bloc-4.jpg", "alt": "Le Dr Moussa et son équipe pendant une intervention chirurgicale" }
+  ]
+}

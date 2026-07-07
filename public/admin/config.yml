@@ -20,8 +20,10 @@ locale: fr
 site_url: https://dr-moussa-ophtalmologue.netlify.app
 logo_url: /favicon.svg
 
-media_folder: 'public/uploads'
-public_folder: '/uploads'
+# Les photos téléversées vont dans src/assets/images : elles sont alors
+# optimisées par Astro (webp, tailles responsives) et résolues via src/lib/images.ts.
+media_folder: 'src/assets/images'
+public_folder: '/src/assets/images'
 
 collections:
   # ------------------------------------------------------------------
@@ -110,14 +112,7 @@ collections:
             label: 'Communications'
             widget: list
             fields:
-              - name: image
-                label: 'Photo'
-                widget: select
-                options:
-                  - { label: 'Congrès STO 2025 (présentation kératocône)', value: 'congres-sto-2025' }
-                  - { label: 'Congrès STO 2025 (panel)', value: 'congres-sto-panel' }
-                  - { label: 'EPOMEC Dubaï', value: 'congres-epomec' }
-                  - { label: 'Congrès AMOS', value: 'congres-amos' }
+              - { name: image, label: 'Photo', widget: image, hint: 'Téléversez ou choisissez une photo du congrès.' }
               - { name: congress, label: 'Nom du congrès', widget: string }
               - { name: subject, label: 'Sujet de la communication', widget: string }
               - { name: year, label: 'Année', widget: string }
@@ -168,3 +163,33 @@ collections:
       - { name: date, label: 'Date de publication', widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD/MM/YYYY', time_format: false }
       - { name: category, label: 'Catégorie', widget: string, hint: 'Ex. Prévention, Chirurgie, Cornée, Pédiatrie' }
       - { name: body, label: "Contenu de l'article", widget: markdown }
+
+  # ------------------------------------------------------------------
+  - name: galeries
+    label: 'Galeries photos'
+    description: "Ajoutez, supprimez ou réordonnez librement les photos des galeries."
+    files:
+      - name: cabinet
+        label: 'Photos du cabinet (page « Le cabinet »)'
+        file: 'src/data/pages/cabinet.json'
+        fields:
+          - name: gallery
+            label: 'Photos du cabinet'
+            label_singular: 'photo'
+            widget: list
+            fields:
+              - { name: image, label: 'Photo', widget: image }
+              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string, hint: 'Ce que montre la photo, en une phrase.' }
+              - { name: caption, label: 'Légende (affichée sous la photo)', widget: string }
+
+      - name: bloc
+        label: 'Photos du bloc opératoire (page « Chirurgie »)'
+        file: 'src/data/pages/chirurgie.json'
+        fields:
+          - name: blocPhotos
+            label: 'Photos du bloc'
+            label_singular: 'photo'
+            widget: list
+            fields:
+              - { name: image, label: 'Photo', widget: image }
+              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string, hint: 'Ce que montre la photo, en une phrase.' }

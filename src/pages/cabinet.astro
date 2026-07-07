@@ -1,32 +1,18 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
-
+import { resolveImage } from '../lib/images';
 import accueilLogo from '../assets/images/accueil-logo.jpg';
-import accueilAngle from '../assets/images/accueil-angle.jpg';
-import salleAttente from '../assets/images/salle-attente.jpg';
-import cabinet1 from '../assets/images/cabinet-1.jpg';
-import cabinet2 from '../assets/images/cabinet-2.jpg';
-import cabinet3 from '../assets/images/cabinet-3.jpg';
-import cabinet4 from '../assets/images/cabinet-4.jpg';
-import cabinet5 from '../assets/images/cabinet-5.jpg';
-import medecinCabinet from '../assets/images/medecin-cabinet.jpg';
-import materielEnsemble from '../assets/images/materiel-ensemble.jpg';
+import pageData from '../data/pages/cabinet.json';
 
-const gallery = [
-  { src: accueilLogo, alt: "L'accueil du cabinet avec le logo du Dr Mohamed Moussa", caption: 'Accueil' },
-  { src: salleAttente, alt: "La salle d'attente du cabinet", caption: "Salle d'attente" },
-  { src: medecinCabinet, alt: 'La salle de consultation et son plateau technique', caption: 'Salle de consultation' },
-  { src: materielEnsemble, alt: "Vue d'ensemble du matériel d'examen", caption: 'Plateau technique' },
-  { src: accueilAngle, alt: "L'espace d'accueil vu depuis le couloir", caption: 'Accueil' },
-  { src: cabinet1, alt: 'Espace intérieur du cabinet', caption: 'Ambiance générale' },
-  { src: cabinet2, alt: 'Détail des espaces du cabinet', caption: 'Ambiance générale' },
-  { src: cabinet3, alt: 'Espace de circulation du cabinet', caption: 'Ambiance générale' },
-  { src: cabinet4, alt: 'Détail de la décoration du cabinet', caption: 'Ambiance générale' },
-  { src: cabinet5, alt: 'Vue intérieure du cabinet', caption: 'Ambiance générale' },
-];
+type GalleryItem = { src: ImageMetadata; alt: string; caption: string };
+
+const gallery: GalleryItem[] = pageData.gallery
+  .map((item) => ({ src: resolveImage(item.image), alt: item.alt, caption: item.caption }))
+  .filter((item): item is GalleryItem => Boolean(item.src));
 ---
 
 <Base

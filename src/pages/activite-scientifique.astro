@@ -1,33 +1,23 @@
 ---
+import type { ImageMetadata } from 'astro';
 import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
-
+import { resolveImage } from '../lib/images';
 import heroImg from '../assets/images/congres-sto-2025.jpg';
-import congresSto from '../assets/images/congres-sto-2025.jpg';
-import congresStoPanel from '../assets/images/congres-sto-panel.jpg';
-import congresEpomec from '../assets/images/congres-epomec.jpg';
-import congresAmos from '../assets/images/congres-amos.jpg';
+import fallbackImg from '../assets/images/congres-sto-2025.jpg';
 import commData from '../data/communications.json';
 
-// Les textes (congrès, sujet, année) sont éditables dans le backoffice ;
-// les photos restent associées par identifiant d'image.
-const imageMap: Record<string, ImageMetadata> = {
-  'congres-sto-2025': congresSto,
-  'congres-sto-panel': congresStoPanel,
-  'congres-epomec': congresEpomec,
-  'congres-amos': congresAmos,
-};
-import type { ImageMetadata } from 'astro';
-
+// Textes ET photos sont éditables dans le backoffice ; chaque photo est résolue
+// (et optimisée par Astro) à partir du nom de fichier choisi dans le CMS.
 const communications = commData.communications.map((c) => ({
-  src: imageMap[c.image] ?? congresSto,
+  src: resolveImage(c.image) ?? fallbackImg,
   alt: `Le Dr Moussa — ${c.congress}`,
   congress: c.congress,
   subject: c.subject,
   year: c.year,
-}));
+})) satisfies { src: ImageMetadata; alt: string; congress: string; subject: string; year: string }[];
 ---
 
 <Base

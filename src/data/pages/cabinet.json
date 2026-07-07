@@ -1,0 +1,14 @@
+{
+  "gallery": [
+    { "image": "/src/assets/images/accueil-logo.jpg", "alt": "L'accueil du cabinet avec le logo du Dr Mohamed Moussa", "caption": "Accueil" },
+    { "image": "/src/assets/images/salle-attente.jpg", "alt": "La salle d'attente du cabinet", "caption": "Salle d'attente" },
+    { "image": "/src/assets/images/medecin-cabinet.jpg", "alt": "La salle de consultation et son plateau technique", "caption": "Salle de consultation" },
+    { "image": "/src/assets/images/materiel-ensemble.jpg", "alt": "Vue d'ensemble du matériel d'examen", "caption": "Plateau technique" },
+    { "image": "/src/assets/images/accueil-angle.jpg", "alt": "L'espace d'accueil vu depuis le couloir", "caption": "Accueil" },
+    { "image": "/src/assets/images/cabinet-1.jpg", "alt": "Espace intérieur du cabinet", "caption": "Ambiance générale" },
+    { "image": "/src/assets/images/cabinet-2.jpg", "alt": "Détail des espaces du cabinet", "caption": "Ambiance générale" },
+    { "image": "/src/assets/images/cabinet-3.jpg", "alt": "Espace de circulation du cabinet", "caption": "Ambiance générale" },
+    { "image": "/src/assets/images/cabinet-4.jpg", "alt": "Détail de la décoration du cabinet", "caption": "Ambiance générale" },
+    { "image": "/src/assets/images/cabinet-5.jpg", "alt": "Vue intérieure du cabinet", "caption": "Ambiance générale" }
+  ]
+}
