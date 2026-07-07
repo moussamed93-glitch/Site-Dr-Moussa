@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Détection du formulaire — Netlify</title>
+  </head>
+  <body>
+    <!--
+      Formulaire « fantôme » lu par Netlify au moment du déploiement pour
+      détecter le formulaire de contact (les formulaires rendus par Astro
+      ne sont pas toujours détectés automatiquement). Ne pas supprimer.
+    -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input type="text" name="nom" />
+      <input type="tel" name="telephone" />
+      <input type="email" name="email" />
+      <select name="motif">
+        <option value="rendez-vous"></option>
+        <option value="renseignement"></option>
+        <option value="suivi"></option>
+        <option value="autre"></option>
+      </select>
+      <textarea name="message"></textarea>
+    </form>
+  </body>
+</html>
