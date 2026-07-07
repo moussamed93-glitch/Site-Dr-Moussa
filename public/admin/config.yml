@@ -66,19 +66,52 @@ collections:
           - { name: instagram, label: 'Page Instagram (URL, optionnel)', widget: string, required: false }
 
       - name: home
-        label: "Textes de la page d'accueil"
+        label: "Page d'accueil"
         file: 'src/data/home.json'
         fields:
           - { name: heroEyebrow, label: 'Sur-titre du bandeau', widget: string }
           - { name: heroTitle, label: 'Titre principal (1ère partie)', widget: string }
           - { name: heroTitleAccent, label: 'Titre principal (partie en italique)', widget: string }
           - { name: heroLead, label: "Texte d'introduction", widget: text }
+          - { name: heroImage, label: "Photo du bandeau d'accueil", widget: image }
+          - { name: heroImageAlt, label: 'Description de la photo du bandeau', widget: string }
           - { name: servicesTitle, label: 'Titre de la section Services', widget: string }
           - { name: servicesIntro, label: 'Introduction de la section Services', widget: text }
+          - { name: servicesImage, label: 'Photo de la section Services', widget: image }
+          - { name: servicesImageAlt, label: 'Description de la photo Services', widget: string }
+          - { name: servicesCaptionNum, label: 'Chiffre mis en avant (ex. 13)', widget: string }
+          - { name: servicesCaptionText, label: 'Texte à côté du chiffre', widget: string }
           - { name: medecinTitles, label: 'Titres du médecin (une ligne par titre)', widget: text }
           - { name: medecinText1, label: 'Présentation du médecin — paragraphe 1', widget: text }
           - { name: medecinText2, label: 'Présentation du médecin — paragraphe 2', widget: text }
+          - { name: medecinImage, label: 'Photo du médecin (portrait)', widget: image }
+          - { name: medecinImageAlt, label: 'Description du portrait', widget: string }
           - { name: trustTitle, label: 'Titre de la section Confiance', widget: string }
+          - { name: trustManifesto, label: 'Texte de la section Confiance', widget: text, hint: 'Mettez un mot en **gras** avec des étoiles autour, comme ceci.' }
+          - { name: trustImage, label: 'Photo de la section Confiance', widget: image }
+          - { name: trustImageAlt, label: 'Description de la photo Confiance', widget: string }
+          - { name: discoverTitle, label: 'Titre de la section « Découvrir »', widget: string }
+          - name: discover
+            label: 'Tuiles « Découvrir le cabinet »'
+            label_singular: 'tuile'
+            widget: list
+            fields:
+              - { name: image, label: 'Photo', widget: image }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: text, label: 'Texte', widget: string }
+              - { name: alt, label: 'Description de la photo (accessibilité)', widget: string }
+              - name: link
+                label: 'Page de destination'
+                widget: select
+                options:
+                  - { label: 'Notre matériel', value: '/materiel/' }
+                  - { label: 'Chirurgie', value: '/chirurgie/' }
+                  - { label: 'Activité scientifique', value: '/activite-scientifique/' }
+                  - { label: 'Le cabinet', value: '/cabinet/' }
+                  - { label: 'Le médecin', value: '/le-medecin/' }
+                  - { label: 'Nos services', value: '/services/' }
+                  - { label: 'Blog', value: '/blog/' }
+                  - { label: 'Prendre rendez-vous', value: '/rendez-vous/' }
 
       - name: reviews
         label: 'Avis Google affichés'
@@ -132,6 +165,7 @@ collections:
       - { name: metaDescription, label: 'Description Google (150-160 caractères)', widget: text }
       - { name: intro, label: "Phrase d'introduction", widget: text }
       - { name: order, label: "Ordre d'affichage", widget: number, value_type: int }
+      - { name: image, label: 'Photo du bandeau (optionnel)', widget: image, required: false, hint: 'Si vide, une photo par défaut est utilisée.' }
       - { name: symptoms, label: 'Symptômes', widget: list, field: { name: item, label: 'Symptôme', widget: string } }
       - { name: whenToConsult, label: 'Quand consulter ?', widget: list, field: { name: item, label: 'Situation', widget: string } }
       - name: treatments
@@ -165,31 +199,231 @@ collections:
       - { name: body, label: "Contenu de l'article", widget: markdown }
 
   # ------------------------------------------------------------------
-  - name: galeries
-    label: 'Galeries photos'
-    description: "Ajoutez, supprimez ou réordonnez librement les photos des galeries."
+  # Chaque page = un fichier de données. Photos ET textes y sont éditables.
+  - name: pages
+    label: 'Pages du site'
+    description: "Modifiez les photos et les textes de chaque page. Le logo reste protégé."
     files:
+      - name: le-medecin
+        label: 'Page « Le médecin »'
+        file: 'src/data/pages/le-medecin.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - name: bio
+            label: 'Section « Parcours »'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo (portrait)', widget: image }
+              - { name: imageAlt, label: 'Description de la photo', widget: string }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: text1, label: 'Paragraphe 1', widget: text }
+              - { name: text2, label: 'Paragraphe 2', widget: text }
+              - name: facts
+                label: 'Repères (encadré)'
+                widget: list
+                fields:
+                  - { name: label, label: 'Intitulé', widget: string }
+                  - { name: value, label: 'Valeur', widget: string }
+          - name: science
+            label: 'Section « Science »'
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: text1, label: 'Paragraphe 1', widget: text }
+              - { name: text2, label: 'Paragraphe 2', widget: text }
+              - { name: image, label: 'Photo', widget: image }
+              - { name: imageAlt, label: 'Description de la photo', widget: string }
+
       - name: cabinet
-        label: 'Photos du cabinet (page « Le cabinet »)'
+        label: 'Page « Le cabinet »'
         file: 'src/data/pages/cabinet.json'
         fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
           - name: gallery
-            label: 'Photos du cabinet'
+            label: 'Galerie photos du cabinet'
             label_singular: 'photo'
             widget: list
             fields:
               - { name: image, label: 'Photo', widget: image }
-              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string, hint: 'Ce que montre la photo, en une phrase.' }
+              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string }
               - { name: caption, label: 'Légende (affichée sous la photo)', widget: string }
 
-      - name: bloc
-        label: 'Photos du bloc opératoire (page « Chirurgie »)'
+      - name: chirurgie
+        label: 'Page « Chirurgie »'
         file: 'src/data/pages/chirurgie.json'
         fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - name: surgery
+            label: 'Colonnes chirurgie'
+            widget: list
+            fields:
+              - { name: num, label: 'Numéro (ex. 01)', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: text1, label: 'Paragraphe 1', widget: text, hint: 'Gras avec **étoiles**.' }
+              - { name: text2, label: 'Paragraphe 2', widget: text }
+              - { name: linkLabel, label: 'Texte du lien', widget: string }
+              - { name: link, label: 'Adresse du lien', widget: string }
+          - { name: blocEyebrow, label: 'Sur-titre section bloc', widget: string }
+          - { name: blocTitle, label: 'Titre section bloc', widget: string }
+          - { name: blocNote, label: 'Note sous les photos du bloc', widget: text }
           - name: blocPhotos
-            label: 'Photos du bloc'
+            label: 'Photos du bloc opératoire'
             label_singular: 'photo'
             widget: list
             fields:
               - { name: image, label: 'Photo', widget: image }
-              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string, hint: 'Ce que montre la photo, en une phrase.' }
+              - { name: alt, label: 'Description (accessibilité / SEO)', widget: string }
+
+      - name: materiel
+        label: 'Page « Notre matériel »'
+        file: 'src/data/pages/materiel.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - { name: pratiqueEyebrow, label: 'Sur-titre « En pratique »', widget: string }
+          - { name: pratiqueTitle, label: 'Titre « En pratique »', widget: string }
+          - { name: pratiqueText1, label: 'Paragraphe 1', widget: text }
+          - { name: pratiqueText2, label: 'Paragraphe 2', widget: text }
+          - { name: pratiqueImage, label: 'Photo « En pratique »', widget: image }
+          - { name: pratiqueImageAlt, label: 'Description de la photo', widget: string }
+
+      - name: activite
+        label: 'Page « Activité scientifique »'
+        file: 'src/data/pages/activite-scientifique.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - name: pillars
+            label: 'Piliers (3 blocs)'
+            widget: list
+            fields:
+              - { name: num, label: 'Numéro (ex. 01)', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: text, label: 'Texte', widget: text }
+          - { name: commsEyebrow, label: 'Sur-titre section communications', widget: string }
+          - { name: commsTitle, label: 'Titre section communications', widget: string }
+
+      - name: contact
+        label: 'Page « Contact »'
+        file: 'src/data/pages/contact.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+          - { name: formTitle, label: 'Titre du formulaire', widget: string }
+          - { name: formIntro, label: 'Texte au-dessus du formulaire', widget: text, hint: 'Gras avec **étoiles**.' }
+
+      - name: rendez-vous
+        label: 'Page « Prendre rendez-vous »'
+        file: 'src/data/pages/rendez-vous.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - { name: phoneTitle, label: 'Bloc 1 — titre', widget: string }
+          - { name: phoneText, label: 'Bloc 1 — texte', widget: text }
+          - { name: medtnTitle, label: 'Bloc 2 — titre', widget: string }
+          - { name: medtnText, label: 'Bloc 2 — texte', widget: text }
+          - { name: formTitle, label: 'Bloc 3 — titre', widget: string }
+          - { name: formText, label: 'Bloc 3 — texte', widget: text }
+          - { name: prepaTitle, label: 'Préparer votre venue — titre', widget: string }
+          - name: prepaItems
+            label: 'Préparer votre venue — liste'
+            widget: list
+            field: { name: item, label: 'Élément', widget: string }
+          - { name: prepaNote, label: 'Préparer votre venue — note', widget: text }
+
+      - name: services-index
+        label: 'Page « Nos services » (liste)'
+        file: 'src/data/pages/services.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+
+      - name: blog-index
+        label: 'Page « Blog » (liste)'
+        file: 'src/data/pages/blog.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+
+      - name: ophtalmologue-mnihla
+        label: 'Page locale « Ophtalmologue à Mnihla »'
+        file: 'src/data/pages/ophtalmologue-mnihla.json'
+        fields:
+          - name: hero
+            label: 'Bandeau (haut de page)'
+            widget: object
+            fields:
+              - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: eyebrow, label: 'Sur-titre', widget: string }
+              - { name: title, label: 'Titre', widget: string }
+              - { name: lead, label: "Texte d'introduction", widget: text, required: false }
+          - { name: locationTitle, label: 'Localisation — titre', widget: string }
+          - { name: locationText, label: 'Localisation — texte', widget: text }
+          - { name: zonesTitle, label: 'Quartiers — titre', widget: string }
+          - { name: zonesText, label: 'Quartiers — texte', widget: text }
+          - name: zones
+            label: 'Quartiers desservis'
+            widget: list
+            field: { name: quartier, label: 'Quartier', widget: string }
+          - { name: comingTitle, label: 'Comment venir — titre', widget: string }
+          - { name: comingText1, label: 'Comment venir — paragraphe 1', widget: text, hint: 'Gras avec **étoiles**.' }
+          - { name: comingText2, label: 'Comment venir — paragraphe 2', widget: text, hint: 'Gras avec **étoiles**.' }
+          - { name: coordsTitle, label: 'Coordonnées — titre', widget: string }

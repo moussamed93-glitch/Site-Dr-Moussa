@@ -1,4 +1,31 @@
 {
+  "hero": {
+    "image": "/src/assets/images/bloc-2.jpg",
+    "eyebrow": "Chirurgie",
+    "title": "Une activité chirurgicale réelle et régulière",
+    "lead": "Le Dr Moussa assure lui-même les interventions, du bilan pré-opératoire au suivi post-opératoire au cabinet."
+  },
+  "surgery": [
+    {
+      "num": "01",
+      "title": "Chirurgie de la cataracte",
+      "text1": "Intervention de référence par **phacoémulsification** : le cristallin opacifié est retiré par micro-incision et remplacé par un implant intraoculaire calculé sur mesure — y compris dans les situations complexes comme les cornées kératocôniques.",
+      "text2": "L'opération dure une quinzaine de minutes, sous anesthésie locale, en ambulatoire. Les contrôles post-opératoires sont assurés au cabinet.",
+      "linkLabel": "Tout savoir sur la cataracte",
+      "link": "/services/cataracte/"
+    },
+    {
+      "num": "02",
+      "title": "Chirurgie réfractive",
+      "text1": "La chirurgie réfractive corrige durablement la **myopie, l'hypermétropie et l'astigmatisme** pour réduire ou supprimer la dépendance aux lunettes et lentilles.",
+      "text2": "Après un bilan complet de la cornée et de la réfraction, le Dr Moussa vous explique les techniques adaptées à votre œil et vous accompagne à chaque étape, jusqu'à la stabilisation du résultat.",
+      "linkLabel": "Demander un bilan réfractif",
+      "link": "/rendez-vous/"
+    }
+  ],
+  "blocEyebrow": "Au bloc opératoire",
+  "blocTitle": "La précision du geste, en images",
+  "blocNote": "Photographies réalisées dans le respect strict de l'anonymat des patients.",
   "blocPhotos": [
     { "image": "/src/assets/images/bloc-1.jpg", "alt": "Le Dr Moussa opérant sous microscope Zeiss Lumera T au bloc opératoire" },
     { "image": "/src/assets/images/bloc-3.jpg", "alt": "Le Dr Moussa concentré pendant une intervention de chirurgie oculaire" },

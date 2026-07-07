@@ -1,0 +1,9 @@
+{
+  "hero": {
+    "image": "/src/assets/images/accueil-angle.jpg",
+    "eyebrow": "Contact",
+    "title": "Nous trouver, nous joindre"
+  },
+  "formTitle": "Formulaire de contact",
+  "formIntro": "Pour une demande de rendez-vous ou une question, laissez-nous vos coordonnées : l'équipe du cabinet vous rappelle pendant les horaires d'ouverture. **En cas d'urgence, appelez directement le cabinet.**"
+}

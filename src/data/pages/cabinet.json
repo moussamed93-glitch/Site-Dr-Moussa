@@ -1,4 +1,10 @@
 {
+  "hero": {
+    "image": "/src/assets/images/accueil-logo.jpg",
+    "eyebrow": "Le cabinet",
+    "title": "Un espace pensé pour votre confort",
+    "lead": "Situé au premier étage du Centre Médical Horizon, à Cité Intilaka (Mnihla), le cabinet a été conçu comme un lieu calme et lumineux."
+  },
   "gallery": [
     { "image": "/src/assets/images/accueil-logo.jpg", "alt": "L'accueil du cabinet avec le logo du Dr Mohamed Moussa", "caption": "Accueil" },
     { "image": "/src/assets/images/salle-attente.jpg", "alt": "La salle d'attente du cabinet", "caption": "Salle d'attente" },

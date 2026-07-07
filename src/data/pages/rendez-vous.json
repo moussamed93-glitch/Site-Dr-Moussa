@@ -1,0 +1,22 @@
+{
+  "hero": {
+    "image": "/src/assets/images/salle-attente.jpg",
+    "eyebrow": "Prendre rendez-vous",
+    "title": "Trois façons simples de nous joindre",
+    "lead": "En cas d'urgence pendant les horaires d'ouverture, appelez directement : des créneaux d'urgence sont réservés chaque jour."
+  },
+  "phoneTitle": "Par téléphone",
+  "phoneText": "Le moyen le plus rapide. L'équipe du cabinet vous propose le premier créneau disponible et répond à vos questions pratiques.",
+  "medtnTitle": "En ligne, via Med.tn",
+  "medtnText": "Réservez votre créneau 24h/24 sur la plateforme Med.tn : choisissez la date et l'heure qui vous conviennent, recevez une confirmation immédiate.",
+  "formTitle": "Par formulaire",
+  "formText": "Décrivez votre demande via le formulaire de contact : l'équipe vous rappelle pour convenir d'un rendez-vous.",
+  "prepaTitle": "Préparer votre venue",
+  "prepaItems": [
+    "Votre carte de soins CNAM et vos documents d'assurance",
+    "Vos lunettes actuelles et vos ordonnances précédentes",
+    "La liste de vos traitements en cours",
+    "Vos comptes rendus ophtalmologiques antérieurs, si vous en avez"
+  ],
+  "prepaNote": "Si une dilatation pupillaire est prévue (fond d'œil), votre vision restera floue 2 à 4 heures : évitez de conduire et venez accompagné si possible."
+}

@@ -5,9 +5,11 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { resolveImage } from '../lib/images';
-import heroImg from '../assets/images/congres-sto-2025.jpg';
 import fallbackImg from '../assets/images/congres-sto-2025.jpg';
 import commData from '../data/communications.json';
+import page from '../data/pages/activite-scientifique.json';
+
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
 
 // Textes ET photos sont éditables dans le backoffice ; chaque photo est résolue
 // (et optimisée par Astro) à partir du nom de fichier choisi dans le CMS.
@@ -31,9 +33,9 @@ const communications = commData.communications.map((c) => ({
   <PageHero
     image={heroImg}
     focus="30% 40%"
-    eyebrow="Activité scientifique"
-    title="Une médecine qui avance avec la science"
-    lead="Congrès, communications et formation continue : la garantie d'une prise en charge conforme aux recommandations les plus récentes."
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Activité scientifique', href: '/activite-scientifique/' },
@@ -43,18 +45,14 @@ const communications = commData.communications.map((c) => ({
   <section class="section">
     <div class="container">
       <dl class="pillars reveal">
-        <div class="pillar">
-          <dt><span>01</span> Participation aux congrès</dt>
-          <dd>Présence régulière aux rencontres majeures de la spécialité, en Tunisie et à l'international.</dd>
-        </div>
-        <div class="pillar">
-          <dt><span>02</span> Communications scientifiques</dt>
-          <dd>Présentations orales devant les sociétés savantes — chirurgie de la cataracte, kératocône.</dd>
-        </div>
-        <div class="pillar">
-          <dt><span>03</span> Formation médicale continue</dt>
-          <dd>Mise à jour permanente des connaissances et des techniques, au bénéfice direct des patients.</dd>
-        </div>
+        {
+          page.pillars.map((p) => (
+            <div class="pillar">
+              <dt><span>{p.num}</span> {p.title}</dt>
+              <dd>{p.text}</dd>
+            </div>
+          ))
+        }
       </dl>
     </div>
   </section>
@@ -62,8 +60,8 @@ const communications = commData.communications.map((c) => ({
   <section class="section comms">
     <div class="container">
       <div class="comms-head reveal">
-        <p class="eyebrow">En images</p>
-        <h2>Communications récentes</h2>
+        <p class="eyebrow">{page.commsEyebrow}</p>
+        <h2>{page.commsTitle}</h2>
       </div>
       <div class="comms-grid">
         {

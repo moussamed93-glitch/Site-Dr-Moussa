@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "image": "/src/assets/images/accueil-logo.jpg",
+    "eyebrow": "Votre ophtalmologue de proximité",
+    "title": "Ophtalmologue à Cité Intilaka (Mnihla), Ariana",
+    "lead": "Le cabinet du Dr Mohamed Moussa est situé au Centre Médical Horizon, Route de Bizerte Km 4, au cœur de Cité Intilaka."
+  },
+  "locationTitle": "Une localisation accessible",
+  "locationText": "Le Centre Médical Horizon se trouve sur la Route de Bizerte (GP8), un axe principal facilement accessible en voiture comme en transport en commun. Le cabinet est au premier étage, bureaux 2 et 3, au-dessus de la pharmacie de nuit de Cité Intilaka.",
+  "zonesTitle": "Les quartiers desservis",
+  "zonesText": "Le cabinet accueille les patients de l'ensemble du secteur nord-ouest du Grand Tunis :",
+  "zones": ["Mnihla", "Cité Intilaka", "Ettadhamen", "Ariana", "Cité Ghazela", "Grand Tunis"],
+  "comingTitle": "Comment venir ?",
+  "comingText1": "**En voiture** — depuis Ariana ville ou Ettadhamen, suivez la Route de Bizerte (GP8) jusqu'au Km 4 ; le Centre Médical Horizon est signalé en bordure de route. Stationnement possible à proximité immédiate.",
+  "comingText2": "**En transport en commun** — les lignes desservant la Route de Bizerte et Cité Intilaka s'arrêtent à quelques minutes à pied du centre médical.",
+  "coordsTitle": "Coordonnées"
+}

@@ -2,7 +2,12 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import { SITE } from '../data/site';
-import heroImg from '../assets/images/accueil-angle.jpg';
+import { resolveImage } from '../lib/images';
+import { renderInline } from '../lib/richtext';
+import page from '../data/pages/contact.json';
+import fallbackImg from '../assets/images/accueil-angle.jpg';
+
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
 ---
 
 <Base
@@ -17,8 +22,8 @@ import heroImg from '../assets/images/accueil-angle.jpg';
     image={heroImg}
     focus="center 45%"
     compact
-    eyebrow="Contact"
-    title="Nous trouver, nous joindre"
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Contact', href: '/contact/' },
@@ -71,12 +76,8 @@ import heroImg from '../assets/images/accueil-angle.jpg';
       </div>
 
       <div class="reveal">
-        <h2 class="form-title">Formulaire de contact</h2>
-        <p class="form-intro">
-          Pour une demande de rendez-vous ou une question, laissez-nous vos
-          coordonnées : l'équipe du cabinet vous rappelle pendant les horaires
-          d'ouverture. <strong>En cas d'urgence, appelez directement le cabinet.</strong>
-        </p>
+        <h2 class="form-title">{page.formTitle}</h2>
+        <p class="form-intro" set:html={renderInline(page.formIntro)} />
         <form
           name="contact"
           method="POST"

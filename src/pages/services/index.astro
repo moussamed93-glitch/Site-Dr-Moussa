@@ -3,7 +3,11 @@ import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaRdv from '../../components/CtaRdv.astro';
 import { SERVICES } from '../../data/site';
-import heroImg from '../../assets/images/medecin-examen.jpg';
+import { resolveImage } from '../../lib/images';
+import page from '../../data/pages/services.json';
+import fallbackImg from '../../assets/images/medecin-examen.jpg';
+
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
 ---
 
 <Base
@@ -17,9 +21,9 @@ import heroImg from '../../assets/images/medecin-examen.jpg';
   <PageHero
     image={heroImg}
     focus="center 22%"
-    eyebrow="Nos services"
-    title="Une prise en charge complète de votre vision"
-    lead="Le cabinet couvre l'ensemble de l'ophtalmologie médicale et chirurgicale, chez l'adulte comme chez l'enfant."
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Services', href: '/services/' },

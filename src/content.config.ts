@@ -9,6 +9,7 @@ const services = defineCollection({
     metaDescription: z.string(),
     intro: z.string(),
     order: z.number(),
+    image: z.string().optional(),
     symptoms: z.array(z.string()),
     whenToConsult: z.array(z.string()),
     treatments: z.array(z.object({ title: z.string(), text: z.string() })),

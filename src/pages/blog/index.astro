@@ -3,7 +3,11 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaRdv from '../../components/CtaRdv.astro';
-import heroImg from '../../assets/images/salle-attente.jpg';
+import { resolveImage } from '../../lib/images';
+import page from '../../data/pages/blog.json';
+import fallbackImg from '../../assets/images/salle-attente.jpg';
+
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
 
 const posts = (await getCollection('blog')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -24,9 +28,9 @@ const fmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', ye
     image={heroImg}
     focus="center 55%"
     compact
-    eyebrow="Blog médical"
-    title="Comprendre vos yeux, simplement"
-    lead="Des articles rédigés pour informer, pas pour inquiéter : symptômes, traitements et conseils pratiques, expliqués clairement."
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Blog', href: '/blog/' },

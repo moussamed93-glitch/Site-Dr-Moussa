@@ -4,10 +4,13 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { SITE } from '../data/site';
+import { resolveImage } from '../lib/images';
+import page from '../data/pages/le-medecin.json';
+import fallbackImg from '../assets/images/medecin-cabinet.jpg';
 
-import heroImg from '../assets/images/medecin-cabinet.jpg';
-import portraitImg from '../assets/images/medecin-portrait.jpg';
-import examenImg from '../assets/images/medecin-examen.jpg';
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const portraitImg = resolveImage(page.bio.image) ?? fallbackImg;
+const examenImg = resolveImage(page.science.image) ?? fallbackImg;
 
 const physicianLd = {
   '@context': 'https://schema.org',
@@ -42,9 +45,9 @@ const physicianLd = {
   <PageHero
     image={heroImg}
     focus="68% 28%"
-    eyebrow="Le médecin"
-    title="Dr Mohamed Moussa"
-    lead="Docteur en médecine, diplômé de la Faculté de Médecine de Tunis — spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Le médecin', href: '/le-medecin/' },
@@ -56,42 +59,25 @@ const physicianLd = {
       <figure class="bio-media reveal">
         <Image
           src={portraitImg}
-          alt="Portrait professionnel du Dr Mohamed Moussa à son bureau"
+          alt={page.bio.imageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 768px) 100vw, 40vw"
         />
       </figure>
       <div class="bio-text reveal">
-        <p class="eyebrow">Parcours</p>
-        <h2>Soigner les yeux, expliquer, accompagner</h2>
-        <p>
-          Le Dr Mohamed Moussa assure la prise en charge des maladies des yeux chez
-          l'adulte et l'enfant : troubles de la réfraction, cataracte, glaucome,
-          kératocône, pathologies de la cornée et de la rétine, ophtalmologie
-          pédiatrique et urgences.
-        </p>
-        <p>
-          Spécialiste en chirurgie oculaire et traitements aux lasers, il assure
-          l'ensemble du parcours de soins — du diagnostic au geste chirurgical,
-          jusqu'au suivi post-opératoire au cabinet.
-        </p>
+        <p class="eyebrow">{page.bio.eyebrow}</p>
+        <h2>{page.bio.title}</h2>
+        <p>{page.bio.text1}</p>
+        <p>{page.bio.text2}</p>
         <dl class="bio-facts">
-          <div>
-            <dt>Formation</dt>
-            <dd>Doctorat en médecine — Faculté de Médecine de Tunis</dd>
-          </div>
-          <div>
-            <dt>Spécialité</dt>
-            <dd>Ophtalmologie, chirurgie oculaire, traitements laser</dd>
-          </div>
-          <div>
-            <dt>Patients</dt>
-            <dd>Adultes et enfants</dd>
-          </div>
-          <div>
-            <dt>Exercice</dt>
-            <dd>Centre Médical Horizon — Cité Intilaka (Mnihla), Ariana</dd>
-          </div>
+          {
+            page.bio.facts.map((f) => (
+              <div>
+                <dt>{f.label}</dt>
+                <dd>{f.value}</dd>
+              </div>
+            ))
+          }
         </dl>
       </div>
     </div>
@@ -100,25 +86,16 @@ const physicianLd = {
   <section class="section science">
     <div class="container science-grid">
       <div class="science-text reveal">
-        <p class="eyebrow">Une pratique fondée sur la science</p>
-        <h2>Se former en continu, pour mieux soigner</h2>
-        <p>
-          Le Dr Moussa participe régulièrement à des congrès nationaux et
-          internationaux — Congrès National d'Ophtalmologie de la Société Tunisienne
-          d'Ophtalmologie, congrès régionaux et conférences internationales — où il
-          présente des communications scientifiques.
-        </p>
-        <p>
-          Cette activité scientifique régulière lui permet de maintenir une pratique
-          fondée sur les recommandations internationales les plus récentes et les
-          innovations technologiques en ophtalmologie.
-        </p>
+        <p class="eyebrow">{page.science.eyebrow}</p>
+        <h2>{page.science.title}</h2>
+        <p>{page.science.text1}</p>
+        <p>{page.science.text2}</p>
         <a href="/activite-scientifique/" class="line-link">Voir l'activité scientifique</a>
       </div>
       <figure class="science-media reveal">
         <Image
           src={examenImg}
-          alt="Le Dr Moussa réalisant un examen sur l'unité de réfraction du cabinet"
+          alt={page.science.imageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 768px) 100vw, 42vw"
         />

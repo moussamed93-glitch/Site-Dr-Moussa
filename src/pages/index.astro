@@ -6,22 +6,22 @@ import Stars from '../components/Stars.astro';
 import { SITE, SERVICES, PARTNERS } from '../data/site';
 import { REVIEWS } from '../data/reviews';
 import home from '../data/home.json';
+import { resolveImage } from '../lib/images';
+import { renderInline } from '../lib/richtext';
+import fallbackImg from '../assets/images/medecin-cabinet.jpg';
 
-import heroImg from '../assets/images/medecin-cabinet.jpg';
-import portraitImg from '../assets/images/medecin-portrait.jpg';
-import materielImg from '../assets/images/materiel-vue.jpg';
-import blocImg from '../assets/images/bloc-1.jpg';
-import congresImg from '../assets/images/congres-sto-2025.jpg';
-import accueilImg from '../assets/images/accueil-logo.jpg';
-import servicesImg from '../assets/images/cabinet-2.jpg';
-import trustImg from '../assets/images/cabinet-4.jpg';
+const heroImg = resolveImage(home.heroImage) ?? fallbackImg;
+const servicesImg = resolveImage(home.servicesImage) ?? fallbackImg;
+const portraitImg = resolveImage(home.medecinImage) ?? fallbackImg;
+const trustImg = resolveImage(home.trustImage) ?? fallbackImg;
 
-const discover = [
-  { href: '/materiel/', img: materielImg, title: 'Notre matériel', text: 'NIDEK, HUVITZ, VisuScience — le détail de nos équipements.', alt: 'Plateau technique du cabinet : unité de consultation et instruments de mesure' },
-  { href: '/chirurgie/', img: blocImg, title: 'Chirurgie', text: 'Cataracte et chirurgie réfractive.', alt: 'Le Dr Moussa au bloc opératoire sous microscope opératoire Zeiss' },
-  { href: '/activite-scientifique/', img: congresImg, title: 'Activité scientifique', text: 'Congrès, communications, formation continue.', alt: "Le Dr Moussa présentant une communication au Congrès National d'Ophtalmologie" },
-  { href: '/cabinet/', img: accueilImg, title: 'Le cabinet', text: 'Accueil, salle d’attente, consultation.', alt: "Accueil du cabinet d'ophtalmologie du Dr Mohamed Moussa" },
-];
+const discover = home.discover.map((d) => ({
+  href: d.link,
+  img: resolveImage(d.image) ?? fallbackImg,
+  title: d.title,
+  text: d.text,
+  alt: d.alt,
+}));
 ---
 
 <Base
@@ -53,7 +53,7 @@ const discover = [
       <figure class="hero-media reveal">
         <Image
           src={heroImg}
-          alt="Le Dr Mohamed Moussa dans sa salle de consultation équipée"
+          alt={home.heroImageAlt}
           widths={[600, 900, 1400]}
           sizes="(max-width: 900px) 100vw, 48vw"
           loading="eager"
@@ -69,13 +69,13 @@ const discover = [
       <figure class="services-media reveal">
         <Image
           src={servicesImg}
-          alt="Unité de réfraction NIDEK et lampe à fente du cabinet"
+          alt={home.servicesImageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 860px) 100vw, 42vw"
         />
         <figcaption class="services-caption">
-          <span class="services-caption-num">13</span>
-          <span class="services-caption-text">domaines de prise en charge, du dépistage à la chirurgie</span>
+          <span class="services-caption-num">{home.servicesCaptionNum}</span>
+          <span class="services-caption-text">{home.servicesCaptionText}</span>
         </figcaption>
       </figure>
       <div class="services-text reveal">
@@ -105,7 +105,7 @@ const discover = [
       <figure class="medecin-media reveal">
         <Image
           src={portraitImg}
-          alt="Portrait du Dr Mohamed Moussa à son bureau"
+          alt={home.medecinImageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 768px) 100vw, 42vw"
         />
@@ -134,7 +134,7 @@ const discover = [
       <figure class="trust-media reveal">
         <Image
           src={trustImg}
-          alt="Bureau du Dr Mohamed Moussa avec ses diplômes et certifications"
+          alt={home.trustImageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 860px) 100vw, 42vw"
         />
@@ -147,16 +147,7 @@ const discover = [
       <div class="trust-text reveal">
         <p class="eyebrow">Pourquoi nous faire confiance ?</p>
         <h2 id="titre-confiance">{home.trustTitle}</h2>
-        <p class="trust-manifesto">
-          Un <strong>cabinet moderne</strong>, au Centre Médical Horizon, équipé de
-          <strong>technologies de dernière génération</strong>. Une
-          <strong>formation médicale continue</strong> et une
-          <strong>activité scientifique régulière</strong>, pour une pratique fondée
-          sur les <strong>recommandations internationales</strong> les plus récentes.
-          Une <strong>prise en charge personnalisée</strong>, en
-          <strong>consultation comme en chirurgie</strong>, pour les
-          <strong>adultes comme pour les enfants</strong>.
-        </p>
+        <p class="trust-manifesto" set:html={renderInline(home.trustManifesto)} />
       </div>
     </div>
   </section>
@@ -199,7 +190,7 @@ const discover = [
       <div class="split-head reveal">
         <div>
           <p class="eyebrow">Découvrir le cabinet</p>
-          <h2 id="titre-decouvrir">Un plateau technique au service du diagnostic</h2>
+          <h2 id="titre-decouvrir">{home.discoverTitle}</h2>
         </div>
       </div>
       <div class="discover-grid">

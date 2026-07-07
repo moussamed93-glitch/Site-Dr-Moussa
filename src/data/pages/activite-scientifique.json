@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "image": "/src/assets/images/congres-sto-2025.jpg",
+    "eyebrow": "Activité scientifique",
+    "title": "Une médecine qui avance avec la science",
+    "lead": "Congrès, communications et formation continue : la garantie d'une prise en charge conforme aux recommandations les plus récentes."
+  },
+  "pillars": [
+    { "num": "01", "title": "Participation aux congrès", "text": "Présence régulière aux rencontres majeures de la spécialité, en Tunisie et à l'international." },
+    { "num": "02", "title": "Communications scientifiques", "text": "Présentations orales devant les sociétés savantes — chirurgie de la cataracte, kératocône." },
+    { "num": "03", "title": "Formation médicale continue", "text": "Mise à jour permanente des connaissances et des techniques, au bénéfice direct des patients." }
+  ],
+  "commsEyebrow": "En images",
+  "commsTitle": "Communications récentes"
+}

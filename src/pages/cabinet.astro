@@ -24,11 +24,11 @@ const gallery: GalleryItem[] = pageData.gallery
   ]}
 >
   <PageHero
-    image={accueilLogo}
+    image={resolveImage(pageData.hero.image) ?? accueilLogo}
     focus="center 40%"
-    eyebrow="Le cabinet"
-    title="Un espace pensé pour votre confort"
-    lead="Situé au premier étage du Centre Médical Horizon, à Cité Intilaka (Mnihla), le cabinet a été conçu comme un lieu calme et lumineux."
+    eyebrow={pageData.hero.eyebrow}
+    title={pageData.hero.title}
+    lead={pageData.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Le cabinet', href: '/cabinet/' },

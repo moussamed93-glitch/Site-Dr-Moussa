@@ -3,7 +3,8 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import CtaRdv from '../../components/CtaRdv.astro';
-import heroImg from '../../assets/images/materiel-vue.jpg';
+import { resolveImage } from '../../lib/images';
+import fallbackImg from '../../assets/images/materiel-vue.jpg';
 
 export async function getStaticPaths() {
   const services = await getCollection('services');
@@ -17,6 +18,7 @@ const { service } = Astro.props;
 const { data } = service;
 const { Content } = await render(service);
 const slug = service.id.replace(/\.md$/, '');
+const heroImg = resolveImage(data.image) ?? fallbackImg;
 
 const faqLd = {
   '@context': 'https://schema.org',

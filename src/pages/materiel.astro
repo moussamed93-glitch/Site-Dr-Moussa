@@ -3,12 +3,14 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
-
-import heroImg from '../assets/images/materiel-vue.jpg';
-import examenImg from '../assets/images/medecin-examen.jpg';
+import { resolveImage } from '../lib/images';
 import equipData from '../data/equipments.json';
+import page from '../data/pages/materiel.json';
+import fallbackImg from '../assets/images/materiel-vue.jpg';
 
 const equipments = equipData.equipments;
+const heroImg = resolveImage(page.hero.image) ?? fallbackImg;
+const examenImg = resolveImage(page.pratiqueImage) ?? fallbackImg;
 ---
 
 <Base
@@ -22,9 +24,9 @@ const equipments = equipData.equipments;
   <PageHero
     image={heroImg}
     focus="center 55%"
-    eyebrow="Notre matériel"
-    title="Des équipements de dernière génération"
-    lead="Réfraction, tonométrie, imagerie : un plateau technique complet pour réaliser l'ensemble du bilan sur place, en une seule visite."
+    eyebrow={page.hero.eyebrow}
+    title={page.hero.title}
+    lead={page.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Notre matériel', href: '/materiel/' },
@@ -62,23 +64,15 @@ const equipments = equipData.equipments;
   <section class="section pratique">
     <div class="container pratique-grid">
       <div class="reveal">
-        <p class="eyebrow">En pratique</p>
-        <h2>Tout le bilan, en une seule visite</h2>
-        <p>
-          Réfraction, tension oculaire, épaisseur cornéenne, examen microscopique et
-          photographies : l'ensemble des mesures est réalisé au cabinet, dans la même
-          consultation, sans déplacement supplémentaire.
-        </p>
-        <p>
-          Les images de votre œil sont conservées dans votre dossier et comparées à
-          chaque visite — une exigence de suivi que permet la numérisation complète du
-          plateau technique.
-        </p>
+        <p class="eyebrow">{page.pratiqueEyebrow}</p>
+        <h2>{page.pratiqueTitle}</h2>
+        <p>{page.pratiqueText1}</p>
+        <p>{page.pratiqueText2}</p>
       </div>
       <figure class="pratique-media reveal">
         <Image
           src={examenImg}
-          alt="Le Dr Moussa aux commandes d'un instrument de mesure NIDEK"
+          alt={page.pratiqueImageAlt}
           widths={[480, 700, 1000]}
           sizes="(max-width: 768px) 100vw, 42vw"
         />

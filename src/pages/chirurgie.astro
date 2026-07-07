@@ -5,6 +5,7 @@ import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import { resolveImage } from '../lib/images';
+import { renderInline } from '../lib/richtext';
 import heroImg from '../assets/images/bloc-2.jpg';
 import pageData from '../data/pages/chirurgie.json';
 
@@ -24,11 +25,11 @@ const blocPhotos: BlocPhoto[] = pageData.blocPhotos
   ]}
 >
   <PageHero
-    image={heroImg}
+    image={resolveImage(pageData.hero.image) ?? heroImg}
     focus="center 30%"
-    eyebrow="Chirurgie"
-    title="Une activité chirurgicale réelle et régulière"
-    lead="Le Dr Moussa assure lui-même les interventions, du bilan pré-opératoire au suivi post-opératoire au cabinet."
+    eyebrow={pageData.hero.eyebrow}
+    title={pageData.hero.title}
+    lead={pageData.hero.lead}
     crumbs={[
       { name: 'Accueil', href: '/' },
       { name: 'Chirurgie', href: '/chirurgie/' },
@@ -37,44 +38,25 @@ const blocPhotos: BlocPhoto[] = pageData.blocPhotos
 
   <section class="section">
     <div class="container surgery-cols">
-      <article class="surgery-col reveal">
-        <span class="surgery-num">01</span>
-        <h2>Chirurgie de la cataracte</h2>
-        <p>
-          Intervention de référence par <strong>phacoémulsification</strong> : le
-          cristallin opacifié est retiré par micro-incision et remplacé par un implant
-          intraoculaire calculé sur mesure — y compris dans les situations complexes
-          comme les cornées kératocôniques.
-        </p>
-        <p>
-          L'opération dure une quinzaine de minutes, sous anesthésie locale, en
-          ambulatoire. Les contrôles post-opératoires sont assurés au cabinet.
-        </p>
-        <a href="/services/cataracte/" class="line-link">Tout savoir sur la cataracte</a>
-      </article>
-      <article class="surgery-col reveal">
-        <span class="surgery-num">02</span>
-        <h2>Chirurgie réfractive</h2>
-        <p>
-          La chirurgie réfractive corrige durablement la <strong>myopie,
-          l'hypermétropie et l'astigmatisme</strong> pour réduire ou supprimer la
-          dépendance aux lunettes et lentilles.
-        </p>
-        <p>
-          Après un bilan complet de la cornée et de la réfraction, le Dr Moussa vous
-          explique les techniques adaptées à votre œil et vous accompagne à chaque
-          étape, jusqu'à la stabilisation du résultat.
-        </p>
-        <a href="/rendez-vous/" class="line-link">Demander un bilan réfractif</a>
-      </article>
+      {
+        pageData.surgery.map((col) => (
+          <article class="surgery-col reveal">
+            <span class="surgery-num">{col.num}</span>
+            <h2>{col.title}</h2>
+            <p set:html={renderInline(col.text1)} />
+            <p set:html={renderInline(col.text2)} />
+            <a href={col.link} class="line-link">{col.linkLabel}</a>
+          </article>
+        ))
+      }
     </div>
   </section>
 
   <section class="section bloc">
     <div class="container">
       <div class="bloc-head reveal">
-        <p class="eyebrow">Au bloc opératoire</p>
-        <h2>La précision du geste, en images</h2>
+        <p class="eyebrow">{pageData.blocEyebrow}</p>
+        <h2>{pageData.blocTitle}</h2>
       </div>
       <div class="bloc-grid">
         {
@@ -90,9 +72,7 @@ const blocPhotos: BlocPhoto[] = pageData.blocPhotos
           ))
         }
       </div>
-      <p class="bloc-note reveal">
-        Photographies réalisées dans le respect strict de l'anonymat des patients.
-      </p>
+      <p class="bloc-note reveal">{pageData.blocNote}</p>
     </div>
   </section>
 
