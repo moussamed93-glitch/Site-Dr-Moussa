@@ -33,6 +33,9 @@ for (const file of pages) {
   const html = readFileSync(file, 'utf8');
   const rel = path.relative(DIST, file).replace(/\\/g, '/');
 
+  // /admin/ est le backoffice : noindex + Disallow dans robots.txt.
+  if (rel.startsWith('admin/')) continue;
+
   const title = get(html, /<title>([^<]*)<\/title>/);
   if (!title) issues.critical.push(`${rel}: pas de <title>`);
   else {

@@ -67,6 +67,41 @@ Déposer les originaux dans le dossier parent, ajouter une ligne dans
    domaine dans Search Console (soumettre `sitemap-index.xml`) et ajouter le
    script GA4 dans `src/layouts/Base.astro` si souhaité.
 
+## Backoffice (modifier le contenu sans coder)
+
+Le site embarque **Decap CMS** : une interface d'administration accessible sur
+**`/admin/`** (ex. `https://www.drmoussa-ophtalmo.tn/admin/`), protégée par
+**e-mail + mot de passe**. Le médecin peut y modifier :
+
+- **Réglages du cabinet** : téléphones, e-mail, adresse, horaires, liens (Maps, Med.tn), nombre d'avis ;
+- **Textes de la page d'accueil** : titre, introduction, présentation du médecin ;
+- **Avis Google affichés** (à copier mot pour mot) ;
+- **Notre matériel** : ajouter/modifier/supprimer des équipements ;
+- **Congrès et communications** : légendes et années ;
+- **Les 13 pages services** : tout le contenu (symptômes, FAQ, traitements…) + en créer de nouvelles ;
+- **Les articles de blog** : créer, modifier, supprimer, avec éditeur visuel et upload de photos.
+
+Chaque sauvegarde crée un commit Git → le site est reconstruit et republié
+automatiquement en ~1 minute.
+
+### Activation (une seule fois, ~10 minutes)
+
+1. **GitHub** : créer un dépôt privé et pousser ce dossier :
+   ```bash
+   git remote add origin https://github.com/<votre-compte>/site-dr-moussa.git
+   git push -u origin main
+   ```
+2. **Netlify** : « Add new site → Import an existing project » → choisir le dépôt.
+   Build command : `npm run build` — Publish directory : `dist`. Déployer.
+3. **Activer l'authentification** (dans le tableau de bord Netlify du site) :
+   - *Integrations → Identity → Enable Identity* ;
+   - *Identity → Registration* : choisir **Invite only** (personne ne peut s'inscrire seul) ;
+   - *Identity → Services → Git Gateway* : **Enable Git Gateway** ;
+   - *Identity → Invite users* : entrer l'e-mail du Dr Moussa. Il reçoit un
+     e-mail, clique le lien, choisit son mot de passe — et accède à `/admin/`.
+
+C'est tout : le backoffice est en ligne, sécurisé (invitation seule), gratuit.
+
 ## Hébergement recommandé
 
 Netlify, Vercel ou Cloudflare Pages (gratuits pour ce type de site) :
