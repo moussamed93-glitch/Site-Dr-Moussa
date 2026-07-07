@@ -1,0 +1,167 @@
+# =====================================================================
+# Backoffice — Cabinet d'Ophtalmologie Dr Mohamed Moussa
+# Decap CMS : chaque sauvegarde crée un commit Git et republie le site.
+# =====================================================================
+
+backend:
+  name: git-gateway
+  branch: main
+  commit_messages:
+    create: 'Contenu : création de {{slug}}'
+    update: 'Contenu : mise à jour de {{slug}}'
+    delete: 'Contenu : suppression de {{slug}}'
+    uploadMedia: 'Média : ajout de {{path}}'
+    deleteMedia: 'Média : suppression de {{path}}'
+
+locale: fr
+site_url: https://www.drmoussa-ophtalmo.tn
+logo_url: /favicon.svg
+
+media_folder: 'public/uploads'
+public_folder: '/uploads'
+
+collections:
+  # ------------------------------------------------------------------
+  - name: reglages
+    label: 'Réglages du cabinet'
+    description: 'Coordonnées, horaires, liens — affichés sur tout le site.'
+    files:
+      - name: settings
+        label: 'Coordonnées et horaires'
+        file: 'src/data/settings.json'
+        fields:
+          - { name: name, label: 'Nom du cabinet', widget: string }
+          - { name: doctor, label: 'Nom du médecin', widget: string }
+          - { name: title, label: 'Titre professionnel', widget: string }
+          - { name: url, label: 'Adresse du site (URL)', widget: string }
+          - { name: phone, label: 'Téléphone principal (format international)', widget: string, hint: 'Ex. +216 58 272 719' }
+          - { name: phoneDisplay, label: 'Téléphone principal (affiché)', widget: string }
+          - { name: phone2, label: 'Téléphone secondaire (format international)', widget: string }
+          - { name: phone2Display, label: 'Téléphone secondaire (affiché)', widget: string }
+          - { name: email, label: 'E-mail', widget: string }
+          - { name: addressLine1, label: 'Adresse — ligne 1', widget: string }
+          - { name: addressLine2, label: 'Adresse — ligne 2', widget: string }
+          - { name: addressCity, label: 'Ville / quartier', widget: string }
+          - { name: addressRegion, label: 'Gouvernorat', widget: string }
+          - { name: addressPostalCode, label: 'Code postal', widget: string }
+          - { name: addressCountry, label: 'Pays', widget: string }
+          - { name: mapsUrl, label: 'Lien Google Maps (itinéraire)', widget: string }
+          - { name: mapsEmbed, label: 'Lien Google Maps (carte intégrée)', widget: string }
+          - { name: medtnUrl, label: 'Lien profil Med.tn', widget: string }
+          - { name: googleReviewsUrl, label: 'Lien avis Google', widget: string }
+          - { name: reviewCount, label: "Nombre d'avis Google", widget: number, value_type: int }
+          - { name: rating, label: 'Note Google (sur 5)', widget: number, value_type: int }
+          - name: hours
+            label: 'Horaires'
+            widget: list
+            fields:
+              - { name: days, label: 'Jours', widget: string }
+              - { name: time, label: 'Heures', widget: string }
+          - { name: facebook, label: 'Page Facebook (URL, optionnel)', widget: string, required: false }
+          - { name: instagram, label: 'Page Instagram (URL, optionnel)', widget: string, required: false }
+
+      - name: home
+        label: "Textes de la page d'accueil"
+        file: 'src/data/home.json'
+        fields:
+          - { name: heroEyebrow, label: 'Sur-titre du bandeau', widget: string }
+          - { name: heroTitle, label: 'Titre principal (1ère partie)', widget: string }
+          - { name: heroTitleAccent, label: 'Titre principal (partie en italique)', widget: string }
+          - { name: heroLead, label: "Texte d'introduction", widget: text }
+          - { name: servicesTitle, label: 'Titre de la section Services', widget: string }
+          - { name: servicesIntro, label: 'Introduction de la section Services', widget: text }
+          - { name: medecinTitles, label: 'Titres du médecin (une ligne par titre)', widget: text }
+          - { name: medecinText1, label: 'Présentation du médecin — paragraphe 1', widget: text }
+          - { name: medecinText2, label: 'Présentation du médecin — paragraphe 2', widget: text }
+          - { name: trustTitle, label: 'Titre de la section Confiance', widget: string }
+
+      - name: reviews
+        label: 'Avis Google affichés'
+        file: 'src/data/reviews.json'
+        fields:
+          - name: reviews
+            label: 'Avis (copier mot pour mot depuis Google)'
+            widget: list
+            fields:
+              - { name: author, label: 'Nom du patient (tel que public sur Google)', widget: string }
+              - { name: text, label: "Texte exact de l'avis", widget: text }
+
+      - name: equipments
+        label: 'Notre matériel'
+        file: 'src/data/equipments.json'
+        fields:
+          - name: equipments
+            label: 'Équipements'
+            widget: list
+            fields:
+              - { name: name, label: "Nom de l'appareil", widget: string }
+              - { name: role, label: 'Sous-titre (rôle)', widget: string }
+              - { name: features, label: 'Caractéristiques', widget: list, field: { name: feature, label: 'Caractéristique', widget: string } }
+              - { name: benefit, label: 'Bénéfice pour le patient', widget: text }
+
+      - name: communications
+        label: 'Congrès et communications'
+        file: 'src/data/communications.json'
+        fields:
+          - name: communications
+            label: 'Communications'
+            widget: list
+            fields:
+              - name: image
+                label: 'Photo'
+                widget: select
+                options:
+                  - { label: 'Congrès STO 2025 (présentation kératocône)', value: 'congres-sto-2025' }
+                  - { label: 'Congrès STO 2025 (panel)', value: 'congres-sto-panel' }
+                  - { label: 'EPOMEC Dubaï', value: 'congres-epomec' }
+                  - { label: 'Congrès AMOS', value: 'congres-amos' }
+              - { name: congress, label: 'Nom du congrès', widget: string }
+              - { name: subject, label: 'Sujet de la communication', widget: string }
+              - { name: year, label: 'Année', widget: string }
+
+  # ------------------------------------------------------------------
+  - name: services
+    label: 'Services (13 pages)'
+    label_singular: 'service'
+    folder: 'src/content/services'
+    create: true
+    slug: '{{slug}}'
+    identifier_field: title
+    sortable_fields: [order, title]
+    fields:
+      - { name: title, label: 'Nom du service', widget: string }
+      - { name: metaTitle, label: 'Titre Google (50-60 caractères)', widget: string }
+      - { name: metaDescription, label: 'Description Google (150-160 caractères)', widget: text }
+      - { name: intro, label: "Phrase d'introduction", widget: text }
+      - { name: order, label: "Ordre d'affichage", widget: number, value_type: int }
+      - { name: symptoms, label: 'Symptômes', widget: list, field: { name: item, label: 'Symptôme', widget: string } }
+      - { name: whenToConsult, label: 'Quand consulter ?', widget: list, field: { name: item, label: 'Situation', widget: string } }
+      - name: treatments
+        label: 'Traitements et prise en charge'
+        widget: list
+        fields:
+          - { name: title, label: 'Titre', widget: string }
+          - { name: text, label: 'Description', widget: text }
+      - name: faq
+        label: 'Questions fréquentes'
+        widget: list
+        fields:
+          - { name: q, label: 'Question', widget: string }
+          - { name: a, label: 'Réponse', widget: text }
+      - { name: body, label: 'Texte de présentation (corps de page)', widget: markdown }
+
+  # ------------------------------------------------------------------
+  - name: blog
+    label: 'Articles de blog'
+    label_singular: 'article'
+    folder: 'src/content/blog'
+    create: true
+    slug: '{{slug}}'
+    identifier_field: title
+    sortable_fields: [date, title]
+    fields:
+      - { name: title, label: "Titre de l'article", widget: string }
+      - { name: description, label: 'Résumé (affiché sur Google)', widget: text }
+      - { name: date, label: 'Date de publication', widget: datetime, format: 'YYYY-MM-DD', date_format: 'DD/MM/YYYY', time_format: false }
+      - { name: category, label: 'Catégorie', widget: string, hint: 'Ex. Prévention, Chirurgie, Cornée, Pédiatrie' }
+      - { name: body, label: "Contenu de l'article", widget: markdown }

@@ -1,0 +1,72 @@
+---
+import { SITE } from '../data/site';
+
+interface Props {
+  title?: string;
+  text?: string;
+}
+
+const {
+  title = 'Prendre rendez-vous',
+  text = 'Le cabinet vous accueille du lundi au samedi. Choisissez le moyen qui vous convient : par téléphone, en ligne ou via le formulaire de contact.',
+} = Astro.props;
+---
+
+<section class="section cta-rdv">
+  <div class="container">
+    <div class="cta-panel">
+      <div class="reveal">
+        <p class="eyebrow">Consultation et chirurgie — adultes et enfants</p>
+        <h2>{title}</h2>
+        <p class="cta-text">{text}</p>
+      </div>
+      <div class="cta-actions reveal">
+        <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="btn btn--primary">
+          Appeler le {SITE.phoneDisplay}
+        </a>
+        <a href={SITE.medtnUrl} target="_blank" rel="noopener" class="btn btn--ghost-light">
+          Rendez-vous en ligne (Med.tn)
+        </a>
+        <a href="/contact/" class="btn btn--ghost-light">Formulaire de contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-rdv {
+    padding-block: clamp(2rem, 5vw, 4rem);
+  }
+
+  .cta-panel {
+    background: var(--char-800);
+    color: #e8e6e1;
+    border-radius: clamp(20px, 3vw, 36px);
+    padding: clamp(2.5rem, 6vw, 5rem) clamp(1.5rem, 5vw, 4rem);
+    display: grid;
+    gap: var(--s-6);
+    text-align: center;
+    justify-items: center;
+  }
+
+  .cta-panel h2 {
+    color: #fff;
+  }
+
+  .cta-panel .eyebrow {
+    color: var(--sand-300);
+  }
+
+  .cta-text {
+    max-width: 55ch;
+    margin-top: var(--s-4);
+    color: #cfccc4;
+  }
+
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+    justify-content: center;
+  }
+</style>

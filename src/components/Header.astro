@@ -1,0 +1,319 @@
+---
+import Logo from './Logo.astro';
+import { NAV, SITE } from '../data/site';
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === '/' ? currentPath === '/' : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label={`${SITE.doctor} — accueil`}>
+      <Logo class="brand-logo" width={58} />
+      <span class="brand-text">
+        <span class="brand-name">Dr Mohamed Moussa</span>
+        <span class="brand-sub">Ophtalmologue — Ariana</span>
+      </span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-principal"
+      aria-label="Ouvrir le menu"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <nav id="nav-principal" class="nav" aria-label="Navigation principale">
+      <ul class="nav-list">
+        {
+          NAV.map((item) => (
+            <li class={'children' in item && item.children ? 'has-sub' : ''}>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={['nav-link', { 'is-active': isActive(item.href) }]}
+              >
+                {item.label}
+                {'children' in item && item.children && (
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                    <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                  </svg>
+                )}
+              </a>
+              {'children' in item && item.children && (
+                <ul class="sub-menu">
+                  {item.children.map((child) => (
+                    <li>
+                      <a href={child.href}>{child.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+      <a href="/rendez-vous/" class="btn btn--primary nav-cta">Prendre rendez-vous</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(254, 249, 239, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-5);
+    min-height: 76px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-shrink: 0;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--navy-800);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 420px) {
+    .brand-name {
+      font-size: 1.05rem;
+    }
+  }
+
+  .brand-sub {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    white-space: nowrap;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.25rem, 1vw, 1rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.6rem 0.7rem;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--ink);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+  }
+
+  .nav-link:hover {
+    color: var(--blue-logo);
+  }
+
+  .nav-link.is-active {
+    color: var(--blue-logo);
+  }
+
+  .has-sub {
+    position: relative;
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 240px;
+    max-height: min(70vh, 520px);
+    overflow-y: auto;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    padding: var(--s-2);
+    list-style: none;
+    margin: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  }
+
+  .has-sub:hover .sub-menu,
+  .has-sub:focus-within .sub-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .sub-menu a {
+    display: block;
+    padding: 0.55rem 0.85rem;
+    font-size: var(--text-sm);
+    border-radius: var(--radius-sm);
+    color: var(--ink);
+  }
+
+  .sub-menu a:hover {
+    background: var(--blue-soft);
+    color: var(--navy-800);
+  }
+
+  .nav-cta {
+    white-space: nowrap;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: 0;
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-toggle-bar {
+    width: 24px;
+    height: 2px;
+    background: var(--navy-800);
+    transition: transform var(--transition), opacity var(--transition);
+  }
+
+  @media (max-width: 1199px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow-lg);
+      padding: var(--s-4) clamp(1.25rem, 4vw, 2.5rem) var(--s-6);
+      display: none;
+      max-height: calc(100dvh - 76px);
+      overflow-y: auto;
+    }
+
+    .nav.is-open {
+      display: flex;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+
+    .nav-link {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      padding: 0.85rem 0.25rem;
+      font-size: var(--text-base);
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+    }
+
+    .sub-menu {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      box-shadow: none;
+      border: 0;
+      border-left: 2px solid var(--taupe-300);
+      border-radius: 0;
+      margin: 0 0 var(--s-3) var(--s-3);
+      max-height: none;
+      display: none;
+    }
+
+    .has-sub.is-expanded .sub-menu {
+      display: block;
+    }
+
+    .nav-cta {
+      margin-top: var(--s-4);
+    }
+
+    body:has(.nav.is-open) .nav-toggle .nav-toggle-bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    body:has(.nav.is-open) .nav-toggle .nav-toggle-bar:nth-child(2) {
+      opacity: 0;
+    }
+    body:has(.nav.is-open) .nav-toggle .nav-toggle-bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('nav-principal');
+
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(Boolean(open)));
+    toggle.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+  });
+
+  // Sur mobile : premier appui sur un item à sous-menu = déplier.
+  if (window.matchMedia('(max-width: 1199px)').matches) {
+    document.querySelectorAll('.has-sub > .nav-link').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const parent = link.parentElement;
+        if (parent && !parent.classList.contains('is-expanded')) {
+          e.preventDefault();
+          parent.classList.add('is-expanded');
+        }
+      });
+    });
+  }
+</script>

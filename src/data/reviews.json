@@ -1,0 +1,16 @@
+{
+  "reviews": [
+    {
+      "author": "Alaeddine Mejri",
+      "text": "Je recommande ! C'est un médecin très à l'écoute et bienveillant avec ses patients Et surtout très disponible! Merci pour le suivi, je vais sûrement revenir"
+    },
+    {
+      "author": "Souha Hassen",
+      "text": "Médecin très compétent et très attentif Bonne continuation"
+    },
+    {
+      "author": "Rihab Boudhiba",
+      "text": "C'est un bon médecin qui prend le temps de bien examiner ses patients"
+    }
+  ]
+}

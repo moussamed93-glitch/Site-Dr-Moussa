@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+import { SITE } from '../data/site';
+import heroImg from '../assets/images/accueil-logo.jpg';
+
+const zones = [
+  'Mnihla',
+  'Cité Intilaka',
+  'Ettadhamen',
+  'Ariana',
+  'Cité Ghazela',
+  'Grand Tunis',
+];
+---
+
+<Base
+  title="Ophtalmologue à Cité Intilaka (Mnihla), Ariana | Dr Moussa"
+  description="Ophtalmologue à Mnihla, Cité Intilaka, Ettadhamen, Ariana : le cabinet du Dr Moussa vous accueille au Centre Médical Horizon, Route de Bizerte Km 4."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Ophtalmologue à Mnihla, Ariana', href: '/ophtalmologue-mnihla-ariana/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 40%"
+    compact
+    eyebrow="Votre ophtalmologue de proximité"
+    title="Ophtalmologue à Cité Intilaka (Mnihla), Ariana"
+    lead="Le cabinet du Dr Mohamed Moussa est situé au Centre Médical Horizon, Route de Bizerte Km 4, au cœur de Cité Intilaka."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Ophtalmologue à Mnihla, Ariana', href: '/ophtalmologue-mnihla-ariana/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container container--narrow">
+      <div class="prose reveal">
+        <h2>Une localisation accessible</h2>
+        <p>
+          Le Centre Médical Horizon se trouve sur la Route de Bizerte (GP8), un axe
+          principal facilement accessible en voiture comme en transport en commun.
+          Le cabinet est au premier étage, bureaux 2 et 3, au-dessus de la pharmacie
+          de nuit de Cité Intilaka.
+        </p>
+
+        <h2>Les quartiers desservis</h2>
+        <p>
+          Le cabinet accueille les patients de l'ensemble du secteur nord-ouest du
+          Grand Tunis :
+        </p>
+        <ul class="zones-list">
+          {zones.map((z) => <li>{z}</li>)}
+        </ul>
+
+        <h2>Comment venir ?</h2>
+        <p>
+          <strong>En voiture</strong> — depuis Ariana ville ou Ettadhamen, suivez la
+          Route de Bizerte (GP8) jusqu'au Km 4 ; le Centre Médical Horizon est
+          signalé en bordure de route. Stationnement possible à proximité immédiate.
+        </p>
+        <p>
+          <strong>En transport en commun</strong> — les lignes desservant la Route de
+          Bizerte et Cité Intilaka s'arrêtent à quelques minutes à pied du centre
+          médical.
+        </p>
+
+        <h2>Coordonnées</h2>
+        <p>
+          {SITE.name}<br />
+          {SITE.address.line1}<br />
+          {SITE.address.line2}, {SITE.address.city}<br />
+          {SITE.address.region} {SITE.address.postalCode}, {SITE.address.country}<br />
+          Téléphone : <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay}</a><br />
+          E-mail : <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+        </p>
+        <p>
+          <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="btn btn--primary">
+            Itinéraire Google Maps
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section" aria-label="Plan d'accès">
+    <iframe
+      src={SITE.mapsEmbed}
+      width="100%"
+      height="420"
+      style="border:0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Plan d'accès au cabinet d'ophtalmologie — Cité Intilaka (Mnihla), Ariana"
+    ></iframe>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .prose h2 {
+    margin-top: var(--s-6);
+    margin-bottom: var(--s-3);
+  }
+
+  .prose p {
+    margin-bottom: var(--s-4);
+  }
+
+  .zones-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    list-style: none;
+    padding: 0;
+    margin: 0 0 var(--s-4);
+  }
+
+  .zones-list li {
+    padding: 0.4rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    color: var(--navy-700);
+  }
+
+  .map-section {
+    border-block: 1px solid var(--line);
+  }
+
+  .map-section iframe {
+    display: block;
+    filter: grayscale(0.2);
+  }
+</style>

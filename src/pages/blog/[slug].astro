@@ -1,0 +1,145 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import CtaRdv from '../../components/CtaRdv.astro';
+import { SITE } from '../../data/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const slug = post.id.replace(/\.md$/, '');
+const fmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalWebPage',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date.toISOString().slice(0, 10),
+  inLanguage: 'fr',
+  author: {
+    '@type': 'Physician',
+    name: SITE.doctor,
+    url: `${SITE.url}/le-medecin/`,
+  },
+};
+---
+
+<Base
+  title={`${post.data.title} | Dr Moussa`}
+  description={post.data.description}
+  jsonLd={[articleLd]}
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Blog', href: '/blog/' },
+    { name: post.data.title, href: `/blog/${slug}/` },
+  ]}
+>
+  <article class="section">
+    <div class="container container--narrow">
+      <nav class="crumbs" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">/</span>
+        <a href="/blog/">Blog</a>
+      </nav>
+      <header class="post-header reveal">
+        <p class="post-meta">
+          <span class="post-category">{post.data.category}</span>
+          <time datetime={post.data.date.toISOString().slice(0, 10)}>
+            {fmt.format(post.data.date)}
+          </time>
+        </p>
+        <h1>{post.data.title}</h1>
+        <p class="lead">{post.data.description}</p>
+      </header>
+      <div class="prose reveal">
+        <Content />
+      </div>
+      <footer class="post-footer">
+        <p>
+          Article rédigé sous la responsabilité du
+          <a href="/le-medecin/">Dr Mohamed Moussa</a>, médecin ophtalmologiste à
+          Ariana. Ces informations ne remplacent pas une consultation médicale.
+        </p>
+      </footer>
+    </div>
+  </article>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .crumbs {
+    display: flex;
+    gap: var(--s-2);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    margin-bottom: var(--s-5);
+  }
+
+  .crumbs a {
+    color: var(--taupe-600);
+  }
+
+  .post-header {
+    margin-bottom: var(--s-6);
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    font-size: var(--text-xs);
+    color: var(--ink-mute);
+    margin-bottom: var(--s-4);
+  }
+
+  .post-category {
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    font-weight: 500;
+  }
+
+  .post-header .lead {
+    margin-top: var(--s-4);
+  }
+
+  .prose :global(h2) {
+    margin-top: var(--s-6);
+    margin-bottom: var(--s-3);
+  }
+
+  .prose :global(p) {
+    margin-bottom: var(--s-4);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.3rem;
+    margin-bottom: var(--s-4);
+    display: grid;
+    gap: var(--s-2);
+    color: var(--ink-soft);
+  }
+
+  .prose :global(li)::marker {
+    color: var(--taupe-500);
+  }
+
+  .post-footer {
+    margin-top: var(--s-7);
+    padding-top: var(--s-5);
+    border-top: 1px solid var(--line);
+    font-size: var(--text-sm);
+    color: var(--ink-mute);
+  }
+</style>

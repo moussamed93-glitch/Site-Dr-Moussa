@@ -1,0 +1,115 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+
+import accueilLogo from '../assets/images/accueil-logo.jpg';
+import accueilAngle from '../assets/images/accueil-angle.jpg';
+import salleAttente from '../assets/images/salle-attente.jpg';
+import cabinet1 from '../assets/images/cabinet-1.jpg';
+import cabinet2 from '../assets/images/cabinet-2.jpg';
+import cabinet3 from '../assets/images/cabinet-3.jpg';
+import cabinet4 from '../assets/images/cabinet-4.jpg';
+import cabinet5 from '../assets/images/cabinet-5.jpg';
+import medecinCabinet from '../assets/images/medecin-cabinet.jpg';
+import materielEnsemble from '../assets/images/materiel-ensemble.jpg';
+
+const gallery = [
+  { src: accueilLogo, alt: "L'accueil du cabinet avec le logo du Dr Mohamed Moussa", caption: 'Accueil' },
+  { src: salleAttente, alt: "La salle d'attente du cabinet", caption: "Salle d'attente" },
+  { src: medecinCabinet, alt: 'La salle de consultation et son plateau technique', caption: 'Salle de consultation' },
+  { src: materielEnsemble, alt: "Vue d'ensemble du matériel d'examen", caption: 'Plateau technique' },
+  { src: accueilAngle, alt: "L'espace d'accueil vu depuis le couloir", caption: 'Accueil' },
+  { src: cabinet1, alt: 'Espace intérieur du cabinet', caption: 'Ambiance générale' },
+  { src: cabinet2, alt: 'Détail des espaces du cabinet', caption: 'Ambiance générale' },
+  { src: cabinet3, alt: 'Espace de circulation du cabinet', caption: 'Ambiance générale' },
+  { src: cabinet4, alt: 'Détail de la décoration du cabinet', caption: 'Ambiance générale' },
+  { src: cabinet5, alt: 'Vue intérieure du cabinet', caption: 'Ambiance générale' },
+];
+---
+
+<Base
+  title="Le cabinet — visite en images | Dr Mohamed Moussa, Ariana"
+  description="Le cabinet d'ophtalmologie du Dr Moussa au Centre Médical Horizon, Cité Intilaka (Mnihla), Ariana : accueil, salle d'attente, consultation."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Le cabinet', href: '/cabinet/' },
+  ]}
+>
+  <PageHero
+    image={accueilLogo}
+    focus="center 40%"
+    eyebrow="Le cabinet"
+    title="Un espace pensé pour votre confort"
+    lead="Situé au premier étage du Centre Médical Horizon, à Cité Intilaka (Mnihla), le cabinet a été conçu comme un lieu calme et lumineux."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Le cabinet', href: '/cabinet/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery">
+        {
+          gallery.map((item, i) => (
+            <figure class="gallery-item reveal" style={`animation-delay:${(i % 3) * 60}ms`}>
+              <Image
+                src={item.src}
+                alt={item.alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 33vw"
+                loading={i < 3 ? 'eager' : 'lazy'}
+              />
+              <figcaption>{item.caption}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .gallery {
+    columns: 1;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+
+  @media (min-width: 640px) {
+    .gallery {
+      columns: 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gallery {
+      columns: 3;
+    }
+  }
+
+  .gallery-item {
+    margin: 0 0 clamp(1.5rem, 3vw, 2.5rem);
+    break-inside: avoid;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .gallery-item figcaption {
+    padding-top: var(--s-3);
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    border-top: 1px solid var(--taupe-300);
+    margin-top: var(--s-3);
+  }
+</style>

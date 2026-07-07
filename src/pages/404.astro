@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  title="Page introuvable — Dr Mohamed Moussa, ophtalmologue à Ariana"
+  description="La page demandée n'existe pas ou a été déplacée. Retrouvez toutes les informations du cabinet d'ophtalmologie du Dr Mohamed Moussa."
+>
+  <section class="section">
+    <div class="container container--narrow nf">
+      <p class="eyebrow">Erreur 404</p>
+      <h1>Cette page n'existe pas</h1>
+      <p class="lead">
+        La page que vous cherchez a peut-être été déplacée. Retrouvez l'essentiel
+        depuis l'accueil ou la liste de nos services.
+      </p>
+      <div class="nf-actions">
+        <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+        <a href="/services/" class="btn btn--outline">Voir nos services</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .nf {
+    text-align: center;
+    padding-block: var(--s-8);
+  }
+
+  .nf .lead {
+    margin-block: var(--s-5);
+  }
+
+  .nf-actions {
+    display: flex;
+    gap: var(--s-3);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

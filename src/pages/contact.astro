@@ -1,0 +1,259 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+import heroImg from '../assets/images/accueil-angle.jpg';
+---
+
+<Base
+  title="Contact — Dr Mohamed Moussa, ophtalmologue à Mnihla, Ariana"
+  description="Centre Médical Horizon, Route de Bizerte Km 4, Cité Intilaka (Mnihla), Ariana. Tél. 58 272 719. Plan d'accès, horaires et formulaire de contact."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Contact', href: '/contact/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 45%"
+    compact
+    eyebrow="Contact"
+    title="Nous trouver, nous joindre"
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Contact', href: '/contact/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="reveal">
+
+        <address class="contact-block">
+          <p class="contact-label">Adresse</p>
+          <p>
+            {SITE.name}<br />
+            {SITE.address.line1}<br />
+            {SITE.address.line2}<br />
+            {SITE.address.city}, {SITE.address.region} {SITE.address.postalCode} — {SITE.address.country}
+          </p>
+        </address>
+
+        <div class="contact-block">
+          <p class="contact-label">Téléphone</p>
+          <p>
+            <a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay}</a>
+            &nbsp;/&nbsp;
+            <a href={`tel:${SITE.phone2.replace(/\s/g, '')}`}>{SITE.phone2Display}</a>
+          </p>
+        </div>
+
+        <div class="contact-block">
+          <p class="contact-label">E-mail</p>
+          <p><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+        </div>
+
+        <div class="contact-block">
+          <p class="contact-label">Horaires</p>
+          <ul class="hours-list">
+            {SITE.hours.map((h) => (
+              <li>
+                <span>{h.days}</span>
+                <span>{h.time}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="btn btn--primary">
+          Itinéraire Google Maps
+        </a>
+      </div>
+
+      <div class="reveal">
+        <h2 class="form-title">Formulaire de contact</h2>
+        <p class="form-intro">
+          Pour une demande de rendez-vous ou une question, laissez-nous vos
+          coordonnées : l'équipe du cabinet vous rappelle pendant les horaires
+          d'ouverture. <strong>En cas d'urgence, appelez directement le cabinet.</strong>
+        </p>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/merci/"
+          class="contact-form"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden-field">
+            <label>Ne pas remplir : <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-row">
+            <label for="nom">Nom et prénom <span aria-hidden="true">*</span></label>
+            <input type="text" id="nom" name="nom" required autocomplete="name" />
+          </div>
+
+          <div class="form-row">
+            <label for="tel">Téléphone <span aria-hidden="true">*</span></label>
+            <input type="tel" id="tel" name="telephone" required autocomplete="tel" inputmode="tel" />
+          </div>
+
+          <div class="form-row">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" />
+          </div>
+
+          <div class="form-row">
+            <label for="motif">Motif</label>
+            <select id="motif" name="motif">
+              <option value="rendez-vous">Demande de rendez-vous</option>
+              <option value="renseignement">Renseignement</option>
+              <option value="suivi">Suivi / résultat</option>
+              <option value="autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="message">Message <span aria-hidden="true">*</span></label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+
+          <p class="form-note">* Champs obligatoires. Vos données ne servent qu'à vous recontacter.</p>
+
+          <button type="submit" class="btn btn--primary">Envoyer le message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section" aria-label="Plan d'accès">
+    <iframe
+      src={SITE.mapsEmbed}
+      width="100%"
+      height="420"
+      style="border:0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Plan d'accès au cabinet — Centre Médical Horizon, Cité Intilaka (Mnihla), Ariana"
+    ></iframe>
+  </section>
+</Base>
+
+<style>
+  .contact-grid {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 5rem);
+  }
+
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1.2fr;
+    }
+  }
+
+  .contact-block {
+    margin-bottom: var(--s-5);
+    font-style: normal;
+  }
+
+  .contact-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    margin-bottom: var(--s-2);
+  }
+
+  .hours-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-width: 320px;
+    display: grid;
+    gap: var(--s-1);
+  }
+
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-4);
+    color: var(--ink-soft);
+  }
+
+  .form-title {
+    font-size: var(--text-2xl);
+    margin-bottom: var(--s-3);
+  }
+
+  .form-intro {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    margin-bottom: var(--s-5);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--s-5);
+    border-top: 2px solid var(--taupe-300);
+    padding-top: var(--s-5);
+  }
+
+  .hidden-field {
+    display: none;
+  }
+
+  .form-row {
+    display: grid;
+    gap: var(--s-2);
+  }
+
+  label {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--navy-800);
+  }
+
+  input,
+  select,
+  textarea {
+    font: inherit;
+    padding: 0.6rem 0;
+    border: 0;
+    border-bottom: 1px solid var(--taupe-300);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    min-height: 48px;
+    transition: border-color var(--transition);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-bottom-color: var(--navy-800);
+    box-shadow: 0 1px 0 var(--navy-800);
+  }
+
+  .form-note {
+    font-size: var(--text-xs);
+    color: var(--ink-mute);
+  }
+
+  .map-section {
+    border-top: 1px solid var(--line);
+  }
+
+  .map-section iframe {
+    display: block;
+    filter: grayscale(0.2);
+  }
+</style>

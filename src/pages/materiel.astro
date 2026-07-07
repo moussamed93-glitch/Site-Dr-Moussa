@@ -1,0 +1,208 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+
+import heroImg from '../assets/images/materiel-vue.jpg';
+import examenImg from '../assets/images/medecin-examen.jpg';
+import equipData from '../data/equipments.json';
+
+const equipments = equipData.equipments;
+---
+
+<Base
+  title="Notre matériel — équipements du cabinet | Dr Mohamed Moussa"
+  description="EYEMAC CX3, NIDEK TONOREF III, réfracteur RT-6100, HUVITZ, lampe à fente VisuScience : le plateau technique du cabinet d'ophtalmologie à Mnihla, Ariana."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Notre matériel', href: '/materiel/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 55%"
+    eyebrow="Notre matériel"
+    title="Des équipements de dernière génération"
+    lead="Réfraction, tonométrie, imagerie : un plateau technique complet pour réaliser l'ensemble du bilan sur place, en une seule visite."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Notre matériel', href: '/materiel/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="equip-list">
+        {
+          equipments.map((eq, i) => (
+            <article class="equip-row reveal">
+              <div class="equip-id">
+                <span class="equip-num">{String(i + 1).padStart(2, '0')}</span>
+                <h2>{eq.name}</h2>
+                <p class="equip-role">{eq.role}</p>
+              </div>
+              <div class="equip-detail">
+                <ul>
+                  {eq.features.map((f) => (
+                    <li>{f}</li>
+                  ))}
+                </ul>
+                <p class="equip-benefit">
+                  <strong>Pour vous —</strong> {eq.benefit}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section pratique">
+    <div class="container pratique-grid">
+      <div class="reveal">
+        <p class="eyebrow">En pratique</p>
+        <h2>Tout le bilan, en une seule visite</h2>
+        <p>
+          Réfraction, tension oculaire, épaisseur cornéenne, examen microscopique et
+          photographies : l'ensemble des mesures est réalisé au cabinet, dans la même
+          consultation, sans déplacement supplémentaire.
+        </p>
+        <p>
+          Les images de votre œil sont conservées dans votre dossier et comparées à
+          chaque visite — une exigence de suivi que permet la numérisation complète du
+          plateau technique.
+        </p>
+      </div>
+      <figure class="pratique-media reveal">
+        <Image
+          src={examenImg}
+          alt="Le Dr Moussa aux commandes d'un instrument de mesure NIDEK"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 768px) 100vw, 42vw"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .equip-list {
+    display: grid;
+  }
+
+  .equip-row {
+    display: grid;
+    gap: var(--s-4) clamp(2rem, 6vw, 6rem);
+    padding-block: clamp(1.75rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .equip-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  @media (min-width: 860px) {
+    .equip-row {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+
+  .equip-num {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    color: var(--taupe-500);
+    display: block;
+    margin-bottom: var(--s-2);
+  }
+
+  .equip-id h2 {
+    font-size: var(--text-2xl);
+    max-width: 18ch;
+  }
+
+  .equip-role {
+    margin-top: var(--s-2);
+    font-size: var(--text-xs);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+  }
+
+  .equip-detail ul {
+    margin: 0 0 var(--s-4);
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-4);
+  }
+
+  .equip-detail li {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .equip-detail li + li::before {
+    content: '·';
+    margin-right: var(--s-4);
+    color: var(--taupe-500);
+  }
+
+  .equip-benefit {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  .equip-benefit strong {
+    color: var(--navy-800);
+  }
+
+  .pratique {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .pratique-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .pratique-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .pratique h2 {
+    margin-bottom: var(--s-4);
+  }
+
+  .pratique p + p {
+    margin-top: var(--s-4);
+  }
+
+  .pratique-media {
+    margin: 0;
+    position: relative;
+  }
+
+  .pratique-media::before {
+    content: '';
+    position: absolute;
+    inset: 10% -6% -6% 12%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+  }
+
+  .pratique-media :global(img) {
+    position: relative;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+</style>

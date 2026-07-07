@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Crumb {
+  name: string;
+  href: string;
+}
+
+interface Props {
+  image: ImageMetadata;
+  eyebrow: string;
+  title: string;
+  lead?: string;
+  crumbs?: Crumb[];
+  /** Position CSS object-position de la photo (ex: "center 30%") */
+  focus?: string;
+  compact?: boolean;
+}
+
+const { image, eyebrow, title, lead, crumbs, focus = 'center 35%', compact = false } = Astro.props;
+---
+
+<header class:list={['page-hero', { 'page-hero--compact': compact }]}>
+  <div class="container">
+    {
+      crumbs && (
+        <nav class="ph-crumbs" aria-label="Fil d'Ariane">
+          {crumbs.map((c, i) => (
+            <>
+              {i > 0 && <span aria-hidden="true">/</span>}
+              {i < crumbs.length - 1 ? <a href={c.href}>{c.name}</a> : <span aria-current="page">{c.name}</span>}
+            </>
+          ))}
+        </nav>
+      )
+    }
+    <div class="ph-grid">
+      <div class="ph-text">
+        <p class="ph-eyebrow">{eyebrow}</p>
+        <h1>{title}</h1>
+        {lead && <p class="ph-lead">{lead}</p>}
+      </div>
+      <figure class="ph-media">
+        <Image
+          src={image}
+          alt=""
+          widths={[480, 800, 1200]}
+          sizes="(max-width: 900px) 100vw, 42vw"
+          loading="eager"
+          fetchpriority="high"
+          style={`object-position: ${focus};`}
+          aria-hidden="true"
+        />
+      </figure>
+    </div>
+  </div>
+</header>
+
+<style>
+  .page-hero {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    padding-block: clamp(2.5rem, 6vh, 4.5rem);
+    overflow: hidden;
+  }
+
+  .ph-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    margin-bottom: var(--s-6);
+  }
+
+  .ph-crumbs a {
+    color: var(--sand-600);
+  }
+
+  .ph-crumbs a:hover {
+    color: var(--terra-600);
+  }
+
+  .ph-grid {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .ph-grid {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .ph-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra-600);
+    margin-bottom: var(--s-3);
+  }
+
+  .page-hero h1 {
+    max-width: 20ch;
+  }
+
+  .ph-lead {
+    color: var(--ink-soft);
+    font-size: var(--text-lg);
+    max-width: 56ch;
+    margin-top: var(--s-4);
+  }
+
+  .ph-media {
+    margin: 0;
+    position: relative;
+  }
+
+  .ph-media::before {
+    content: '';
+    position: absolute;
+    inset: 12% -5% -5% 10%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+  }
+
+  .ph-media img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .page-hero--compact .ph-media img {
+    aspect-ratio: 16 / 9;
+  }
+
+  @media (max-width: 899px) {
+    .page-hero--compact .ph-media {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,30 @@
+---
+import { Image } from 'astro:assets';
+import iconDark from '../assets/images/brand-icon.png';
+import iconLight from '../assets/images/brand-icon-light.png';
+
+// Monogramme officiel du cabinet (extrait du fichier logo fourni).
+// Dimensions explicites : le ratio réel (0.523) diffère de l'ancien SVG,
+// et les attributs width/height doivent être fixés ici (pas seulement en
+// CSS du parent) car le composant Image sinon retombe sur la taille
+// intrinsèque du fichier source.
+interface Props {
+  class?: string;
+  light?: boolean;
+  width?: number;
+}
+const RATIO = 251 / 480;
+const { class: className = '', light = false, width = 64 } = Astro.props;
+const height = Math.round(width * RATIO);
+---
+
+<Image
+  src={light ? iconLight : iconDark}
+  alt=""
+  aria-hidden="true"
+  class={className}
+  width={width}
+  height={height}
+  widths={[width, width * 1.5, width * 2]}
+  sizes={`${width}px`}
+/>

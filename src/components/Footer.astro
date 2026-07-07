@@ -1,0 +1,220 @@
+---
+import Logo from './Logo.astro';
+import { SITE, SERVICES, PARTNERS } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <Logo class="footer-logo" light width={64} />
+          <div>
+            <p class="footer-name">Dr Mohamed Moussa</p>
+            <p class="footer-spec">Spécialiste en ophtalmologie<br />Chirurgie oculaire — Traitements laser</p>
+          </div>
+        </div>
+        <address class="footer-address">
+          {SITE.address.line1}<br />
+          {SITE.address.line2}<br />
+          {SITE.address.city}, {SITE.address.region} {SITE.address.postalCode}<br />
+          {SITE.address.country}
+        </address>
+      </div>
+
+      <nav class="footer-col" aria-label="Services">
+        <p class="footer-title">Services</p>
+        <ul>
+          {SERVICES.slice(0, 7).map((s) => (
+            <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>
+          ))}
+          <li><a href="/services/">Tous les services →</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Le cabinet">
+        <p class="footer-title">Le cabinet</p>
+        <ul>
+          <li><a href="/le-medecin/">Le médecin</a></li>
+          <li><a href="/cabinet/">Visite du cabinet</a></li>
+          <li><a href="/materiel/">Notre matériel</a></li>
+          <li><a href="/chirurgie/">Chirurgie</a></li>
+          <li><a href="/activite-scientifique/">Activité scientifique</a></li>
+          <li><a href="/blog/">Blog médical</a></li>
+          <li><a href="/ophtalmologue-mnihla-ariana/">Ophtalmologue à Mnihla</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col">
+        <p class="footer-title">Contact</p>
+        <ul>
+          <li><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay} / {SITE.phone2Display}</a></li>
+          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><a href={SITE.mapsUrl} target="_blank" rel="noopener">Itinéraire Google Maps</a></li>
+        </ul>
+        <p class="footer-title footer-title--spaced">Horaires</p>
+        <ul class="footer-hours">
+          {SITE.hours.map((h) => (
+            <li><span>{h.days}</span><span>{h.time}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-partners">
+      <p class="footer-title">Conventions et partenaires</p>
+      <ul>
+        {PARTNERS.map((p) => (
+          <li>
+            <a href={p.url} target="_blank" rel="noopener" aria-label={p.name}>
+              <img src={p.logo} alt={p.name} loading="lazy" width="120" height="40" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {year} {SITE.name}. Tous droits réservés.</p>
+      <p>
+        Les informations de ce site ne remplacent pas une consultation médicale.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--navy-900);
+    color: #c8cedd;
+    padding-block: var(--s-8) var(--s-6);
+    font-size: var(--text-sm);
+  }
+
+  .footer a {
+    color: #c8cedd;
+  }
+
+  .footer a:hover {
+    color: #ffffff;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: var(--s-7);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--s-7);
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+    }
+  }
+
+  .footer-logo-row {
+    display: flex;
+    gap: var(--s-3);
+    align-items: flex-start;
+    margin-bottom: var(--s-4);
+  }
+
+  .footer-logo {
+    flex-shrink: 0;
+  }
+
+  .footer-name {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: #fff;
+  }
+
+  .footer-spec {
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--taupe-300);
+  }
+
+  .footer-address {
+    font-style: normal;
+    line-height: 1.8;
+  }
+
+  .footer-title {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe-300);
+    margin-bottom: var(--s-4);
+  }
+
+  .footer-title--spaced {
+    margin-top: var(--s-5);
+  }
+
+  .footer-col ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .footer-hours li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+  }
+
+  .footer-partners {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: var(--s-5);
+    margin-bottom: var(--s-5);
+  }
+
+  .footer-partners ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-5) var(--s-7);
+  }
+
+  .footer-partners li a {
+    display: block;
+  }
+
+  .footer-partners li img {
+    height: 26px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    filter: brightness(0) invert(1) opacity(0.55);
+    transition: filter var(--transition);
+  }
+
+  .footer-partners li a:hover img {
+    filter: brightness(0) invert(1) opacity(0.9);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    padding-top: var(--s-5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--s-3);
+    font-size: var(--text-xs);
+    color: #8d95a9;
+  }
+</style>

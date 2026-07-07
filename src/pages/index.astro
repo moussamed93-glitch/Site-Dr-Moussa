@@ -1,0 +1,785 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+import Stars from '../components/Stars.astro';
+import { SITE, SERVICES, PARTNERS } from '../data/site';
+import { REVIEWS } from '../data/reviews';
+import home from '../data/home.json';
+
+import heroImg from '../assets/images/medecin-cabinet.jpg';
+import portraitImg from '../assets/images/medecin-portrait.jpg';
+import materielImg from '../assets/images/materiel-vue.jpg';
+import blocImg from '../assets/images/bloc-1.jpg';
+import congresImg from '../assets/images/congres-sto-2025.jpg';
+import accueilImg from '../assets/images/accueil-logo.jpg';
+import servicesImg from '../assets/images/cabinet-2.jpg';
+import trustImg from '../assets/images/cabinet-4.jpg';
+
+const discover = [
+  { href: '/materiel/', img: materielImg, title: 'Notre matériel', text: 'NIDEK, HUVITZ, VisuScience — le détail de nos équipements.', alt: 'Plateau technique du cabinet : unité de consultation et instruments de mesure' },
+  { href: '/chirurgie/', img: blocImg, title: 'Chirurgie', text: 'Cataracte et chirurgie réfractive.', alt: 'Le Dr Moussa au bloc opératoire sous microscope opératoire Zeiss' },
+  { href: '/activite-scientifique/', img: congresImg, title: 'Activité scientifique', text: 'Congrès, communications, formation continue.', alt: "Le Dr Moussa présentant une communication au Congrès National d'Ophtalmologie" },
+  { href: '/cabinet/', img: accueilImg, title: 'Le cabinet', text: 'Accueil, salle d’attente, consultation.', alt: "Accueil du cabinet d'ophtalmologie du Dr Mohamed Moussa" },
+];
+---
+
+<Base
+  title="Dr Mohamed Moussa — Ophtalmologue à Mnihla, Ariana"
+  description="Cabinet d'ophtalmologie à Cité Intilaka (Mnihla), Ariana. Consultation, cataracte, kératocône, glaucome — adultes et enfants. Prenez rendez-vous."
+  ogImage="/og-cover.jpg"
+>
+  <!-- ============ HERO crème éditorial ============ -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <p class="hero-eyebrow">{home.heroEyebrow}</p>
+        <h1>
+          {home.heroTitle} <em>{home.heroTitleAccent}</em>
+        </h1>
+        <p class="hero-lead">{home.heroLead}</p>
+        <div class="hero-actions">
+          <a href="/rendez-vous/" class="btn btn--primary">Prendre rendez-vous</a>
+          <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="btn btn--outline">
+            Appeler le {SITE.phoneDisplay}
+          </a>
+        </div>
+        <div class="hero-rating">
+          <Stars />
+          <span><strong>5,0</strong> · {SITE.reviewCount} avis Google</span>
+          <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="hero-map-link">Itinéraire</a>
+        </div>
+      </div>
+      <figure class="hero-media reveal">
+        <Image
+          src={heroImg}
+          alt="Le Dr Mohamed Moussa dans sa salle de consultation équipée"
+          widths={[600, 900, 1400]}
+          sizes="(max-width: 900px) 100vw, 48vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES — photo + index ============ -->
+  <section class="section services" aria-labelledby="titre-services">
+    <div class="container services-grid">
+      <figure class="services-media reveal">
+        <Image
+          src={servicesImg}
+          alt="Unité de réfraction NIDEK et lampe à fente du cabinet"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 860px) 100vw, 42vw"
+        />
+        <figcaption class="services-caption">
+          <span class="services-caption-num">13</span>
+          <span class="services-caption-text">domaines de prise en charge, du dépistage à la chirurgie</span>
+        </figcaption>
+      </figure>
+      <div class="services-text reveal">
+        <p class="eyebrow">Nos services</p>
+        <h2 id="titre-services">{home.servicesTitle}</h2>
+        <p class="services-intro">{home.servicesIntro}</p>
+        <ol class="service-list">
+          {
+            SERVICES.slice(0, 6).map((s) => (
+              <li>
+                <a href={`/services/${s.slug}/`}>
+                  <span class="sl-title">{s.title}</span>
+                  <span class="sl-arrow" aria-hidden="true">→</span>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+        <a href="/services/" class="btn btn--outline">Voir les {SERVICES.length} services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LE MÉDECIN ============ -->
+  <section class="section medecin" aria-labelledby="titre-medecin">
+    <div class="container medecin-grid">
+      <figure class="medecin-media reveal">
+        <Image
+          src={portraitImg}
+          alt="Portrait du Dr Mohamed Moussa à son bureau"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 768px) 100vw, 42vw"
+        />
+      </figure>
+      <div class="medecin-text reveal">
+        <p class="eyebrow">Le médecin</p>
+        <h2 id="titre-medecin">Dr Mohamed Moussa</h2>
+        <p class="medecin-titles">
+          {home.medecinTitles.split('\n').map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))}
+        </p>
+        <p>{home.medecinText1}</p>
+        <p>{home.medecinText2}</p>
+        <a href="/le-medecin/" class="line-link">Découvrir son parcours</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONFIANCE — photo + manifeste ============ -->
+  <section class="section trust" aria-labelledby="titre-confiance">
+    <div class="container trust-grid">
+      <figure class="trust-media reveal">
+        <Image
+          src={trustImg}
+          alt="Bureau du Dr Mohamed Moussa avec ses diplômes et certifications"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 860px) 100vw, 42vw"
+        />
+        <span class="trust-veil" aria-hidden="true"></span>
+        <figcaption class="trust-rating">
+          <Stars class="trust-stars" />
+          <span><strong>5,0</strong> · {SITE.reviewCount} avis Google</span>
+        </figcaption>
+      </figure>
+      <div class="trust-text reveal">
+        <p class="eyebrow">Pourquoi nous faire confiance ?</p>
+        <h2 id="titre-confiance">{home.trustTitle}</h2>
+        <p class="trust-manifesto">
+          Un <strong>cabinet moderne</strong>, au Centre Médical Horizon, équipé de
+          <strong>technologies de dernière génération</strong>. Une
+          <strong>formation médicale continue</strong> et une
+          <strong>activité scientifique régulière</strong>, pour une pratique fondée
+          sur les <strong>recommandations internationales</strong> les plus récentes.
+          Une <strong>prise en charge personnalisée</strong>, en
+          <strong>consultation comme en chirurgie</strong>, pour les
+          <strong>adultes comme pour les enfants</strong>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AVIS GOOGLE ============ -->
+  <section class="section avis" aria-labelledby="titre-avis">
+    <div class="container">
+      <div class="avis-band reveal">
+        <p class="eyebrow">Avis Google</p>
+        <div class="avis-row">
+          <span class="avis-note" aria-hidden="true">5,0</span>
+          <div class="avis-meta">
+            <Stars />
+            <p>{SITE.reviewCount} avis publiés sur Google</p>
+          </div>
+          <a href={SITE.googleReviewsUrl} target="_blank" rel="noopener" class="line-link">
+            Lire tous les avis
+          </a>
+        </div>
+      </div>
+
+      {
+        REVIEWS.length > 0 && (
+          <div class="avis-quotes">
+            {REVIEWS.map((r) => (
+              <blockquote class="avis-quote reveal">
+                <p>« {r.text} »</p>
+                <footer>{r.author} — avis Google</footer>
+              </blockquote>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- ============ DÉCOUVRIR — tuiles photo ============ -->
+  <section class="section discover" aria-labelledby="titre-decouvrir">
+    <div class="container">
+      <div class="split-head reveal">
+        <div>
+          <p class="eyebrow">Découvrir le cabinet</p>
+          <h2 id="titre-decouvrir">Un plateau technique au service du diagnostic</h2>
+        </div>
+      </div>
+      <div class="discover-grid">
+        {
+          discover.map((d, i) => (
+            <a href={d.href} class="tile reveal" style={`animation-delay:${i * 60}ms`}>
+              <Image
+                src={d.img}
+                alt={d.alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 720px) 100vw, (max-width: 1080px) 50vw, 25vw"
+              />
+              <span class="tile-veil" aria-hidden="true" />
+              <span class="tile-label">
+                <span class="tile-title">{d.title}</span>
+                <span class="tile-text">{d.text}</span>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PARTENAIRES ============ -->
+  <section class="partners" aria-labelledby="titre-partenaires">
+    <div class="container">
+      <p class="eyebrow" id="titre-partenaires">Conventions et partenaires</p>
+      <ul class="partners-list">
+        {
+          PARTNERS.map((p) => (
+            <li>
+              <a class="partner-logo" href={p.url} target="_blank" rel="noopener" aria-label={p.name}>
+                <img src={p.logo} alt={p.name} loading="lazy" width="140" height="48" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  /* ================= HERO crème éditorial ================= */
+  .hero {
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    display: grid;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    align-items: center;
+    padding-block: clamp(3rem, 8vh, 6.5rem);
+  }
+
+  @media (min-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+  }
+
+  .hero-eyebrow {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--terra-600);
+    margin-bottom: var(--s-5);
+  }
+
+  .hero h1 {
+    font-size: var(--text-hero);
+    max-width: 16ch;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 450;
+    color: var(--terra-600);
+  }
+
+  .hero-lead {
+    color: var(--ink-soft);
+    font-size: var(--text-lg);
+    max-width: 52ch;
+    margin-top: var(--s-5);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+  }
+
+  .hero-rating {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-3);
+    margin-top: var(--s-6);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .hero-map-link {
+    margin-left: var(--s-3);
+    font-weight: 600;
+    color: var(--char-800);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--sand-500);
+  }
+
+  .hero-map-link:hover {
+    color: var(--terra-600);
+  }
+
+  .hero-media {
+    margin: 0;
+    position: relative;
+  }
+
+  .hero-media::before {
+    content: '';
+    position: absolute;
+    inset: 12% -6% -6% 10%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+    z-index: 0;
+  }
+
+  .hero-media img {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    object-position: 60% 30%;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  /* ================= Services — photo + liste ================= */
+  .services-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .services-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+  }
+
+  .services-media {
+    position: relative;
+    margin: 0;
+  }
+
+  .services-media::before {
+    content: '';
+    position: absolute;
+    inset: 10% -5% -5% 12%;
+    background: var(--terra-100);
+    border-radius: var(--radius-lg);
+  }
+
+  .services-media img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .services-caption {
+    position: absolute;
+    inset: auto auto var(--s-5) calc(-1 * var(--s-4));
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: var(--s-3) var(--s-5);
+    max-width: 88%;
+  }
+
+  .services-caption-num {
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    line-height: 1;
+    color: var(--terra-600);
+  }
+
+  .services-caption-text {
+    font-size: var(--text-xs);
+    color: var(--ink-soft);
+    max-width: 20ch;
+  }
+
+  .services-intro {
+    color: var(--ink-soft);
+    margin: var(--s-4) 0 var(--s-6);
+    max-width: 46ch;
+  }
+
+  .service-list {
+    list-style: none;
+    margin: 0 0 var(--s-6);
+    padding: 0;
+  }
+
+  .service-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding: var(--s-4) var(--s-2);
+    border-top: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    color: inherit;
+    transition: background var(--transition), padding-left var(--transition);
+  }
+
+  .service-list li:last-child a {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .service-list a:hover {
+    background: var(--sand-100);
+    padding-left: var(--s-4);
+  }
+
+  .sl-title {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 550;
+    color: var(--char-800);
+    transition: color var(--transition);
+  }
+
+  .service-list a:hover .sl-title {
+    color: var(--terra-600);
+  }
+
+  .sl-arrow {
+    color: var(--terra-500);
+    font-size: var(--text-lg);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--transition), transform var(--transition);
+  }
+
+  .service-list a:hover .sl-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sl-arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* ================= Médecin ================= */
+  .medecin {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .medecin-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .medecin-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+
+  .medecin-media {
+    margin: 0;
+    position: relative;
+  }
+
+  .medecin-media::before {
+    content: '';
+    position: absolute;
+    inset: 10% -6% -6% 12%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+  }
+
+  .medecin-media img {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .medecin-titles {
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    color: var(--sand-600);
+    margin-block: var(--s-4) var(--s-5);
+    padding-bottom: var(--s-4);
+    border-bottom: 1px solid var(--line);
+    max-width: 46ch;
+  }
+
+  .medecin-text p + p {
+    margin-top: var(--s-4);
+  }
+
+  .line-link {
+    display: inline-block;
+    margin-top: var(--s-5);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--char-800);
+    border-bottom: 2px solid var(--terra-500);
+    padding-bottom: 3px;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .line-link:hover {
+    color: var(--terra-600);
+    border-color: var(--terra-700);
+  }
+
+  /* ================= Confiance ================= */
+  .trust-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .trust-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+  }
+
+  .trust-media {
+    position: relative;
+    margin: 0;
+  }
+
+  .trust-media::before {
+    content: '';
+    position: absolute;
+    inset: -6% 12% 10% -6%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+  }
+
+  .trust-media img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .trust-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(46, 47, 51, 0.72) 0%, rgba(46, 47, 51, 0) 45%);
+    border-radius: var(--radius-lg);
+  }
+
+  .trust-rating {
+    position: absolute;
+    inset: auto var(--s-5) var(--s-5) var(--s-5);
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    color: #fff;
+    font-size: var(--text-sm);
+  }
+
+  .trust-manifesto {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin-top: var(--s-6);
+    max-width: 56ch;
+  }
+
+  .trust-manifesto strong {
+    font-weight: 600;
+    color: var(--terra-700);
+  }
+
+  /* ================= Avis ================= */
+  .avis {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .avis-band .eyebrow {
+    margin-bottom: var(--s-5);
+  }
+
+  .avis-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 3.5rem);
+  }
+
+  .avis-note {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 9vw, 6.5rem);
+    font-weight: 600;
+    line-height: 0.9;
+    color: var(--terra-600);
+  }
+
+  .avis-meta p {
+    margin-top: var(--s-2);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .avis-row .line-link {
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  .avis-quotes {
+    display: grid;
+    gap: var(--s-4);
+    margin-top: var(--s-6);
+  }
+
+  @media (min-width: 820px) {
+    .avis-quotes {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+  }
+
+  .avis-quote {
+    margin: 0;
+    padding: var(--s-5) var(--s-6);
+    background: var(--bg);
+    border-radius: var(--radius-lg);
+  }
+
+  .avis-quote p {
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    color: var(--ink);
+  }
+
+  .avis-quote footer {
+    margin-top: var(--s-3);
+    font-size: var(--text-xs);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sand-600);
+  }
+
+  /* ================= Découvrir — tuiles photo ================= */
+  .split-head {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .discover-grid {
+    display: grid;
+    gap: var(--s-4);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+
+  .tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: var(--char-900);
+    border-radius: var(--radius-lg);
+  }
+
+  .tile img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 600ms cubic-bezier(0.22, 0.61, 0.36, 1), opacity var(--transition);
+  }
+
+  .tile:hover img {
+    transform: scale(1.04);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile:hover img {
+      transform: none;
+    }
+  }
+
+  .tile-veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(46, 47, 51, 0.85) 0%, rgba(46, 47, 51, 0.28) 45%, rgba(46, 47, 51, 0.04) 75%);
+    transition: background var(--transition);
+  }
+
+  .tile-label {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: var(--s-5);
+    color: #fff;
+  }
+
+  .tile-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 550;
+  }
+
+  .tile-text {
+    display: block;
+    margin-top: var(--s-1);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    color: #ddd9d2;
+  }
+
+  /* ================= Partenaires ================= */
+  .partners {
+    padding-block: clamp(2.5rem, 5vw, 4rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .partners-list {
+    list-style: none;
+    margin: var(--s-6) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-7) clamp(2.5rem, 6vw, 5rem);
+    align-items: center;
+  }
+
+  .partner-logo {
+    display: block;
+  }
+
+  .partner-logo img {
+    height: 34px;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+    filter: grayscale(1) opacity(0.55);
+    transition: filter var(--transition);
+  }
+
+  .partner-logo:hover img {
+    filter: grayscale(0) opacity(1);
+  }
+</style>

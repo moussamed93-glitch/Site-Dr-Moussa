@@ -1,0 +1,176 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { SITE } from '../data/site';
+import heroImg from '../assets/images/salle-attente.jpg';
+---
+
+<Base
+  title="Prendre rendez-vous — Dr Mohamed Moussa, ophtalmologue à Ariana"
+  description="Rendez-vous au cabinet d'ophtalmologie du Dr Moussa à Mnihla, Ariana : par téléphone au 58 272 719, en ligne via Med.tn ou par formulaire."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Prendre rendez-vous', href: '/rendez-vous/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 60%"
+    compact
+    eyebrow="Prendre rendez-vous"
+    title="Trois façons simples de nous joindre"
+    lead="En cas d'urgence pendant les horaires d'ouverture, appelez directement : des créneaux d'urgence sont réservés chaque jour."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Prendre rendez-vous', href: '/rendez-vous/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container rdv-cols">
+      <div class="rdv-col reveal">
+        <span class="rdv-num">01</span>
+        <h2>Par téléphone</h2>
+        <p>
+          Le moyen le plus rapide. L'équipe du cabinet vous propose le premier
+          créneau disponible et répond à vos questions pratiques.
+        </p>
+        <p class="rdv-detail">
+          {SITE.hours[0].days} : {SITE.hours[0].time}<br />
+          {SITE.hours[1].days} : {SITE.hours[1].time}
+        </p>
+        <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="btn btn--primary">
+          Appeler le {SITE.phoneDisplay}
+        </a>
+      </div>
+
+      <div class="rdv-col reveal">
+        <span class="rdv-num">02</span>
+        <h2>En ligne, via Med.tn</h2>
+        <p>
+          Réservez votre créneau 24h/24 sur la plateforme Med.tn : choisissez la
+          date et l'heure qui vous conviennent, recevez une confirmation immédiate.
+        </p>
+        <p class="rdv-detail">Disponible à tout moment, même en dehors des horaires du cabinet.</p>
+        <a href={SITE.medtnUrl} target="_blank" rel="noopener" class="btn btn--outline">
+          Réserver sur Med.tn
+        </a>
+      </div>
+
+      <div class="rdv-col reveal">
+        <span class="rdv-num">03</span>
+        <h2>Par formulaire</h2>
+        <p>
+          Décrivez votre demande via le formulaire de contact : l'équipe vous
+          rappelle pour convenir d'un rendez-vous.
+        </p>
+        <p class="rdv-detail">Réponse pendant les horaires d'ouverture du cabinet.</p>
+        <a href="/contact/" class="btn btn--outline">Accéder au formulaire</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section prepa">
+    <div class="container">
+      <div class="prepa-inner reveal">
+        <h2>Préparer votre venue</h2>
+        <ul>
+          <li>Votre carte de soins CNAM et vos documents d'assurance</li>
+          <li>Vos lunettes actuelles et vos ordonnances précédentes</li>
+          <li>La liste de vos traitements en cours</li>
+          <li>Vos comptes rendus ophtalmologiques antérieurs, si vous en avez</li>
+        </ul>
+        <p class="prepa-note">
+          Si une dilatation pupillaire est prévue (fond d'œil), votre vision restera
+          floue 2 à 4 heures : évitez de conduire et venez accompagné si possible.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .rdv-cols {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 860px) {
+    .rdv-cols {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .rdv-col + .rdv-col {
+      border-left: 1px solid var(--line);
+      padding-left: clamp(2rem, 4vw, 3rem);
+    }
+  }
+
+  .rdv-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rdv-num {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--taupe-500);
+  }
+
+  .rdv-col h2 {
+    font-size: var(--text-xl);
+    margin-block: var(--s-2) var(--s-3);
+  }
+
+  .rdv-col > p {
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .rdv-detail {
+    margin-top: var(--s-3);
+    font-size: var(--text-xs);
+    color: var(--ink-mute);
+    flex-grow: 1;
+  }
+
+  .rdv-col .btn {
+    margin-top: var(--s-4);
+  }
+
+  .prepa {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .prepa-inner {
+    max-width: var(--container-narrow);
+  }
+
+  .prepa h2 {
+    margin-bottom: var(--s-4);
+  }
+
+  .prepa ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .prepa li {
+    padding-block: var(--s-3);
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+  }
+
+  .prepa-note {
+    margin-top: var(--s-5);
+    padding-top: var(--s-4);
+    border-top: 2px solid var(--taupe-300);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+</style>

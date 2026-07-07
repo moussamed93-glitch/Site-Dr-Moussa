@@ -1,0 +1,143 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaRdv from '../../components/CtaRdv.astro';
+import heroImg from '../../assets/images/salle-attente.jpg';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const fmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base
+  title="Blog médical — conseils d'ophtalmologie | Dr Mohamed Moussa"
+  description="Conseils et informations d'ophtalmologie par le Dr Mohamed Moussa : cataracte, glaucome, kératocône, sécheresse oculaire, vision de l'enfant, chirurgie réfractive."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Blog', href: '/blog/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 55%"
+    compact
+    eyebrow="Blog médical"
+    title="Comprendre vos yeux, simplement"
+    lead="Des articles rédigés pour informer, pas pour inquiéter : symptômes, traitements et conseils pratiques, expliqués clairement."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Blog', href: '/blog/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="posts">
+        {
+          posts.map((post) => (
+            <a href={`/blog/${post.id.replace(/\.md$/, '')}/`} class="post-row reveal">
+              <div class="post-meta">
+                <time datetime={post.data.date.toISOString().slice(0, 10)}>
+                  {fmt.format(post.data.date)}
+                </time>
+                <span class="post-category">{post.data.category}</span>
+              </div>
+              <div class="post-body">
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+              </div>
+              <span class="post-arrow" aria-hidden="true">→</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .posts {
+    display: grid;
+  }
+
+  .post-row {
+    display: grid;
+    gap: var(--s-2) clamp(2rem, 5vw, 4rem);
+    padding-block: clamp(1.5rem, 3vw, 2.25rem);
+    border-top: 1px solid var(--line);
+    color: inherit;
+    align-items: baseline;
+    transition: background var(--transition);
+  }
+
+  .post-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .post-row:hover {
+    background: var(--sand-100);
+  }
+
+  @media (min-width: 820px) {
+    .post-row {
+      grid-template-columns: 200px 1fr auto;
+    }
+  }
+
+  .post-meta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+    font-size: var(--text-xs);
+    color: var(--ink-mute);
+  }
+
+  .post-category {
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    font-weight: 500;
+  }
+
+  .post-body h2 {
+    font-size: var(--text-2xl);
+    transition: color var(--transition);
+  }
+
+  .post-row:hover .post-body h2 {
+    color: var(--blue-logo);
+  }
+
+  .post-body p {
+    margin-top: var(--s-2);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
+
+  .post-arrow {
+    color: var(--taupe-500);
+    font-size: var(--text-lg);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--transition), transform var(--transition);
+    align-self: center;
+  }
+
+  .post-row:hover .post-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .post-arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,236 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+import { SITE } from '../data/site';
+
+import heroImg from '../assets/images/medecin-cabinet.jpg';
+import portraitImg from '../assets/images/medecin-portrait.jpg';
+import examenImg from '../assets/images/medecin-examen.jpg';
+
+const physicianLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Physician',
+  '@id': `${SITE.url}/le-medecin/#physician`,
+  name: SITE.doctor,
+  medicalSpecialty: 'Ophthalmologic',
+  description:
+    "Médecin ophtalmologiste à Cité Intilaka (Mnihla), Ariana. Diplômé de la Faculté de Médecine de Tunis. Consultation et chirurgie oculaire, adultes et enfants.",
+  telephone: SITE.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+    addressLocality: SITE.address.city,
+    addressRegion: SITE.address.region,
+    postalCode: SITE.address.postalCode,
+    addressCountry: 'TN',
+  },
+  alumniOf: 'Faculté de Médecine de Tunis',
+};
+---
+
+<Base
+  title="Le médecin — Dr Mohamed Moussa, ophtalmologue à Ariana"
+  description="Dr Mohamed Moussa, diplômé de la Faculté de Médecine de Tunis, ophtalmologiste à Mnihla, Ariana. Parcours, valeurs et engagement scientifique."
+  jsonLd={[physicianLd]}
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Le médecin', href: '/le-medecin/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="68% 28%"
+    eyebrow="Le médecin"
+    title="Dr Mohamed Moussa"
+    lead="Docteur en médecine, diplômé de la Faculté de Médecine de Tunis — spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Le médecin', href: '/le-medecin/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container bio-grid">
+      <figure class="bio-media reveal">
+        <Image
+          src={portraitImg}
+          alt="Portrait professionnel du Dr Mohamed Moussa à son bureau"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 768px) 100vw, 40vw"
+        />
+      </figure>
+      <div class="bio-text reveal">
+        <p class="eyebrow">Parcours</p>
+        <h2>Soigner les yeux, expliquer, accompagner</h2>
+        <p>
+          Le Dr Mohamed Moussa assure la prise en charge des maladies des yeux chez
+          l'adulte et l'enfant : troubles de la réfraction, cataracte, glaucome,
+          kératocône, pathologies de la cornée et de la rétine, ophtalmologie
+          pédiatrique et urgences.
+        </p>
+        <p>
+          Spécialiste en chirurgie oculaire et traitements aux lasers, il assure
+          l'ensemble du parcours de soins — du diagnostic au geste chirurgical,
+          jusqu'au suivi post-opératoire au cabinet.
+        </p>
+        <dl class="bio-facts">
+          <div>
+            <dt>Formation</dt>
+            <dd>Doctorat en médecine — Faculté de Médecine de Tunis</dd>
+          </div>
+          <div>
+            <dt>Spécialité</dt>
+            <dd>Ophtalmologie, chirurgie oculaire, traitements laser</dd>
+          </div>
+          <div>
+            <dt>Patients</dt>
+            <dd>Adultes et enfants</dd>
+          </div>
+          <div>
+            <dt>Exercice</dt>
+            <dd>Centre Médical Horizon — Cité Intilaka (Mnihla), Ariana</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section science">
+    <div class="container science-grid">
+      <div class="science-text reveal">
+        <p class="eyebrow">Une pratique fondée sur la science</p>
+        <h2>Se former en continu, pour mieux soigner</h2>
+        <p>
+          Le Dr Moussa participe régulièrement à des congrès nationaux et
+          internationaux — Congrès National d'Ophtalmologie de la Société Tunisienne
+          d'Ophtalmologie, congrès régionaux et conférences internationales — où il
+          présente des communications scientifiques.
+        </p>
+        <p>
+          Cette activité scientifique régulière lui permet de maintenir une pratique
+          fondée sur les recommandations internationales les plus récentes et les
+          innovations technologiques en ophtalmologie.
+        </p>
+        <a href="/activite-scientifique/" class="line-link">Voir l'activité scientifique</a>
+      </div>
+      <figure class="science-media reveal">
+        <Image
+          src={examenImg}
+          alt="Le Dr Moussa réalisant un examen sur l'unité de réfraction du cabinet"
+          widths={[480, 700, 1000]}
+          sizes="(max-width: 768px) 100vw, 42vw"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .bio-grid,
+  .science-grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 860px) {
+    .bio-grid {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+    .science-grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+
+  .bio-media,
+  .science-media {
+    margin: 0;
+    position: relative;
+  }
+
+  .bio-media::before,
+  .science-media::before {
+    content: '';
+    position: absolute;
+    inset: 10% -6% -6% 12%;
+    background: var(--sand-200);
+    border-radius: var(--radius-lg);
+  }
+
+  .bio-media img,
+  .science-media img {
+    position: relative;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+  }
+
+  .bio-text h2,
+  .science-text h2 {
+    margin-bottom: var(--s-5);
+  }
+
+  .bio-text p + p,
+  .science-text p + p {
+    margin-top: var(--s-4);
+  }
+
+  .bio-facts {
+    margin: var(--s-6) 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0 var(--s-6);
+  }
+
+  .bio-facts div {
+    padding-block: var(--s-4);
+    border-top: 1px solid var(--line);
+  }
+
+  .bio-facts dt {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--taupe-600);
+    margin-bottom: var(--s-1);
+  }
+
+  .bio-facts dd {
+    margin: 0;
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .science {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .line-link {
+    display: inline-block;
+    margin-top: var(--s-5);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-800);
+    border-bottom: 1px solid var(--taupe-500);
+    padding-bottom: 4px;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .line-link:hover {
+    color: var(--blue-logo);
+    border-color: var(--blue-logo);
+  }
+
+  @media (max-width: 859px) {
+    .science-media {
+      order: -1;
+    }
+  }
+</style>

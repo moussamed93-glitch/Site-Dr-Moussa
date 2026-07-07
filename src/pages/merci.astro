@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../data/site';
+---
+
+<Base
+  title="Message envoyé — Cabinet Dr Mohamed Moussa"
+  description="Votre message a bien été envoyé au cabinet du Dr Mohamed Moussa. L'équipe vous recontacte pendant les horaires d'ouverture."
+>
+  <section class="section">
+    <div class="container container--narrow thanks">
+      <p class="eyebrow">Message envoyé</p>
+      <h1>Merci, nous avons bien reçu votre message</h1>
+      <p class="lead">
+        L'équipe du cabinet vous recontacte pendant les horaires d'ouverture.
+        Pour toute urgence, appelez directement le {SITE.phoneDisplay}.
+      </p>
+      <div class="thanks-actions">
+        <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+        <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="btn btn--outline">
+          Appeler le cabinet
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .thanks {
+    text-align: center;
+    padding-block: var(--s-8);
+  }
+
+  .thanks .lead {
+    margin-block: var(--s-5);
+  }
+
+  .thanks-actions {
+    display: flex;
+    gap: var(--s-3);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

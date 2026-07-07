@@ -1,0 +1,138 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaRdv from '../../components/CtaRdv.astro';
+import { SERVICES } from '../../data/site';
+import heroImg from '../../assets/images/medecin-examen.jpg';
+---
+
+<Base
+  title="Nos services d'ophtalmologie à Mnihla, Ariana | Dr Moussa"
+  description="Consultation, lunettes, lentilles, cataracte, glaucome, kératocône, rétine, pédiatrie et urgences — tous les services du cabinet à Mnihla, Ariana."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Services', href: '/services/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 22%"
+    eyebrow="Nos services"
+    title="Une prise en charge complète de votre vision"
+    lead="Le cabinet couvre l'ensemble de l'ophtalmologie médicale et chirurgicale, chez l'adulte comme chez l'enfant."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Services', href: '/services/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container">
+      <ol class="service-index">
+        {
+          SERVICES.map((s, i) => (
+            <li class="reveal" style={`animation-delay:${(i % 4) * 40}ms`}>
+              <a href={`/services/${s.slug}/`}>
+                <span class="si-num">{String(i + 1).padStart(2, '0')}</span>
+                <span class="si-body">
+                  <span class="si-title">{s.title}</span>
+                  <span class="si-desc">{s.short}</span>
+                </span>
+                <span class="si-arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CtaRdv />
+</Base>
+
+<style>
+  .service-index {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    columns: 1;
+    column-gap: clamp(2rem, 5vw, 5rem);
+  }
+
+  @media (min-width: 820px) {
+    .service-index {
+      columns: 2;
+    }
+  }
+
+  .service-index li {
+    break-inside: avoid;
+  }
+
+  .service-index a {
+    display: flex;
+    gap: var(--s-4);
+    align-items: baseline;
+    padding: var(--s-4) var(--s-1);
+    border-top: 1px solid var(--line);
+    color: inherit;
+    transition: background var(--transition);
+  }
+
+  .service-index a:hover {
+    background: var(--sand-100);
+  }
+
+  .si-num {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    color: var(--taupe-500);
+    min-width: 1.8rem;
+  }
+
+  .si-body {
+    flex: 1;
+    display: block;
+  }
+
+  .si-title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    color: var(--navy-800);
+    transition: color var(--transition);
+  }
+
+  .service-index a:hover .si-title {
+    color: var(--blue-logo);
+  }
+
+  .si-desc {
+    display: block;
+    font-size: var(--text-sm);
+    color: var(--ink-mute);
+    margin-top: 2px;
+    max-width: 44ch;
+  }
+
+  .si-arrow {
+    color: var(--taupe-500);
+    font-size: var(--text-lg);
+    opacity: 0;
+    transform: translateX(-6px);
+    transition: opacity var(--transition), transform var(--transition);
+  }
+
+  .service-index a:hover .si-arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .si-arrow {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>

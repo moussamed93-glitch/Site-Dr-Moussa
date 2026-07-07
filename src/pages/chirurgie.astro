@@ -1,0 +1,195 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaRdv from '../components/CtaRdv.astro';
+
+import heroImg from '../assets/images/bloc-2.jpg';
+import bloc1 from '../assets/images/bloc-1.jpg';
+import bloc3 from '../assets/images/bloc-3.jpg';
+import bloc4 from '../assets/images/bloc-4.jpg';
+
+const blocPhotos = [
+  { src: bloc1, alt: 'Le Dr Moussa opérant sous microscope Zeiss Lumera T au bloc opératoire' },
+  { src: bloc3, alt: 'Le Dr Moussa concentré pendant une intervention de chirurgie oculaire' },
+  { src: bloc4, alt: 'Le Dr Moussa et son équipe pendant une intervention chirurgicale' },
+];
+---
+
+<Base
+  title="Chirurgie de la cataracte et réfractive à Ariana | Dr Moussa"
+  description="Chirurgie de la cataracte et chirurgie réfractive par le Dr Mohamed Moussa, avec suivi complet au cabinet à Mnihla, Ariana. Bilan pré-opératoire sur place."
+  breadcrumbs={[
+    { name: 'Accueil', href: '/' },
+    { name: 'Chirurgie', href: '/chirurgie/' },
+  ]}
+>
+  <PageHero
+    image={heroImg}
+    focus="center 30%"
+    eyebrow="Chirurgie"
+    title="Une activité chirurgicale réelle et régulière"
+    lead="Le Dr Moussa assure lui-même les interventions, du bilan pré-opératoire au suivi post-opératoire au cabinet."
+    crumbs={[
+      { name: 'Accueil', href: '/' },
+      { name: 'Chirurgie', href: '/chirurgie/' },
+    ]}
+  />
+
+  <section class="section">
+    <div class="container surgery-cols">
+      <article class="surgery-col reveal">
+        <span class="surgery-num">01</span>
+        <h2>Chirurgie de la cataracte</h2>
+        <p>
+          Intervention de référence par <strong>phacoémulsification</strong> : le
+          cristallin opacifié est retiré par micro-incision et remplacé par un implant
+          intraoculaire calculé sur mesure — y compris dans les situations complexes
+          comme les cornées kératocôniques.
+        </p>
+        <p>
+          L'opération dure une quinzaine de minutes, sous anesthésie locale, en
+          ambulatoire. Les contrôles post-opératoires sont assurés au cabinet.
+        </p>
+        <a href="/services/cataracte/" class="line-link">Tout savoir sur la cataracte</a>
+      </article>
+      <article class="surgery-col reveal">
+        <span class="surgery-num">02</span>
+        <h2>Chirurgie réfractive</h2>
+        <p>
+          La chirurgie réfractive corrige durablement la <strong>myopie,
+          l'hypermétropie et l'astigmatisme</strong> pour réduire ou supprimer la
+          dépendance aux lunettes et lentilles.
+        </p>
+        <p>
+          Après un bilan complet de la cornée et de la réfraction, le Dr Moussa vous
+          explique les techniques adaptées à votre œil et vous accompagne à chaque
+          étape, jusqu'à la stabilisation du résultat.
+        </p>
+        <a href="/rendez-vous/" class="line-link">Demander un bilan réfractif</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section bloc">
+    <div class="container">
+      <div class="bloc-head reveal">
+        <p class="eyebrow">Au bloc opératoire</p>
+        <h2>La précision du geste, en images</h2>
+      </div>
+      <div class="bloc-grid">
+        {
+          blocPhotos.map((photo, i) => (
+            <figure class="bloc-figure reveal" style={`animation-delay:${i * 70}ms`}>
+              <Image
+                src={photo.src}
+                alt={photo.alt}
+                widths={[480, 800, 1200]}
+                sizes="(max-width: 720px) 100vw, 50vw"
+              />
+            </figure>
+          ))
+        }
+      </div>
+      <p class="bloc-note reveal">
+        Photographies réalisées dans le respect strict de l'anonymat des patients.
+      </p>
+    </div>
+  </section>
+
+  <CtaRdv
+    title="Un projet chirurgical ? Parlons-en."
+    text="Chaque décision opératoire commence par une consultation approfondie : bilan complet, explication des options et réponse à toutes vos questions."
+  />
+</Base>
+
+<style>
+  .surgery-cols {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 820px) {
+    .surgery-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .surgery-col + .surgery-col {
+      border-left: 1px solid var(--line);
+      padding-left: clamp(2rem, 5vw, 4rem);
+    }
+  }
+
+  .surgery-num {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    color: var(--taupe-500);
+  }
+
+  .surgery-col h2 {
+    margin-block: var(--s-3) var(--s-4);
+  }
+
+  .surgery-col p + p {
+    margin-top: var(--s-4);
+  }
+
+  .surgery-col p {
+    color: var(--ink-soft);
+  }
+
+  .line-link {
+    display: inline-block;
+    margin-top: var(--s-5);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-800);
+    border-bottom: 1px solid var(--taupe-500);
+    padding-bottom: 4px;
+    transition: border-color var(--transition), color var(--transition);
+  }
+
+  .line-link:hover {
+    color: var(--blue-logo);
+    border-color: var(--blue-logo);
+  }
+
+  .bloc {
+    background: var(--surface);
+    border-block: 1px solid var(--line);
+  }
+
+  .bloc-head {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .bloc-grid {
+    display: grid;
+    gap: var(--s-3);
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+
+  .bloc-figure {
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .bloc-figure img {
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    width: 100%;
+    display: block;
+  }
+
+  .bloc-note {
+    margin-top: var(--s-4);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+  }
+</style>
