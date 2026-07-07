@@ -1,16 +1,32 @@
 {
   "reviews": [
     {
-      "author": "Alaeddine Mejri",
-      "text": "Je recommande ! C'est un médecin très à l'écoute et bienveillant avec ses patients Et surtout très disponible! Merci pour le suivi, je vais sûrement revenir"
+      "author": "Alaeddine MEJRI",
+      "text": "Je recommande ! C’est un médecin très à l’écoute et bienveillant avec ses patients\nEt surtout très disponible!\nMerci pour le suivi, je vais sûrement revenir",
+      "rating": 5
     },
     {
       "author": "Souha Hassen",
-      "text": "Médecin très compétent et très attentif Bonne continuation"
+      "text": "Médecin très compétent et très attentif\nBonne continuation",
+      "rating": 5
     },
     {
       "author": "Rihab Boudhiba",
-      "text": "C'est un bon médecin qui prend le temps de bien examiner ses patients"
+      "text": "🩷دكتور عال العال و الله\nC’est un bon médecin qui prend le temps de bien examiner ses patients 👍👍",
+      "rating": 5
+    },
+    {
+      "author": "Feryel Zardoub",
+      "text": "Excellent ophtalmologue, sans aucun doute l’un des meilleurs que j’ai consultés en Tunisie. Au-delà de son professionnalisme et de son équipement à la pointe de la technologie, il a surtout su me rassurer après deux mauvaises expériences avec d’autres spécialistes. Un grand merci Docteur !",
+      "rating": 5
+    },
+    {
+      "author": "Sirine Rassas",
+      "text": "Ma visite chez le Dr Moussa a été une très belle expérience. Il m’a accueilli avec gentillesse et professionnalisme, en prenant le temps d’écouter attentivement mes préoccupations. Grâce à son expertise et sa bienveillance, je me suis senti en confiance tout au long de la consultation. Je le recommande vivement.",
+      "rating": 5
     }
-  ]
+  ],
+  "rating": 5,
+  "userRatingCount": 65,
+  "fetchedAt": "2026-07-07T23:56:25.442Z"
 }

@@ -54,8 +54,8 @@ collections:
           - { name: mapsEmbed, label: 'Lien Google Maps (carte intégrée)', widget: string }
           - { name: medtnUrl, label: 'Lien profil Med.tn', widget: string }
           - { name: googleReviewsUrl, label: 'Lien avis Google', widget: string }
-          - { name: reviewCount, label: "Nombre d'avis Google", widget: number, value_type: int }
-          - { name: rating, label: 'Note Google (sur 5)', widget: number, value_type: int }
+          - { name: reviewCount, label: "Nombre d'avis Google (secours)", widget: number, value_type: int, hint: 'Utilisé seulement si la synchronisation automatique est indisponible.' }
+          - { name: rating, label: 'Note Google sur 5 (secours)', widget: number, value_type: int, hint: 'Utilisé seulement si la synchronisation automatique est indisponible.' }
           - name: hours
             label: 'Horaires'
             widget: list
@@ -112,17 +112,6 @@ collections:
                   - { label: 'Nos services', value: '/services/' }
                   - { label: 'Blog', value: '/blog/' }
                   - { label: 'Prendre rendez-vous', value: '/rendez-vous/' }
-
-      - name: reviews
-        label: 'Avis Google affichés'
-        file: 'src/data/reviews.json'
-        fields:
-          - name: reviews
-            label: 'Avis (copier mot pour mot depuis Google)'
-            widget: list
-            fields:
-              - { name: author, label: 'Nom du patient (tel que public sur Google)', widget: string }
-              - { name: text, label: "Texte exact de l'avis", widget: text }
 
       - name: equipments
         label: 'Notre matériel'

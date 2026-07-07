@@ -1,4 +1,5 @@
 import settings from './settings.json';
+import { GOOGLE_RATING, GOOGLE_RATING_COUNT } from './reviews';
 
 /**
  * Les informations du cabinet sont éditables dans le backoffice (/admin/)
@@ -26,8 +27,8 @@ export const SITE = {
   mapsEmbed: settings.mapsEmbed,
   medtnUrl: settings.medtnUrl,
   googleReviewsUrl: settings.googleReviewsUrl,
-  reviewCount: settings.reviewCount,
-  rating: settings.rating,
+  reviewCount: GOOGLE_RATING_COUNT ?? settings.reviewCount,
+  rating: GOOGLE_RATING ?? settings.rating,
   hours: settings.hours,
   social: {
     facebook: settings.facebook,
