@@ -14,7 +14,7 @@ backend:
     deleteMedia: 'Média : suppression de {{path}}'
 
 locale: fr
-site_url: https://www.drmoussa-ophtalmo.tn
+site_url: https://dr-moussa-ophtalmologue.netlify.app
 logo_url: /favicon.svg
 
 media_folder: 'public/uploads'

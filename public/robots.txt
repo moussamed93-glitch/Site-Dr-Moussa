@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://www.drmoussa-ophtalmo.tn/sitemap-index.xml
+Sitemap: https://dr-moussa-ophtalmologue.netlify.app/sitemap-index.xml

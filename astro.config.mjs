@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://www.drmoussa-ophtalmo.tn',
+  site: 'https://dr-moussa-ophtalmologue.netlify.app',
   integrations: [sitemap()],
   build: {
     inlineStylesheets: 'auto',
