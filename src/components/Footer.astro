@@ -49,10 +49,39 @@ const year = new Date().getFullYear();
       <div class="footer-col">
         <p class="footer-title">Contact</p>
         <ul>
-          <li><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay} / {SITE.phone2Display}</a></li>
+          <li><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay}</a></li>
           <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
           <li><a href={SITE.mapsUrl} target="_blank" rel="noopener">Itinéraire Google Maps</a></li>
         </ul>
+        {(SITE.social.facebook || SITE.social.instagram) && (
+          <>
+            <p class="footer-title footer-title--spaced">Suivez le cabinet</p>
+            <ul class="footer-social">
+              {SITE.social.facebook && (
+                <li>
+                  <a href={SITE.social.facebook} target="_blank" rel="noopener" aria-label="Page Facebook du cabinet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z" />
+                    </svg>
+                    <span>Facebook</span>
+                  </a>
+                </li>
+              )}
+              {SITE.social.instagram && (
+                <li>
+                  <a href={SITE.social.instagram} target="_blank" rel="noopener" aria-label="Compte Instagram du cabinet">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                      <rect x="2.5" y="2.5" width="19" height="19" rx="5" stroke="currentColor" stroke-width="1.7" />
+                      <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7" />
+                      <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" />
+                    </svg>
+                    <span>Instagram</span>
+                  </a>
+                </li>
+              )}
+            </ul>
+          </>
+        )}
         <p class="footer-title footer-title--spaced">Horaires</p>
         <ul class="footer-hours">
           {SITE.hours.map((h) => (
@@ -172,6 +201,22 @@ const year = new Date().getFullYear();
     display: flex;
     justify-content: space-between;
     gap: var(--s-3);
+  }
+
+  .footer-social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-4);
+  }
+
+  .footer-social a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .footer-social svg {
+    flex-shrink: 0;
   }
 
   .footer-partners {

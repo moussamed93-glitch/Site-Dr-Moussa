@@ -126,7 +126,7 @@ const discover = home.discover.map((d) => ({
         </figcaption>
       </figure>
       <div class="trust-text reveal">
-        <p class="eyebrow">Pourquoi nous faire confiance ?</p>
+        <p class="eyebrow">Le cabinet</p>
         <h2 id="titre-confiance">{home.trustTitle}</h2>
         <p class="trust-manifesto" set:html={renderInline(home.trustManifesto)} />
       </div>
@@ -566,12 +566,10 @@ const discover = home.discover.map((d) => ({
   }
 
   .trust-manifesto {
-    font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.4vw, 1.6rem);
-    font-weight: 400;
-    line-height: 1.6;
+    font-size: var(--text-lg);
+    line-height: 1.8;
     color: var(--ink-soft);
-    margin-top: var(--s-6);
+    margin-top: var(--s-5);
     max-width: 56ch;
   }
 

@@ -16,10 +16,10 @@
   "medecinText2": "Il accorde une importance particulière à l'écoute, à l'explication des traitements et à un accompagnement personnalisé de chaque patient.",
   "medecinImage": "/images/medecin-portrait.jpg",
   "medecinImageAlt": "Portrait du Dr Mohamed Moussa à son bureau",
-  "trustTitle": "L'exigence médicale, la proximité en plus",
+  "trustTitle": "Présentation du cabinet",
   "trustImage": "/images/cabinet-4.jpg",
   "trustImageAlt": "Bureau du Dr Mohamed Moussa avec ses diplômes et certifications",
-  "trustManifesto": "Un **cabinet moderne**, au Centre Médical Horizon, équipé de **technologies de dernière génération**. Une **formation médicale continue** et une **activité scientifique régulière**, pour une pratique fondée sur les **recommandations internationales** les plus récentes. Une **prise en charge personnalisée**, en **consultation comme en chirurgie**, pour les **adultes comme pour les enfants**.",
+  "trustManifesto": "Le cabinet est installé au Centre Médical Horizon, à Cité Intilaka (Mnihla), Ariana. Il assure le diagnostic, le suivi et la chirurgie des maladies des yeux, chez l'adulte et chez l'enfant. Le Dr Moussa reçoit en consultation comme en chirurgie, et participe régulièrement à des congrès et à des activités de formation continue.",
   "discoverTitle": "Un plateau technique au service du diagnostic",
   "discover": [
     { "image": "/images/materiel-vue.jpg", "title": "Notre matériel", "text": "NIDEK, HUVITZ, VisuScience — le détail de nos équipements.", "alt": "Plateau technique du cabinet : unité de consultation et instruments de mesure", "link": "/materiel/" },
