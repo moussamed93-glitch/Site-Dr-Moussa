@@ -1,32 +1,41 @@
 {
-  "name": "Cabinet d'Ophtalmologie Dr Mohamed Moussa",
-  "doctor": "Dr Mohamed Moussa",
-  "title": "Ophtalmologue à Cité Intilaka (Mnihla), Ariana",
-  "url": "https://drmohamedmoussa.tn",
-  "phone": "+216 58 272 719",
-  "phoneDisplay": "58 272 719",
+  "addressCountry": "Tunisie",
+  "mapsEmbed": "https://www.google.com/maps?q=Centre+M%C3%A9dical+Horizon+Route+de+Bizerte+Km+4+Mnihla+Ariana&output=embed",
   "phone2": "+216 52 317 570",
-  "phone2Display": "52 31 75 70",
-  "email": "Mohamedmoussa.dr@gmail.com",
+  "facebook": "https://www.facebook.com/profile.php?id=61591373836621",
+  "addressRegion": "Ariana",
+  "medtnUrl": "https://www.med.tn/medecin/ophtalmologiste/ariana/dr-mohamed-moussa-230286.html",
   "addressLine1": "Centre Médical Horizon, 1er étage, Bur. 2 et 3",
   "addressLine2": "Route de Bizerte Km 4",
-  "addressCity": "Cité Intilaka (Mnihla)",
-  "addressRegion": "Ariana",
+  "name": "Cabinet d'Ophtalmologie Dr Mohamed Moussa",
+  "latitude": "36.84041046389361",
   "addressPostalCode": "2094",
-  "addressCountry": "Tunisie",
-  "latitude": "",
-  "longitude": "",
-  "mapsUrl": "https://maps.google.com/?cid=2795789365099016065",
-  "mapsEmbed": "https://www.google.com/maps?q=Centre+M%C3%A9dical+Horizon+Route+de+Bizerte+Km+4+Mnihla+Ariana&output=embed",
-  "medtnUrl": "https://www.med.tn/medecin/ophtalmologiste/ariana/dr-mohamed-moussa-230286.html",
   "googleReviewsUrl": "https://www.google.com/maps/place//data=!4m4!3m3!1s0xada965871c683879:0x26cca39d658aaf81!9m1!1b1",
-  "reviewCount": 63,
-  "rating": 5,
+  "phone": "+216 58 272 719",
+  "url": "https://drmohamedmoussa.tn",
+  "longitude": "10.116430670256241",
   "hours": [
-    { "days": "Lundi – Vendredi", "time": "09h00 – 18h00" },
-    { "days": "Samedi", "time": "09h00 – 14h00" },
-    { "days": "Dimanche", "time": "Fermé" }
+    {
+      "days": "Lundi – Vendredi",
+      "time": "09h00 – 18h00"
+    },
+    {
+      "days": "Samedi",
+      "time": "09h00 – 14h00"
+    },
+    {
+      "days": "Dimanche",
+      "time": "Fermé"
+    }
   ],
-  "facebook": "https://www.facebook.com/profile.php?id=61591373836621",
-  "instagram": "https://www.instagram.com/dr_mohamedmoussa"
+  "instagram": "https://www.instagram.com/dr_mohamedmoussa",
+  "phoneDisplay": "58 272 719",
+  "reviewCount": 63,
+  "title": "Ophtalmologue à Cité Intilaka (Mnihla), Ariana",
+  "mapsUrl": "https://maps.google.com/?cid=2795789365099016065",
+  "email": "Mohamedmoussa.dr@gmail.com",
+  "rating": 5,
+  "phone2Display": "52 31 75 70",
+  "doctor": "Dr Mohamed Moussa",
+  "addressCity": "Cité Intilaka (Mnihla)"
 }
