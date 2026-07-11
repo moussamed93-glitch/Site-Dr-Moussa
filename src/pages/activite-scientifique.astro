@@ -13,7 +13,7 @@ const heroImg = resolveImage(page.hero.image);
 // par une URL résolue à partir du nom de fichier choisi dans le CMS.
 const communications = commData.communications.map((c) => ({
   src: resolveImage(c.image),
-  alt: `Le Dr Moussa — ${c.congress}`,
+  alt: `Le Dr Moussa, ${c.congress}`,
   congress: c.congress,
   subject: c.subject,
   year: c.year,

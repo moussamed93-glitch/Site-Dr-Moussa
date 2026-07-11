@@ -1,6 +1,6 @@
 ---
 title: Sécheresse oculaire
-metaTitle: Sécheresse oculaire — traitement à Ariana | Dr Moussa
+metaTitle: "Sécheresse oculaire : traitement à Ariana | Dr Moussa"
 metaDescription: Évaluation et traitement personnalisé de la sécheresse oculaire à Mnihla, Ariana. Œil sec, picotements, fatigue sur écran. Cabinet du Dr Mohamed Moussa.
 intro: La sécheresse oculaire est l'un des motifs de consultation les plus fréquents. Elle résulte d'une insuffisance de larmes ou d'une évaporation excessive, et retentit fortement sur le confort de vie.
 order: 10
@@ -17,11 +17,11 @@ whenToConsult:
   - Si vous portez des lentilles et que l'inconfort augmente
 treatments:
   - title: Bilan de la surface oculaire
-    text: Examen à la lampe à fente du film lacrymal, des paupières et des glandes de Meibomius, pour identifier le mécanisme — déficit de larmes ou évaporation excessive.
+    text: "Examen à la lampe à fente du film lacrymal, des paupières et des glandes de Meibomius, pour identifier le mécanisme : déficit de larmes ou évaporation excessive."
   - title: Traitement personnalisé
-    text: Larmes artificielles adaptées, hygiène et soins des paupières, traitement d'une blépharite associée — le protocole est ajusté à la cause identifiée, pas seulement au symptôme.
+    text: Larmes artificielles adaptées, hygiène et soins des paupières, traitement d'une blépharite associée ; le protocole est ajusté à la cause identifiée, pas seulement au symptôme.
   - title: Conseils d'environnement
-    text: Ajustements simples mais efficaces — pauses d'écran, clignement volontaire, humidification, protection du vent — intégrés à votre routine quotidienne.
+    text: Ajustements simples mais efficaces (pauses d'écran, clignement volontaire, humidification, protection du vent) intégrés à votre routine quotidienne.
 faq:
   - q: Pourquoi mes yeux pleurent-ils si l'on parle d'œil « sec » ?
     a: Un film lacrymal instable irrite la surface de l'œil, ce qui déclenche un larmoiement réflexe de mauvaise qualité. Ce larmoiement paradoxal est un signe classique de sécheresse oculaire.

@@ -4,7 +4,7 @@
     "imageAlt": "Le Dr Mohamed Moussa dans sa salle de consultation d'ophtalmologie",
     "eyebrow": "Le médecin",
     "title": "Dr Mohamed Moussa",
-    "lead": "Docteur en médecine, diplômé de la Faculté de Médecine de Tunis — spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."
+    "lead": "Docteur en médecine, diplômé de la Faculté de Médecine de Tunis, spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."
   },
   "bio": {
     "image": "/images/medecin-portrait.jpg",
@@ -12,18 +12,18 @@
     "eyebrow": "Parcours",
     "title": "Soigner les yeux, expliquer, accompagner",
     "text1": "Le Dr Mohamed Moussa assure la prise en charge des maladies des yeux chez l'adulte et l'enfant : troubles de la réfraction, cataracte, glaucome, kératocône, pathologies de la cornée et de la rétine, ophtalmologie pédiatrique et urgences.",
-    "text2": "Spécialiste en chirurgie oculaire et traitements aux lasers, il assure l'ensemble du parcours de soins — du diagnostic au geste chirurgical, jusqu'au suivi post-opératoire au cabinet.",
+    "text2": "Spécialiste en chirurgie oculaire et traitements aux lasers, il assure l'ensemble du parcours de soins : du diagnostic au geste chirurgical, jusqu'au suivi post-opératoire au cabinet.",
     "facts": [
-      { "label": "Formation", "value": "Doctorat en médecine — Faculté de Médecine de Tunis" },
+      { "label": "Formation", "value": "Doctorat en médecine, Faculté de Médecine de Tunis" },
       { "label": "Spécialité", "value": "Ophtalmologie, chirurgie oculaire, traitements laser" },
       { "label": "Patients", "value": "Adultes et enfants" },
-      { "label": "Exercice", "value": "Centre Médical Horizon — Cité Intilaka (Mnihla), Ariana" }
+      { "label": "Exercice", "value": "Centre Médical Horizon, Cité Intilaka (Mnihla), Ariana" }
     ]
   },
   "science": {
     "eyebrow": "Une pratique fondée sur la science",
     "title": "Se former en continu, pour mieux soigner",
-    "text1": "Le Dr Moussa participe régulièrement à des congrès nationaux et internationaux — Congrès National d'Ophtalmologie de la Société Tunisienne d'Ophtalmologie, congrès régionaux et conférences internationales — où il présente des communications scientifiques.",
+    "text1": "Le Dr Moussa participe régulièrement à des congrès nationaux et internationaux (Congrès National d'Ophtalmologie de la Société Tunisienne d'Ophtalmologie, congrès régionaux et conférences internationales) où il présente des communications scientifiques.",
     "text2": "Cette activité scientifique régulière lui permet de maintenir une pratique fondée sur les recommandations internationales les plus récentes et les innovations technologiques en ophtalmologie.",
     "image": "/images/medecin-examen.jpg",
     "imageAlt": "Le Dr Moussa réalisant un examen sur l'unité de réfraction du cabinet"

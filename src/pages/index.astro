@@ -24,8 +24,8 @@ const discover = home.discover.map((d) => ({
 ---
 
 <Base
-  title="Dr Mohamed Moussa — Ophtalmologue à Mnihla, Ariana"
-  description="Cabinet d'ophtalmologie à Cité Intilaka (Mnihla), Ariana. Consultation, cataracte, kératocône, glaucome — adultes et enfants. Prenez rendez-vous."
+  title="Dr Mohamed Moussa | Ophtalmologue à Mnihla, Ariana"
+  description="Cabinet d'ophtalmologie à Cité Intilaka (Mnihla), Ariana. Consultation, cataracte, kératocône, glaucome, adultes et enfants. Prenez rendez-vous."
   ogImage="/og-cover.jpg"
 >
   <!-- ============ HERO crème éditorial ============ -->
@@ -156,7 +156,7 @@ const discover = home.discover.map((d) => ({
             {REVIEWS.map((r) => (
               <blockquote class="avis-quote reveal">
                 <p>« {r.text} »</p>
-                <footer>{r.author} — avis Google</footer>
+                <footer>{r.author} · avis Google</footer>
               </blockquote>
             ))}
           </div>
@@ -489,12 +489,12 @@ const discover = home.discover.map((d) => ({
     margin-block: var(--s-4) var(--s-5);
     padding-bottom: var(--s-4);
     border-bottom: 1px solid var(--line);
-    max-width: 46ch;
+    max-width: 56ch;
   }
 
   .medecin-title-line {
     display: block;
-    text-wrap: balance;
+    text-wrap: pretty;
   }
 
   .medecin-title-line + .medecin-title-line {

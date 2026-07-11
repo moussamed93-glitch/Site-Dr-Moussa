@@ -16,7 +16,7 @@ whenToConsult:
   - Si votre correction a changé
 treatments:
   - title: Bilan préalable de la surface oculaire
-    text: Examen de la cornée et du film lacrymal à la lampe à fente, kératométrie précise — pour vérifier que vos yeux supportent le port de lentilles.
+    text: Examen de la cornée et du film lacrymal à la lampe à fente, kératométrie précise, pour vérifier que vos yeux supportent le port de lentilles.
   - title: Choix et essai de la lentille
     text: Sélection du type de lentille (souple sphérique, torique, multifocale ou spécifique) selon votre correction, votre cornée et votre mode de vie, avec essai au cabinet.
   - title: Apprentissage et suivi
@@ -27,7 +27,7 @@ faq:
   - q: Les lentilles sont-elles dangereuses pour les yeux ?
     a: Bien adaptées et bien entretenues, elles sont sûres. Les complications surviennent surtout en cas de port prolongé, de mauvaise hygiène ou d'adaptation non contrôlée médicalement.
   - q: À partir de quel âge peut-on porter des lentilles ?
-    a: Il n'y a pas d'âge strict — c'est la motivation et la rigueur d'entretien qui comptent. L'adolescence est souvent un bon moment, sous supervision d'un adulte au début.
+    a: "Il n'y a pas d'âge strict : c'est la motivation et la rigueur d'entretien qui comptent. L'adolescence est souvent un bon moment, sous supervision d'un adulte au début."
 ---
 
 Le port de lentilles réussi repose sur trois piliers : un œil en bonne santé, une lentille bien choisie et un suivi régulier. Le cabinet assure l'ensemble de ce parcours, y compris les adaptations complexes sur cornées irrégulières.

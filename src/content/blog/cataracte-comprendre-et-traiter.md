@@ -1,6 +1,6 @@
 ---
 title: "Cataracte : comprendre et bien la traiter"
-description: Voile devant les yeux, éblouissement, couleurs ternies — comprendre la cataracte, son évolution et sa chirurgie moderne en 5 minutes.
+description: "Voile devant les yeux, éblouissement, couleurs ternies : comprendre la cataracte, son évolution et sa chirurgie moderne en 5 minutes."
 date: 2026-06-01
 category: Chirurgie
 ---
@@ -9,7 +9,7 @@ La cataracte est la première cause de baisse de vision après 60 ans. Bonne nou
 
 ## Qu'est-ce que la cataracte ?
 
-À l'intérieur de l'œil, juste derrière la pupille, se trouve le **cristallin** : une lentille naturelle transparente qui fait la mise au point. Avec l'âge, ce cristallin s'opacifie progressivement — c'est la cataracte.
+À l'intérieur de l'œil, juste derrière la pupille, se trouve le **cristallin** : une lentille naturelle transparente qui fait la mise au point. Avec l'âge, ce cristallin s'opacifie progressivement : c'est la cataracte.
 
 La lumière passe alors de moins en moins bien, comme à travers un verre dépoli.
 
@@ -21,7 +21,7 @@ La lumière passe alors de moins en moins bien, comme à travers un verre dépol
 - besoin de changer souvent de lunettes ;
 - meilleure vision paradoxale de près chez certains.
 
-L'évolution est lente, sur des mois ou des années. C'est la gêne dans **votre** vie quotidienne — lecture, conduite, travail — qui détermine le moment d'opérer.
+L'évolution est lente, sur des mois ou des années. C'est la gêne dans **votre** vie quotidienne (lecture, conduite, travail) qui détermine le moment d'opérer.
 
 ## La chirurgie moderne : la phacoémulsification
 

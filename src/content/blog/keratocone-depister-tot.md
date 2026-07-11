@@ -1,6 +1,6 @@
 ---
 title: "Kératocône : dépister tôt change tout"
-description: Astigmatisme qui évolue vite, vision déformée chez un sujet jeune — le kératocône se stabilise d'autant mieux qu'il est dépisté tôt.
+description: "Astigmatisme qui évolue vite, vision déformée chez un sujet jeune : le kératocône se stabilise d'autant mieux qu'il est dépisté tôt."
 date: 2026-05-15
 category: Cornée
 ---
@@ -9,7 +9,7 @@ Le kératocône touche environ une personne sur 2 000, souvent dès l'adolescenc
 
 ## De quoi s'agit-il ?
 
-La cornée — la vitre transparente à l'avant de l'œil — s'amincit progressivement et se déforme en prenant une forme de **cône**. Cette déformation crée un astigmatisme dit « irrégulier », que les lunettes corrigent de plus en plus mal.
+La cornée, la vitre transparente à l'avant de l'œil, s'amincit progressivement et se déforme en prenant une forme de **cône**. Cette déformation crée un astigmatisme dit « irrégulier », que les lunettes corrigent de plus en plus mal.
 
 Le kératocône évolue surtout entre 15 et 35 ans, puis tend à se stabiliser.
 
@@ -25,13 +25,13 @@ Ce dernier point est essentiel : le frottement répété des yeux fragilise la c
 
 ## Comment le dépiste-t-on ?
 
-Une simple **kératométrie** — mesure automatisée de la courbure de la cornée, réalisée en quelques secondes au cabinet — permet de repérer une déformation débutante. En cas de doute, une topographie cornéenne cartographie la cornée point par point.
+Une simple **kératométrie** (mesure automatisée de la courbure de la cornée, réalisée en quelques secondes au cabinet) permet de repérer une déformation débutante. En cas de doute, une topographie cornéenne cartographie la cornée point par point.
 
 ## Quels traitements selon le stade ?
 
 - **Stade débutant** : lunettes et surveillance régulière de la kératométrie.
 - **Astigmatisme irrégulier** : lentilles spécifiques (rigides ou hybrides), qui redonnent une vision nette en « lissant » optiquement la cornée.
-- **Forme évolutive** : le **cross-linking cornéen** renforce la cornée et freine la progression — d'autant plus efficace que la déformation est modérée.
+- **Forme évolutive** : le **cross-linking cornéen** renforce la cornée et freine la progression, d'autant plus efficace que la déformation est modérée.
 - **Stades avancés** : anneaux intracornéens ou greffe de cornée, dans les centres spécialisés.
 
 ## Le message essentiel

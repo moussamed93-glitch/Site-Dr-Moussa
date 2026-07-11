@@ -19,9 +19,9 @@ treatments:
   - title: Bilan visuel complet
     text: Mesure de l'acuité visuelle, réfraction automatisée (NIDEK TONOREF III), examen à la lampe à fente et mesure de la tension oculaire, réalisés au cabinet en une seule visite.
   - title: Examens complémentaires
-    text: Selon les résultats, des examens ciblés sont réalisés — pachymétrie, photographies de l'œil, tests de vision spécifiques — pour affiner le diagnostic.
+    text: Selon les résultats, des examens ciblés sont réalisés (pachymétrie, photographies de l'œil, tests de vision spécifiques) pour affiner le diagnostic.
   - title: Plan de traitement personnalisé
-    text: À l'issue de la consultation, le Dr Moussa vous explique clairement les résultats et vous propose un traitement adapté — correction optique, traitement médical ou orientation chirurgicale.
+    text: "À l'issue de la consultation, le Dr Moussa vous explique clairement les résultats et vous propose un traitement adapté : correction optique, traitement médical ou orientation chirurgicale."
 faq:
   - q: Combien de temps dure une consultation ?
     a: Une consultation complète dure en général 20 à 30 minutes, selon les examens nécessaires. Certains examens (dilatation de la pupille) peuvent prolonger la visite.
