@@ -7,7 +7,7 @@ backend:
   name: github
   repo: moussamed93-glitch/Site-Dr-Moussa
   branch: main
-  base_url: https://dr-moussa-ophtalmologue.netlify.app
+  base_url: https://drmohamedmoussa.tn
   auth_endpoint: .netlify/functions/auth
   commit_messages:
     create: 'Contenu : création de {{slug}}'
@@ -17,12 +17,12 @@ backend:
     deleteMedia: 'Média : suppression de {{path}}'
 
 locale: fr
-site_url: https://dr-moussa-ophtalmologue.netlify.app
+site_url: https://drmohamedmoussa.tn
 logo_url: /favicon.svg
 
-# Les photos téléversées vont dans public/images : elles sont servies en ligne,
-# donc prévisualisables dans le backoffice, et référencées via src/lib/images.ts.
-media_folder: 'public/images'
+# Les photos téléversées vont dans src/assets/images : elles sont optimisées au
+# build par Astro (WebP, srcset) et référencées via src/lib/images.ts.
+media_folder: 'src/assets/images'
 public_folder: '/images'
 
 collections:
@@ -50,6 +50,8 @@ collections:
           - { name: addressRegion, label: 'Gouvernorat', widget: string }
           - { name: addressPostalCode, label: 'Code postal', widget: string }
           - { name: addressCountry, label: 'Pays', widget: string }
+          - { name: latitude, label: 'Latitude GPS du cabinet', widget: string, required: false, hint: 'Clic droit sur le cabinet dans Google Maps pour copier les coordonnées. Ex. 36.8815' }
+          - { name: longitude, label: 'Longitude GPS du cabinet', widget: string, required: false, hint: 'Ex. 10.1032' }
           - { name: mapsUrl, label: 'Lien Google Maps (itinéraire)', widget: string }
           - { name: mapsEmbed, label: 'Lien Google Maps (carte intégrée)', widget: string }
           - { name: medtnUrl, label: 'Lien profil Med.tn', widget: string }
@@ -202,6 +204,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -241,6 +244,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -262,6 +266,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -295,6 +300,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -314,6 +320,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -336,6 +343,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
           - { name: formTitle, label: 'Titre du formulaire', widget: string }
@@ -350,6 +358,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -375,6 +384,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -388,6 +398,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }
@@ -401,6 +412,7 @@ collections:
             widget: object
             fields:
               - { name: image, label: 'Photo du bandeau', widget: image }
+              - { name: imageAlt, label: 'Description de la photo (SEO / accessibilité)', widget: string, required: false }
               - { name: eyebrow, label: 'Sur-titre', widget: string }
               - { name: title, label: 'Titre', widget: string }
               - { name: lead, label: "Texte d'introduction", widget: text, required: false }

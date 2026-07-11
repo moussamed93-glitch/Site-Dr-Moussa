@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/medecin-cabinet.jpg",
+    "imageAlt": "Le Dr Mohamed Moussa dans sa salle de consultation d'ophtalmologie",
     "eyebrow": "Le médecin",
     "title": "Dr Mohamed Moussa",
     "lead": "Docteur en médecine, diplômé de la Faculté de Médecine de Tunis — spécialiste en ophtalmologie, chirurgie oculaire et traitements laser."

@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
@@ -22,6 +23,7 @@ const gallery = pageData.gallery.map((item) => ({
 >
   <PageHero
     image={resolveImage(pageData.hero.image)}
+    imageAlt={pageData.hero.imageAlt}
     focus="center 40%"
     eyebrow={pageData.hero.eyebrow}
     title={pageData.hero.title}
@@ -38,9 +40,11 @@ const gallery = pageData.gallery.map((item) => ({
         {
           gallery.map((item, i) => (
             <figure class="gallery-item reveal" style={`animation-delay:${(i % 3) * 60}ms`}>
-              <img
+              <Image
                 src={item.src}
                 alt={item.alt}
+                widths={[400, 640]}
+                sizes="(min-width: 1000px) 30vw, (min-width: 640px) 46vw, 94vw"
                 loading={i < 3 ? 'eager' : 'lazy'}
                 decoding="async"
               />

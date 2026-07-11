@@ -37,8 +37,8 @@ Certains signes imposent un examen **le jour même** :
 - douleur oculaire intense avec œil rouge ;
 - traumatisme ou projection de produit dans l'œil.
 
-Dans ces situations, appelez directement le cabinet : des créneaux d'urgence sont réservés chaque jour.
+Dans ces situations, appelez directement le cabinet : des créneaux d'[urgence ophtalmologique](/services/urgences-ophtalmologiques/) sont réservés chaque jour.
 
 ## En pratique
 
-Un examen ophtalmologique complet est indolore et dure 20 à 30 minutes. Il vérifie à la fois votre vision et la santé de vos yeux — deux choses différentes : on peut voir 10/10 et avoir un glaucome débutant.
+Un [examen ophtalmologique complet](/services/consultation-ophtalmologique/) est indolore et dure 20 à 30 minutes. Il vérifie à la fois votre vision et la santé de vos yeux — deux choses différentes : on peut voir 10/10 et avoir un [glaucome](/services/glaucome/) débutant. Pour faire le point, [prenez rendez-vous](/rendez-vous/) au cabinet.

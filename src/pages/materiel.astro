@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
@@ -21,6 +22,7 @@ const examenImg = resolveImage(page.pratiqueImage);
 >
   <PageHero
     image={heroImg}
+    imageAlt={page.hero.imageAlt}
     focus="center 55%"
     eyebrow={page.hero.eyebrow}
     title={page.hero.title}
@@ -68,7 +70,7 @@ const examenImg = resolveImage(page.pratiqueImage);
         <p>{page.pratiqueText2}</p>
       </div>
       <figure class="pratique-media reveal">
-        <img src={examenImg} alt={page.pratiqueImageAlt} loading="lazy" decoding="async" />
+        <Image src={examenImg} alt={page.pratiqueImageAlt} widths={[480, 800]} sizes="(min-width: 860px) 42vw, 94vw" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>

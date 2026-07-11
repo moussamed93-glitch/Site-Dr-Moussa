@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/accueil-angle.jpg",
+    "imageAlt": "L'espace d'accueil du cabinet d'ophtalmologie",
     "eyebrow": "Contact",
     "title": "Nous trouver, nous joindre"
   },

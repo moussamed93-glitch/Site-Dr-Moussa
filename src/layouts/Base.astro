@@ -1,4 +1,6 @@
 ---
+import '@fontsource-variable/fraunces';
+import '@fontsource-variable/hanken-grotesk';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -9,12 +11,30 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  ogType?: 'website' | 'article';
+  /** Dates ISO (YYYY-MM-DD) pour les articles de blog. */
+  publishedDate?: string;
+  modifiedDate?: string;
+  /** Exclut la page des moteurs de recherche (pages utilitaires). */
+  noindex?: boolean;
   jsonLd?: object[];
   breadcrumbs?: { name: string; href: string }[];
 }
 
-const { title, description, ogImage = '/og-cover.jpg', jsonLd = [], breadcrumbs } = Astro.props;
+const {
+  title,
+  description,
+  ogImage = '/og-cover.jpg',
+  ogType = 'website',
+  publishedDate,
+  modifiedDate,
+  noindex = false,
+  jsonLd = [],
+  breadcrumbs,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const sameAs = [SITE.social.facebook, SITE.social.instagram, SITE.medtnUrl].filter(Boolean);
 
 const clinicLd = {
   '@context': 'https://schema.org',
@@ -26,6 +46,17 @@ const clinicLd = {
   email: SITE.email,
   image: `${SITE.url}/og-cover.jpg`,
   medicalSpecialty: 'Ophthalmologic',
+  hasMap: SITE.mapsUrl,
+  ...(sameAs.length > 0 ? { sameAs } : {}),
+  ...(SITE.geo.latitude && SITE.geo.longitude
+    ? {
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: SITE.geo.latitude,
+          longitude: SITE.geo.longitude,
+        },
+      }
+    : {}),
   address: {
     '@type': 'PostalAddress',
     streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
@@ -80,28 +111,31 @@ const allLd = [clinicLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="fr_TN" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${SITE.name} — ${SITE.address.city}, ${SITE.address.region}`} />
+    {ogType === 'article' && publishedDate && (
+      <meta property="article:published_time" content={publishedDate} />
+    )}
+    {ogType === 'article' && modifiedDate && (
+      <meta property="article:modified_time" content={modifiedDate} />
+    )}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(ogImage, Astro.site).href} />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@300;400;500;600;700&display=swap"
-    />
 
     {allLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>

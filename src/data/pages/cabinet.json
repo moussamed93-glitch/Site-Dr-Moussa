@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/accueil-logo.jpg",
+    "imageAlt": "L'accueil du cabinet d'ophtalmologie avec le logo du Dr Mohamed Moussa",
     "eyebrow": "Le cabinet",
     "title": "Un espace pensé pour votre confort",
     "lead": "Situé au premier étage du Centre Médical Horizon, à Cité Intilaka (Mnihla), le cabinet a été conçu comme un lieu calme et lumineux."

@@ -23,6 +23,10 @@ export const SITE = {
     postalCode: settings.addressPostalCode,
     country: settings.addressCountry,
   },
+  geo: {
+    latitude: settings.latitude,
+    longitude: settings.longitude,
+  },
   mapsUrl: settings.mapsUrl,
   mapsEmbed: settings.mapsEmbed,
   medtnUrl: settings.medtnUrl,

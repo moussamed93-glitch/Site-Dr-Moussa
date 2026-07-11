@@ -36,4 +36,4 @@ La lumière des écrans retarde l'endormissement en freinant la sécrétion de m
 
 Consultez si votre enfant se rapproche des écrans, plisse les yeux, penche la tête, se frotte souvent les yeux ou se plaint de maux de tête. Ces signes peuvent révéler un trouble visuel — myopie, hypermétropie, astigmatisme — qui se corrige d'autant mieux qu'il est dépisté tôt.
 
-Un bilan visuel complet est recommandé vers 3 ans, puis avant l'entrée au CP, même sans symptôme.
+Un bilan visuel complet est recommandé vers 3 ans, puis avant l'entrée au CP, même sans symptôme. Le cabinet assure le suivi de la vision de l'enfant dans le cadre de l'[ophtalmologie pédiatrique](/services/ophtalmologie-pediatrique/) — n'hésitez pas à [prendre rendez-vous](/rendez-vous/).

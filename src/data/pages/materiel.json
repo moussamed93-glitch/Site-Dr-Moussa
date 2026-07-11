@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/materiel-vue.jpg",
+    "imageAlt": "Le plateau technique d'examen ophtalmologique du cabinet",
     "eyebrow": "Notre matériel",
     "title": "Des équipements de dernière génération",
     "lead": "Réfraction, tonométrie, imagerie : un plateau technique complet pour réaliser l'ensemble du bilan sur place, en une seule visite."

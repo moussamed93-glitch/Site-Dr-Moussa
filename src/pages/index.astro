@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import CtaRdv from '../components/CtaRdv.astro';
 import Stars from '../components/Stars.astro';
@@ -49,9 +50,11 @@ const discover = home.discover.map((d) => ({
         </div>
       </div>
       <figure class="hero-media reveal">
-        <img
+        <Image
           src={heroImg}
           alt={home.heroImageAlt}
+          widths={[480, 800, 1100]}
+          sizes="(min-width: 900px) 45vw, 94vw"
           loading="eager"
           fetchpriority="high"
         />
@@ -63,7 +66,7 @@ const discover = home.discover.map((d) => ({
   <section class="section services" aria-labelledby="titre-services">
     <div class="container services-grid">
       <figure class="services-media reveal">
-        <img src={servicesImg} alt={home.servicesImageAlt} loading="lazy" decoding="async" />
+        <Image src={servicesImg} alt={home.servicesImageAlt} widths={[480, 800]} sizes="(min-width: 860px) 38vw, 94vw" loading="lazy" decoding="async" />
         <figcaption class="services-caption">
           <span class="services-caption-num">{home.servicesCaptionNum}</span>
           <span class="services-caption-text">{home.servicesCaptionText}</span>
@@ -94,7 +97,7 @@ const discover = home.discover.map((d) => ({
   <section class="section medecin" aria-labelledby="titre-medecin">
     <div class="container medecin-grid">
       <figure class="medecin-media reveal">
-        <img src={portraitImg} alt={home.medecinImageAlt} loading="lazy" decoding="async" />
+        <Image src={portraitImg} alt={home.medecinImageAlt} widths={[480, 800]} sizes="(min-width: 860px) 40vw, 94vw" loading="lazy" decoding="async" />
       </figure>
       <div class="medecin-text reveal">
         <p class="eyebrow">Le médecin</p>
@@ -118,7 +121,7 @@ const discover = home.discover.map((d) => ({
   <section class="section trust" aria-labelledby="titre-confiance">
     <div class="container trust-grid">
       <figure class="trust-media reveal">
-        <img src={trustImg} alt={home.trustImageAlt} loading="lazy" decoding="async" />
+        <Image src={trustImg} alt={home.trustImageAlt} widths={[480, 800]} sizes="(min-width: 860px) 38vw, 94vw" loading="lazy" decoding="async" />
         <span class="trust-veil" aria-hidden="true"></span>
         <figcaption class="trust-rating">
           <Stars class="trust-stars" />
@@ -178,7 +181,7 @@ const discover = home.discover.map((d) => ({
         {
           discover.map((d, i) => (
             <a href={d.href} class="tile reveal" style={`animation-delay:${i * 60}ms`}>
-              <img src={d.img} alt={d.alt} loading="lazy" decoding="async" />
+              <Image src={d.img} alt={d.alt} widths={[360, 560]} sizes="(min-width: 1100px) 24vw, (min-width: 560px) 46vw, 94vw" loading="lazy" decoding="async" />
               <span class="tile-veil" aria-hidden="true" />
               <span class="tile-label">
                 <span class="tile-title">{d.title}</span>

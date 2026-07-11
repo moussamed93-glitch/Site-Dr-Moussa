@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/salle-attente.jpg",
+    "imageAlt": "La salle d'attente du cabinet du Dr Moussa",
     "eyebrow": "Prendre rendez-vous",
     "title": "Trois façons simples de nous joindre",
     "lead": "En cas d'urgence pendant les horaires d'ouverture, appelez directement : des créneaux d'urgence sont réservés chaque jour."

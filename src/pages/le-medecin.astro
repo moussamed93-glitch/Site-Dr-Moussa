@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
@@ -42,6 +43,7 @@ const physicianLd = {
 >
   <PageHero
     image={heroImg}
+    imageAlt={page.hero.imageAlt}
     focus="68% 28%"
     eyebrow={page.hero.eyebrow}
     title={page.hero.title}
@@ -55,7 +57,7 @@ const physicianLd = {
   <section class="section">
     <div class="container bio-grid">
       <figure class="bio-media reveal">
-        <img src={portraitImg} alt={page.bio.imageAlt} loading="lazy" decoding="async" />
+        <Image src={portraitImg} alt={page.bio.imageAlt} widths={[480, 800]} sizes="(min-width: 860px) 40vw, 94vw" loading="lazy" decoding="async" />
       </figure>
       <div class="bio-text reveal">
         <p class="eyebrow">{page.bio.eyebrow}</p>
@@ -86,7 +88,7 @@ const physicianLd = {
         <a href="/activite-scientifique/" class="line-link">Voir l'activité scientifique</a>
       </div>
       <figure class="science-media reveal">
-        <img src={examenImg} alt={page.science.imageAlt} loading="lazy" decoding="async" />
+        <Image src={examenImg} alt={page.science.imageAlt} widths={[480, 800]} sizes="(min-width: 860px) 40vw, 94vw" loading="lazy" decoding="async" />
       </figure>
     </div>
   </section>

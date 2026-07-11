@@ -17,24 +17,32 @@ const { Content } = await render(post);
 const slug = post.id.replace(/\.md$/, '');
 const fmt = new Intl.DateTimeFormat('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
 
+const published = post.data.date.toISOString().slice(0, 10);
+
 const articleLd = {
   '@context': 'https://schema.org',
   '@type': 'MedicalWebPage',
   headline: post.data.title,
   description: post.data.description,
-  datePublished: post.data.date.toISOString().slice(0, 10),
+  datePublished: published,
+  dateModified: published,
   inLanguage: 'fr',
+  image: `${SITE.url}/og-cover.jpg`,
+  mainEntityOfPage: `${SITE.url}/blog/${slug}/`,
   author: {
     '@type': 'Physician',
     name: SITE.doctor,
     url: `${SITE.url}/le-medecin/`,
   },
+  publisher: { '@id': `${SITE.url}/#clinic` },
 };
 ---
 
 <Base
   title={`${post.data.title} | Dr Moussa`}
   description={post.data.description}
+  ogType="article"
+  publishedDate={published}
   jsonLd={[articleLd]}
   breadcrumbs={[
     { name: 'Accueil', href: '/' },

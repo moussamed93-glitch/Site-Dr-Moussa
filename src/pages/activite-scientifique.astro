@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
@@ -29,6 +30,7 @@ const communications = commData.communications.map((c) => ({
 >
   <PageHero
     image={heroImg}
+    imageAlt={page.hero.imageAlt}
     focus="30% 40%"
     eyebrow={page.hero.eyebrow}
     title={page.hero.title}
@@ -64,7 +66,7 @@ const communications = commData.communications.map((c) => ({
         {
           communications.map((c, i) => (
             <figure class="comm reveal" style={`animation-delay:${i * 70}ms`}>
-              <img src={c.src} alt={c.alt} loading="lazy" decoding="async" />
+              <Image src={c.src} alt={c.alt} widths={[400, 640]} sizes="(min-width: 900px) 30vw, (min-width: 600px) 46vw, 94vw" loading="lazy" decoding="async" />
               <figcaption>
                 <span class="comm-year">{c.year}</span>
                 <p class="comm-congress">{c.congress}</p>

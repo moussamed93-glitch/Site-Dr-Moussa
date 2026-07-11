@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaRdv from '../components/CtaRdv.astro';
@@ -22,6 +23,7 @@ const blocPhotos = pageData.blocPhotos.map((photo) => ({
 >
   <PageHero
     image={resolveImage(pageData.hero.image)}
+    imageAlt={pageData.hero.imageAlt}
     focus="center 30%"
     eyebrow={pageData.hero.eyebrow}
     title={pageData.hero.title}
@@ -58,7 +60,7 @@ const blocPhotos = pageData.blocPhotos.map((photo) => ({
         {
           blocPhotos.map((photo, i) => (
             <figure class="bloc-figure reveal" style={`animation-delay:${i * 70}ms`}>
-              <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+              <Image src={photo.src} alt={photo.alt} widths={[400, 640]} sizes="(min-width: 900px) 32vw, (min-width: 600px) 46vw, 94vw" loading="lazy" decoding="async" />
             </figure>
           ))
         }

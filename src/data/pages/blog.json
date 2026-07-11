@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/salle-attente.jpg",
+    "imageAlt": "La salle d'attente du cabinet du Dr Moussa",
     "eyebrow": "Blog médical",
     "title": "Comprendre vos yeux, simplement",
     "lead": "Des articles rédigés pour informer, pas pour inquiéter : symptômes, traitements et conseils pratiques, expliqués clairement."

@@ -1,6 +1,7 @@
 {
   "hero": {
     "image": "/images/medecin-examen.jpg",
+    "imageAlt": "Le Dr Moussa réalisant un examen de la vue à la lampe à fente",
     "eyebrow": "Nos services",
     "title": "Une prise en charge complète de votre vision",
     "lead": "Le cabinet couvre l'ensemble de l'ophtalmologie médicale et chirurgicale, chez l'adulte comme chez l'enfant."

@@ -42,3 +42,5 @@ Des mois ou des années plus tard, une opacification de la capsule peut ternir �
 ## Ce qu'il faut retenir
 
 La cataracte n'est pas une fatalité et il n'y a pas de « bon moment universel » pour opérer : la décision se prend ensemble, en fonction de votre gêne réelle. Un examen au cabinet permet de faire le point précisément.
+
+Pour en savoir plus sur la prise en charge proposée au cabinet, consultez la page dédiée à la [cataracte](/services/cataracte/) ou au [suivi post-opératoire](/services/suivi-post-operatoire/), et [prenez rendez-vous](/rendez-vous/) pour un bilan.
