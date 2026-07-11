@@ -154,6 +154,26 @@ h4 { font-size: var(--text-lg); }
 
 p { max-width: 65ch; }
 
+/* Répartition élégante des retours à la ligne :
+   - `pretty` évite les mots orphelins en fin de paragraphe ;
+   - `balance` équilibre les lignes des textes courts (titres, sur-titres). */
+p,
+li,
+dd,
+figcaption,
+blockquote {
+  text-wrap: pretty;
+}
+
+.eyebrow,
+.hero-eyebrow,
+.ph-eyebrow,
+.lead,
+.hero-lead,
+.ph-lead {
+  text-wrap: balance;
+}
+
 strong { font-weight: 600; }
 
 .lead {

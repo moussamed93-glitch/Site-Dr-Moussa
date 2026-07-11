@@ -103,11 +103,8 @@ const discover = home.discover.map((d) => ({
         <p class="eyebrow">Le médecin</p>
         <h2 id="titre-medecin">Dr Mohamed Moussa</h2>
         <p class="medecin-titles">
-          {home.medecinTitles.split('\n').map((line, i) => (
-            <>
-              {i > 0 && <br />}
-              {line}
-            </>
+          {home.medecinTitles.split('\n').map((line) => (
+            <span class="medecin-title-line">{line}</span>
           ))}
         </p>
         <p>{home.medecinText1}</p>
@@ -493,6 +490,15 @@ const discover = home.discover.map((d) => ({
     padding-bottom: var(--s-4);
     border-bottom: 1px solid var(--line);
     max-width: 46ch;
+  }
+
+  .medecin-title-line {
+    display: block;
+    text-wrap: balance;
+  }
+
+  .medecin-title-line + .medecin-title-line {
+    margin-top: var(--s-1);
   }
 
   .medecin-text p + p {
