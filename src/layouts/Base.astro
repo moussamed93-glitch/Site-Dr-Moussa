@@ -46,6 +46,7 @@ const clinicLd = {
   email: SITE.email,
   image: `${SITE.url}/og-cover.jpg`,
   medicalSpecialty: 'Ophthalmologic',
+  priceRange: '$$',
   hasMap: SITE.mapsUrl,
   ...(sameAs.length > 0 ? { sameAs } : {}),
   ...(SITE.geo.latitude && SITE.geo.longitude
@@ -84,6 +85,17 @@ const clinicLd = {
     '@id': `${SITE.url}/le-medecin/#physician`,
     name: SITE.doctor,
     medicalSpecialty: 'Ophthalmologic',
+    telephone: SITE.phone,
+    image: `${SITE.url}/og-cover.jpg`,
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
+      addressLocality: SITE.address.city,
+      addressRegion: SITE.address.region,
+      postalCode: SITE.address.postalCode,
+      addressCountry: 'TN',
+    },
     worksFor: { '@id': `${SITE.url}/#clinic` },
   },
 };
