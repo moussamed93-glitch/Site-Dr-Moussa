@@ -4,7 +4,7 @@ Ce guide explique comment modifier le site **sans toucher au code**, depuis l'es
 
 ## Se connecter
 
-1. Aller sur **https://dr-moussa-ophtalmologue.netlify.app/admin/**
+1. Aller sur **https://drmohamedmoussa.com/admin/**
 2. Cliquer sur **« Se connecter avec GitHub »** et autoriser avec le compte du cabinet.
 3. Vous arrivez sur le tableau de bord.
 
