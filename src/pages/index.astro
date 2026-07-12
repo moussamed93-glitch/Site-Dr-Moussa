@@ -45,7 +45,7 @@ const discover = home.discover.map((d) => ({
         </div>
         <div class="hero-rating">
           <Stars />
-          <span><strong>5,0</strong> · {SITE.reviewCount} avis Google</span>
+          <span><strong data-avis-note>5,0</strong> · <span data-avis-count>{SITE.reviewCount}</span> avis Google</span>
           <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="hero-map-link">Itinéraire</a>
         </div>
       </div>
@@ -122,7 +122,7 @@ const discover = home.discover.map((d) => ({
         <span class="trust-veil" aria-hidden="true"></span>
         <figcaption class="trust-rating">
           <Stars class="trust-stars" />
-          <span><strong>5,0</strong> · {SITE.reviewCount} avis Google</span>
+          <span><strong data-avis-note>5,0</strong> · <span data-avis-count>{SITE.reviewCount}</span> avis Google</span>
         </figcaption>
       </figure>
       <div class="trust-text reveal">
@@ -139,10 +139,10 @@ const discover = home.discover.map((d) => ({
       <div class="avis-band reveal">
         <p class="eyebrow">Avis Google</p>
         <div class="avis-row">
-          <span class="avis-note" aria-hidden="true">5,0</span>
+          <span class="avis-note" aria-hidden="true" data-avis-note>5,0</span>
           <div class="avis-meta">
             <Stars />
-            <p>{SITE.reviewCount} avis publiés sur Google</p>
+            <p><span data-avis-count>{SITE.reviewCount}</span> avis publiés sur Google</p>
           </div>
           <a href={SITE.googleReviewsUrl} target="_blank" rel="noopener" class="line-link">
             Lire tous les avis
@@ -164,6 +164,44 @@ const discover = home.discover.map((d) => ({
       }
     </div>
   </section>
+
+  <script>
+    // Rafraîchit note, compteur et citations depuis /api/avis (fonction
+    // serveur avec cache CDN). Le HTML statique reste le secours si l'appel
+    // échoue : on ne touche au DOM qu'après une réponse valide.
+    fetch('/api/avis')
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
+      .then((data: { rating: number | null; userRatingCount: number | null; reviews: { author: string; text: string }[] }) => {
+        if (data.userRatingCount) {
+          const count = String(data.userRatingCount);
+          document.querySelectorAll('[data-avis-count]').forEach((el) => {
+            el.textContent = count;
+          });
+        }
+        if (data.rating) {
+          const note = data.rating.toLocaleString('fr-FR', {
+            minimumFractionDigits: 1,
+            maximumFractionDigits: 1,
+          });
+          document.querySelectorAll('[data-avis-note]').forEach((el) => {
+            el.textContent = note;
+          });
+        }
+        const quotes = document.querySelectorAll('.avis-quote');
+        if (data.reviews?.length === quotes.length) {
+          quotes.forEach((quote, i) => {
+            const r = data.reviews[i];
+            const p = quote.querySelector('p');
+            const footer = quote.querySelector('footer');
+            if (p) p.textContent = `« ${r.text} »`;
+            if (footer) footer.textContent = `${r.author} · avis Google`;
+          });
+        }
+      })
+      .catch(() => {
+        /* silencieux : les valeurs du dernier build restent affichées */
+      });
+  </script>
 
   <!-- ============ DÉCOUVRIR — tuiles photo ============ -->
   <section class="section discover" aria-labelledby="titre-decouvrir">
