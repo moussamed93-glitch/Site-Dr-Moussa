@@ -7,7 +7,9 @@ backend:
   name: github
   repo: moussamed93-glitch/Site-Dr-Moussa
   branch: main
-  base_url: https://drmohamedmoussa.tn
+  # L'OAuth GitHub est enregistré sur l'URL netlify.app : le login admin
+  # fonctionne ainsi quel que soit le domaine par lequel on ouvre /admin/.
+  base_url: https://dr-moussa-ophtalmologue.netlify.app
   auth_endpoint: .netlify/functions/auth
   commit_messages:
     create: 'Contenu : création de {{slug}}'
@@ -17,7 +19,7 @@ backend:
     deleteMedia: 'Média : suppression de {{path}}'
 
 locale: fr
-site_url: https://drmohamedmoussa.tn
+site_url: https://drmohamedmoussa.com
 logo_url: /favicon.svg
 
 # Les photos téléversées vont dans src/assets/images : elles sont optimisées au

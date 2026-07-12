@@ -22,7 +22,7 @@ const copyCmsImages = {
 };
 
 export default defineConfig({
-  site: 'https://drmohamedmoussa.tn',
+  site: 'https://drmohamedmoussa.com',
   integrations: [
     sitemap({
       filter: (page) => !page.includes('/merci/'),

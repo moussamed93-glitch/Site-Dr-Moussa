@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://drmohamedmoussa.tn/sitemap-index.xml
+Sitemap: https://drmohamedmoussa.com/sitemap-index.xml
