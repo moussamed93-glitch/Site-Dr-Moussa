@@ -15,7 +15,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappFab from '../components/WhatsappFab.astro';
 import { SITE } from '../data/site';
-import { counterpart, UI_AR, type Lang } from '../data/i18n';
+import { counterpart, CLINIC_AR, UI_AR, type Lang } from '../data/i18n';
 
 interface Props {
   title: string;
@@ -61,11 +61,28 @@ const arHref = alt ? (isAr ? canonical : new URL(alt.href, Astro.site).href) : n
 
 const sameAs = [SITE.social.facebook, SITE.social.instagram, SITE.medtnUrl].filter(Boolean);
 
+/**
+ * Adresse postale, localisée sur les pages arabes. Le pays et le code postal
+ * restent inchangés : ce sont des données normalisées, pas du texte à traduire.
+ */
+const postalAddress = {
+  '@type': 'PostalAddress',
+  streetAddress: isAr
+    ? CLINIC_AR.address.streetAddress
+    : `${SITE.address.line1}, ${SITE.address.line2}`,
+  addressLocality: isAr ? CLINIC_AR.address.addressLocality : SITE.address.city,
+  addressRegion: isAr ? CLINIC_AR.address.addressRegion : SITE.address.region,
+  postalCode: SITE.address.postalCode,
+  addressCountry: 'TN',
+};
+
 const clinicLd = {
   '@context': 'https://schema.org',
   '@type': ['MedicalClinic', 'LocalBusiness'],
   '@id': `${SITE.url}/#clinic`,
   name: SITE.name,
+  ...(isAr ? { alternateName: CLINIC_AR.alternateName } : {}),
+  inLanguage: lang,
   url: SITE.url,
   telephone: SITE.phone,
   email: SITE.email,
@@ -83,14 +100,7 @@ const clinicLd = {
         },
       }
     : {}),
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
-    addressLocality: SITE.address.city,
-    addressRegion: SITE.address.region,
-    postalCode: SITE.address.postalCode,
-    addressCountry: 'TN',
-  },
+  address: postalAddress,
   openingHoursSpecification: [
     {
       '@type': 'OpeningHoursSpecification',
@@ -109,18 +119,12 @@ const clinicLd = {
     '@type': 'Physician',
     '@id': `${SITE.url}/le-medecin/#physician`,
     name: SITE.doctor,
+    ...(isAr ? { alternateName: CLINIC_AR.doctorAlternateName } : {}),
     medicalSpecialty: 'Ophthalmologic',
     telephone: SITE.phone,
     image: `${SITE.url}/og-cover.jpg`,
     priceRange: '$$',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: `${SITE.address.line1}, ${SITE.address.line2}`,
-      addressLocality: SITE.address.city,
-      addressRegion: SITE.address.region,
-      postalCode: SITE.address.postalCode,
-      addressCountry: 'TN',
-    },
+    address: postalAddress,
     worksFor: { '@id': `${SITE.url}/#clinic` },
   },
 };
@@ -129,6 +133,7 @@ const breadcrumbLd = breadcrumbs
   ? {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
+      inLanguage: lang,
       itemListElement: breadcrumbs.map((b, i) => ({
         '@type': 'ListItem',
         position: i + 1,

@@ -54,6 +54,24 @@ export const NAV_AR = [
   { label: 'اتصل بنا', href: '/ar/contact/' },
 ];
 
+/**
+ * Données de l'établissement en arabe, pour le balisage schema.org des pages /ar/.
+ *
+ * Le `name` n'est volontairement PAS traduit : les deux versions linguistiques
+ * partagent le même @id, et un nom stable aide Google à comprendre qu'il s'agit
+ * d'un seul et même établissement. Le nom arabe est déclaré en `alternateName`,
+ * qui est le champ prévu pour cela. L'adresse, elle, est bien localisée.
+ */
+export const CLINIC_AR = {
+  alternateName: 'عيادة طب العيون الدكتور محمد موسى',
+  doctorAlternateName: 'الدكتور محمد موسى',
+  address: {
+    streetAddress: 'المركز الطبي هورايزن، الطابق الأول، مكتب 2 و3، طريق بنزرت كم 4',
+    addressLocality: 'حي الانطلاقة (منيهلة)',
+    addressRegion: 'أريانة',
+  },
+} as const;
+
 /** Chaînes d'interface de la version arabe. */
 export const UI_AR = {
   skipLink: 'انتقل إلى المحتوى الرئيسي',
