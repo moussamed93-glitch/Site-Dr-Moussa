@@ -119,8 +119,26 @@ const faqLd = {
     padding-block: clamp(2.5rem, 6vw, 4.5rem);
   }
 
+  .prose :global(h2) {
+    margin-top: var(--s-6);
+    margin-bottom: var(--s-3);
+  }
+
   .prose :global(p) {
     margin-bottom: var(--s-4);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    padding-left: 1.3rem;
+    margin-bottom: var(--s-4);
+    display: grid;
+    gap: var(--s-2);
+    color: var(--ink-soft);
+  }
+
+  .prose :global(li)::marker {
+    color: var(--taupe-500);
   }
 
   .split-cols {

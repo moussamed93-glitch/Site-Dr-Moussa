@@ -1,6 +1,6 @@
 ---
 title: Prescription de lunettes
-metaTitle: Prescription de lunettes à Mnihla, Ariana | Dr Mohamed Moussa
+metaTitle: "Prescription de lunettes à Ariana, Tunis | Dr Moussa"
 metaDescription: Détermination précise de votre correction optique à Mnihla, Ariana. Réfraction automatisée NIDEK, prescription de lunettes adulte et enfant. Prenez rendez-vous.
 intro: "La prescription de lunettes repose sur une mesure précise de la réfraction, c'est-à-dire du défaut optique de l'œil : myopie, hypermétropie, astigmatisme ou presbytie."
 order: 2

@@ -1,6 +1,6 @@
 ---
 title: Urgences ophtalmologiques
-metaTitle: Urgences ophtalmologiques à Mnihla, Ariana | Dr Mohamed Moussa
+metaTitle: "Urgences ophtalmologiques à Ariana, Tunis | Dr Moussa"
 metaDescription: "Prise en charge rapide des urgences de l'œil à Cité Intilaka (Mnihla), Ariana : traumatismes, œil rouge douloureux, baisse brutale de vision. Appelez le cabinet."
 intro: Certains symptômes oculaires imposent un examen sans délai. Le cabinet réserve des créneaux pour les urgences et vous oriente immédiatement si une prise en charge hospitalière est nécessaire.
 order: 12
