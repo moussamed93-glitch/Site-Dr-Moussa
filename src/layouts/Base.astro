@@ -1,11 +1,21 @@
 ---
 import '@fontsource-variable/fraunces';
 import '@fontsource-variable/hanken-grotesk';
+// Polices arabes : les @font-face sont déclarées pour tout le site, mais les
+// fichiers ne sont téléchargés que par les pages qui utilisent réellement ces
+// familles, c'est-à-dire les pages en [dir="rtl"]. Les pages françaises ne
+// paient donc rien.
+import '@fontsource/noto-kufi-arabic/400.css';
+import '@fontsource/noto-kufi-arabic/600.css';
+import '@fontsource/ibm-plex-sans-arabic/400.css';
+import '@fontsource/ibm-plex-sans-arabic/500.css';
+import '@fontsource/ibm-plex-sans-arabic/600.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import WhatsappFab from '../components/WhatsappFab.astro';
 import { SITE } from '../data/site';
+import { counterpart, UI_AR, type Lang } from '../data/i18n';
 
 interface Props {
   title: string;
@@ -19,6 +29,8 @@ interface Props {
   noindex?: boolean;
   jsonLd?: object[];
   breadcrumbs?: { name: string; href: string }[];
+  /** Langue de la page ; pilote lang/dir, hreflang et les libellés d'interface. */
+  lang?: Lang;
 }
 
 const {
@@ -31,8 +43,21 @@ const {
   noindex = false,
   jsonLd = [],
   breadcrumbs,
+  lang = 'fr',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+const isAr = lang === 'ar';
+const dir = isAr ? 'rtl' : 'ltr';
+
+/**
+ * hreflang : seules les pages qui ont une contrepartie traduite en déclarent.
+ * Les liens sont réciproques par construction, puisque les deux versions lisent
+ * la même table PAGE_PAIRS. x-default pointe sur le français, langue par défaut.
+ */
+const alt = counterpart(Astro.url.pathname);
+const frHref = alt ? (isAr ? new URL(alt.href, Astro.site).href : canonical) : null;
+const arHref = alt ? (isAr ? canonical : new URL(alt.href, Astro.site).href) : null;
 
 const sameAs = [SITE.social.facebook, SITE.social.instagram, SITE.medtnUrl].filter(Boolean);
 
@@ -117,7 +142,7 @@ const allLd = [clinicLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang} dir={dir}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -126,6 +151,13 @@ const allLd = [clinicLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
     <meta name="google-site-verification" content="3UbACZSMEIsmOFIiDRm9ybxhNxk5MOaj1sy9pRLpBEs" />
     {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
+    {frHref && arHref && (
+      <>
+        <link rel="alternate" hreflang="fr" href={frHref} />
+        <link rel="alternate" hreflang="ar" href={arHref} />
+        <link rel="alternate" hreflang="x-default" href={frHref} />
+      </>
+    )}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -133,7 +165,8 @@ const allLd = [clinicLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="fr_TN" />
+    <meta property="og:locale" content={isAr ? 'ar_TN' : 'fr_TN'} />
+    {alt && <meta property="og:locale:alternate" content={isAr ? 'fr_TN' : 'ar_TN'} />}
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
     <meta property="og:image:width" content="1200" />
@@ -153,13 +186,13 @@ const allLd = [clinicLd, ...(breadcrumbLd ? [breadcrumbLd] : []), ...jsonLd];
     {allLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} />)}
   </head>
   <body>
-    <a href="#contenu" class="skip-link">Aller au contenu principal</a>
-    <Header />
+    <a href="#contenu" class="skip-link">{isAr ? UI_AR.skipLink : 'Aller au contenu principal'}</a>
+    <Header lang={lang} />
     <main id="contenu">
       <slot />
     </main>
-    <Footer />
-    <WhatsappFab />
+    <Footer lang={lang} />
+    <WhatsappFab lang={lang} />
 
     <script is:inline>
       // Backoffice : si un lien d'invitation/récupération Netlify Identity

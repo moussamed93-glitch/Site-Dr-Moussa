@@ -1,14 +1,21 @@
 ---
 import { SITE } from '../data/site';
+import type { Lang } from '../data/i18n';
 
 interface Props {
   title?: string;
   text?: string;
+  lang?: Lang;
 }
 
+const { lang = 'fr' } = Astro.props;
+const isAr = lang === 'ar';
+
 const {
-  title = 'Prendre rendez-vous',
-  text = 'Le cabinet vous accueille du lundi au samedi. Choisissez le moyen qui vous convient : par téléphone, en ligne ou via le formulaire de contact.',
+  title = isAr ? 'احجز موعدك' : 'Prendre rendez-vous',
+  text = isAr
+    ? 'تستقبلك العيادة من الاثنين إلى السبت. اختر الوسيلة التي تناسبك: عبر الهاتف، أو على الإنترنت، أو من خلال استمارة الاتصال.'
+    : 'Le cabinet vous accueille du lundi au samedi. Choisissez le moyen qui vous convient : par téléphone, en ligne ou via le formulaire de contact.',
 } = Astro.props;
 ---
 
@@ -16,18 +23,22 @@ const {
   <div class="container">
     <div class="cta-panel">
       <div class="reveal">
-        <p class="eyebrow">Consultation et chirurgie, adultes et enfants</p>
+        <p class="eyebrow">
+          {isAr ? 'استشارة وجراحة، للكبار والأطفال' : 'Consultation et chirurgie, adultes et enfants'}
+        </p>
         <h2>{title}</h2>
         <p class="cta-text">{text}</p>
       </div>
       <div class="cta-actions reveal">
         <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="btn btn--primary">
-          Appeler le {SITE.phoneDisplay}
+          {isAr ? 'اتصل بنا على ' : 'Appeler le '}<span class={isAr ? 'ltr-num' : undefined}>{SITE.phoneDisplay}</span>
         </a>
         <a href={SITE.medtnUrl} target="_blank" rel="noopener" class="btn btn--ghost-light">
-          Rendez-vous en ligne (Med.tn)
+          {isAr ? 'حجز موعد على الإنترنت (Med.tn)' : 'Rendez-vous en ligne (Med.tn)'}
         </a>
-        <a href="/contact/" class="btn btn--ghost-light">Formulaire de contact</a>
+        <a href={isAr ? '/ar/contact/' : '/contact/'} class="btn btn--ghost-light">
+          {isAr ? 'استمارة الاتصال' : 'Formulaire de contact'}
+        </a>
       </div>
     </div>
   </div>

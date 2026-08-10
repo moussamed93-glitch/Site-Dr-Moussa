@@ -17,6 +17,27 @@ const services = defineCollection({
   }),
 });
 
+/**
+ * Version arabe des fiches services. Même schéma que `services`, mais
+ * collection séparée : le contenu arabe est rédigé pour son lecteur, pas
+ * traduit ligne à ligne, et n'a donc pas à rester calqué sur le français.
+ */
+const servicesAr = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/services-ar' }),
+  schema: z.object({
+    title: z.string(),
+    metaTitle: z.string(),
+    metaDescription: z.string(),
+    intro: z.string(),
+    order: z.number(),
+    image: z.string().optional(),
+    symptoms: z.array(z.string()),
+    whenToConsult: z.array(z.string()),
+    treatments: z.array(z.object({ title: z.string(), text: z.string() })),
+    faq: z.array(z.object({ q: z.string(), a: z.string() })),
+  }),
+});
+
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
@@ -27,4 +48,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { services, blog };
+export const collections = { services, servicesAr, blog };

@@ -18,6 +18,7 @@ interface Props {
   /** Position CSS object-position de la photo (ex: "center 30%") */
   focus?: string;
   compact?: boolean;
+  lang?: 'fr' | 'ar';
 }
 
 const {
@@ -29,6 +30,7 @@ const {
   crumbs,
   focus = 'center 35%',
   compact = false,
+  lang = 'fr',
 } = Astro.props;
 ---
 
@@ -36,7 +38,7 @@ const {
   <div class="container">
     {
       crumbs && (
-        <nav class="ph-crumbs" aria-label="Fil d'Ariane">
+        <nav class="ph-crumbs" aria-label={lang === 'ar' ? 'مسار التصفح' : "Fil d'Ariane"}>
           {crumbs.map((c, i) => (
             <>
               {i > 0 && <span aria-hidden="true">/</span>}

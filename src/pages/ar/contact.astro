@@ -1,0 +1,237 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import { SITE } from '../../data/site';
+import { UI_AR } from '../../data/i18n';
+import { resolveImage } from '../../lib/images';
+
+const heroImg = resolveImage('cabinet-accueil.jpg');
+
+// Numéro au format wa.me (chiffres uniquement).
+const waNumber = SITE.phone.replace(/[^0-9]/g, '');
+const waHref = `https://wa.me/${waNumber}?text=${encodeURIComponent(
+  'السلام عليكم دكتور، أرغب في حجز موعد.'
+)}`;
+
+const crumbs = [
+  { name: UI_AR.breadcrumbHome, href: '/ar/' },
+  { name: 'اتصل بنا', href: '/ar/contact/' },
+];
+---
+
+<Base
+  lang="ar"
+  title="اتصل بنا | طبيب عيون بأريانة، د. محمد موسى"
+  description="المركز الطبي هورايزن، طريق بنزرت كم 4، حي الانطلاقة (منيهلة)، أريانة. الهاتف 58 272 719. خريطة الوصول وأوقات العمل وحجز المواعيد."
+  breadcrumbs={crumbs}
+>
+  <PageHero
+    lang="ar"
+    image={heroImg}
+    focus="center 45%"
+    compact
+    eyebrow="اتصل بنا"
+    title="الوصول إلى العيادة وحجز موعد"
+    lead="العيادة في متناولك بحي الانطلاقة (منيهلة)، أريانة. اختر الوسيلة التي تناسبك، والاتصال الهاتفي يبقى الأسرع للحصول على موعد."
+    crumbs={crumbs}
+  />
+
+  <section class="section-slim">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- الاتصال المباشر -->
+        <div class="reveal">
+          <h2 class="block-heading">للحجز مباشرة</h2>
+
+          <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class="contact-primary">
+            <span class="cp-label">{UI_AR.callUs}</span>
+            <span class="cp-value ltr-num">{SITE.phoneDisplay}</span>
+          </a>
+
+          <div class="contact-actions">
+            <a href={waHref} target="_blank" rel="noopener" class="btn btn--outline">
+              {UI_AR.whatsapp}
+            </a>
+            <a href={SITE.medtnUrl} target="_blank" rel="noopener" class="btn btn--outline">
+              حجز على الإنترنت (Med.tn)
+            </a>
+          </div>
+
+          <p class="contact-note">
+            إذا كنت تفضل الكتابة، تتوفر استمارة اتصال على
+            <a href="/contact/" lang="fr" dir="ltr">النسخة الفرنسية من الموقع</a>.
+          </p>
+
+          <h2 class="block-heading block-heading--spaced">{UI_AR.footerHours}</h2>
+          <ul class="hours-list">
+            <li><span>{UI_AR.hoursWeek}</span><span class="ltr-num">09:00 – 18:00</span></li>
+            <li><span>{UI_AR.hoursSat}</span><span class="ltr-num">09:00 – 14:00</span></li>
+            <li><span>{UI_AR.hoursSun}</span><span>{UI_AR.closed}</span></li>
+          </ul>
+        </div>
+
+        <!-- العنوان والوصول -->
+        <div class="reveal">
+          <h2 class="block-heading">العنوان</h2>
+          <address class="contact-address">
+            المركز الطبي هورايزن، الطابق الأول، مكتب <span class="ltr-num">2</span> و<span class="ltr-num">3</span><br />
+            طريق بنزرت كم <span class="ltr-num">4</span><br />
+            حي الانطلاقة (منيهلة)، أريانة <span class="ltr-num">2094</span><br />
+            تونس
+          </address>
+
+          <a href={SITE.mapsUrl} target="_blank" rel="noopener" class="btn btn--primary">
+            افتح الاتجاهات على خرائط Google
+          </a>
+
+          <h2 class="block-heading block-heading--spaced">نصائح للوصول</h2>
+          <ul class="tips-list">
+            <li>العيادة على طريق بنزرت، على بعد كيلومترات قليلة من وسط أريانة.</li>
+            <li>يقع المدخل داخل المركز الطبي هورايزن، والصعود إلى الطابق الأول.</li>
+            <li>يُنصح بالحضور قبل الموعد بعشر دقائق لاستكمال إجراءات الاستقبال.</li>
+            <li>لا تنسَ بطاقة الكنام (CNAM) ونظاراتك الحالية ووصفاتك السابقة.</li>
+          </ul>
+
+          <h2 class="block-heading block-heading--spaced">البريد الإلكتروني</h2>
+          <p>
+            <a href={`mailto:${SITE.email}`} class="ltr-num" lang="en" dir="ltr">{SITE.email}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map-section" aria-label="خريطة الوصول">
+    <iframe
+      src={SITE.mapsEmbed}
+      width="100%"
+      height="420"
+      style="border:0"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="خريطة الوصول إلى العيادة: المركز الطبي هورايزن، حي الانطلاقة (منيهلة)، أريانة"
+    ></iframe>
+  </section>
+</Base>
+
+<style>
+  .section-slim {
+    padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  .contact-grid {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+  }
+
+  @media (min-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .block-heading {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: var(--taupe-600);
+    padding-bottom: var(--s-3);
+    border-bottom: 1px solid var(--line);
+    margin-bottom: var(--s-4);
+  }
+
+  .block-heading--spaced {
+    margin-top: var(--s-7);
+  }
+
+  .contact-primary {
+    display: block;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    margin-bottom: var(--s-4);
+    transition: border-color var(--transition);
+  }
+
+  .contact-primary:hover {
+    border-color: var(--blue-logo);
+  }
+
+  .cp-label {
+    display: block;
+    font-size: var(--text-xs);
+    color: var(--taupe-600);
+    margin-bottom: var(--s-1);
+  }
+
+  .cp-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-3xl);
+    font-weight: 600;
+    color: var(--navy-800);
+    line-height: 1.2;
+  }
+
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3);
+  }
+
+  .contact-note {
+    margin-top: var(--s-4);
+    font-size: var(--text-sm);
+    color: var(--ink-soft);
+  }
+
+  .contact-note a {
+    color: var(--blue-logo);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .contact-address {
+    font-style: normal;
+    color: var(--ink-soft);
+    margin-bottom: var(--s-4);
+    line-height: 2;
+  }
+
+  .hours-list,
+  .tips-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--s-3);
+    color: var(--ink-soft);
+    font-size: var(--text-sm);
+  }
+
+  .hours-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-3);
+    padding-bottom: var(--s-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tips-list li {
+    padding-inline-start: var(--s-4);
+    position: relative;
+  }
+
+  .tips-list li::before {
+    content: '·';
+    position: absolute;
+    inset-inline-start: 0;
+    color: var(--taupe-500);
+    font-weight: 700;
+  }
+
+  .map-section :global(iframe) {
+    display: block;
+  }
+</style>

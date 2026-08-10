@@ -1,7 +1,26 @@
 ---
 import Logo from './Logo.astro';
 import { SITE, SERVICES, PARTNERS } from '../data/site';
+import { SERVICES_AR, UI_AR, type Lang } from '../data/i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'fr' } = Astro.props;
+const isAr = lang === 'ar';
 const year = new Date().getFullYear();
+
+/**
+ * Horaires en arabe. Ils sont saisis en français dans le backoffice ; plutôt
+ * que d'imposer au cabinet une double saisie, on traduit ici les jours et on
+ * garde les heures telles quelles (les chiffres restent lus de gauche à droite).
+ */
+const HOURS_AR = [
+  { days: UI_AR.hoursWeek, time: '09:00 – 18:00' },
+  { days: UI_AR.hoursSat, time: '09:00 – 14:00' },
+  { days: UI_AR.hoursSun, time: UI_AR.closed },
+];
 ---
 
 <footer class="footer">
@@ -11,51 +30,94 @@ const year = new Date().getFullYear();
         <div class="footer-logo-row">
           <Logo class="footer-logo" light width={64} />
           <div>
-            <p class="footer-name">Dr Mohamed Moussa</p>
-            <p class="footer-spec">Spécialiste en ophtalmologie<br />Chirurgie oculaire, traitements laser</p>
+            <p class="footer-name">{isAr ? UI_AR.brandName : 'Dr Mohamed Moussa'}</p>
+            <p class="footer-spec">
+              {isAr ? (
+                <>أخصائي في طب وجراحة العيون<br />جراحة العين والعلاج بالليزر</>
+              ) : (
+                <>Spécialiste en ophtalmologie<br />Chirurgie oculaire, traitements laser</>
+              )}
+            </p>
           </div>
         </div>
         <address class="footer-address">
-          {SITE.address.line1}<br />
-          {SITE.address.line2}<br />
-          {SITE.address.city}, {SITE.address.region} {SITE.address.postalCode}<br />
-          {SITE.address.country}
+          {isAr ? (
+            <>
+              المركز الطبي هورايزن، الطابق الأول، مكتب <span class="ltr-num">2</span> و<span class="ltr-num">3</span><br />
+              طريق بنزرت كم <span class="ltr-num">4</span><br />
+              حي الانطلاقة (منيهلة)، أريانة <span class="ltr-num">2094</span><br />
+              تونس
+            </>
+          ) : (
+            <>
+              {SITE.address.line1}<br />
+              {SITE.address.line2}<br />
+              {SITE.address.city}, {SITE.address.region} {SITE.address.postalCode}<br />
+              {SITE.address.country}
+            </>
+          )}
         </address>
       </div>
 
-      <nav class="footer-col" aria-label="Services">
-        <p class="footer-title">Services</p>
+      <nav class="footer-col" aria-label={isAr ? UI_AR.footerServices : 'Services'}>
+        <p class="footer-title">{isAr ? UI_AR.footerServices : 'Services'}</p>
         <ul>
-          {SERVICES.slice(0, 7).map((s) => (
-            <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>
-          ))}
-          <li><a href="/services/">Tous les services →</a></li>
+          {isAr
+            ? SERVICES_AR.map((s) => (
+                <li><a href={`/ar/services/${s.slug}/`}>{s.title}</a></li>
+              ))
+            : (
+              <>
+                {SERVICES.slice(0, 7).map((s) => (
+                  <li><a href={`/services/${s.slug}/`}>{s.title}</a></li>
+                ))}
+                <li><a href="/services/">Tous les services →</a></li>
+              </>
+            )}
         </ul>
       </nav>
 
-      <nav class="footer-col" aria-label="Le cabinet">
-        <p class="footer-title">Le cabinet</p>
+      <nav class="footer-col" aria-label={isAr ? UI_AR.mainNav : 'Le cabinet'}>
+        <p class="footer-title">{isAr ? 'العيادة' : 'Le cabinet'}</p>
         <ul>
-          <li><a href="/le-medecin/">Le médecin</a></li>
-          <li><a href="/cabinet/">Visite du cabinet</a></li>
-          <li><a href="/materiel/">Notre matériel</a></li>
-          <li><a href="/chirurgie/">Chirurgie</a></li>
-          <li><a href="/activite-scientifique/">Activité scientifique</a></li>
-          <li><a href="/blog/">Blog médical</a></li>
-          <li><a href="/ophtalmologue-mnihla-ariana/">Ophtalmologue à Mnihla</a></li>
+          {isAr ? (
+            <>
+              <li><a href="/ar/">الرئيسية</a></li>
+              <li><a href="/ar/contact/">اتصل بنا والوصول إلى العيادة</a></li>
+              <li lang="fr" dir="ltr"><a href="/">{UI_AR.footerFrenchSite} : Version française</a></li>
+            </>
+          ) : (
+            <>
+              <li><a href="/le-medecin/">Le médecin</a></li>
+              <li><a href="/cabinet/">Visite du cabinet</a></li>
+              <li><a href="/materiel/">Notre matériel</a></li>
+              <li><a href="/chirurgie/">Chirurgie</a></li>
+              <li><a href="/activite-scientifique/">Activité scientifique</a></li>
+              <li><a href="/blog/">Blog médical</a></li>
+              <li><a href="/ophtalmologue-mnihla-ariana/">Ophtalmologue à Mnihla</a></li>
+            </>
+          )}
         </ul>
       </nav>
 
       <div class="footer-col">
-        <p class="footer-title">Contact</p>
+        <p class="footer-title">{isAr ? UI_AR.callUs : 'Contact'}</p>
         <ul>
-          <li><a href={`tel:${SITE.phone.replace(/\s/g, '')}`}>{SITE.phoneDisplay}</a></li>
-          <li><a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
-          <li><a href={SITE.mapsUrl} target="_blank" rel="noopener">Itinéraire Google Maps</a></li>
+          <li>
+            <a href={`tel:${SITE.phone.replace(/\s/g, '')}`} class={isAr ? 'ltr-num' : undefined}>
+              {SITE.phoneDisplay}
+            </a>
+          </li>
+          <li><a href={`mailto:${SITE.email}`} class={isAr ? 'ltr-num' : undefined}>{SITE.email}</a></li>
+          <li>
+            <a href={SITE.mapsUrl} target="_blank" rel="noopener">
+              {isAr ? 'الاتجاهات على خرائط Google' : 'Itinéraire Google Maps'}
+            </a>
+          </li>
         </ul>
         {(SITE.social.facebook || SITE.social.instagram) && (
           <>
-            <p class="footer-title footer-title--spaced">Suivez le cabinet</p>
+            <p class="footer-title footer-title--spaced">{isAr ? UI_AR.footerFollow : 'Suivez le cabinet'}</p>
             <ul class="footer-social">
               {SITE.social.facebook && (
                 <li>
@@ -82,17 +144,17 @@ const year = new Date().getFullYear();
             </ul>
           </>
         )}
-        <p class="footer-title footer-title--spaced">Horaires</p>
+        <p class="footer-title footer-title--spaced">{isAr ? UI_AR.footerHours : 'Horaires'}</p>
         <ul class="footer-hours">
-          {SITE.hours.map((h) => (
-            <li><span>{h.days}</span><span>{h.time}</span></li>
+          {(isAr ? HOURS_AR : SITE.hours).map((h) => (
+            <li><span>{h.days}</span><span class={isAr ? 'ltr-num' : undefined}>{h.time}</span></li>
           ))}
         </ul>
       </div>
     </div>
 
     <div class="footer-partners">
-      <p class="footer-title">Conventions et partenaires</p>
+      <p class="footer-title">{isAr ? 'الاتفاقيات والشركاء' : 'Conventions et partenaires'}</p>
       <ul>
         {PARTNERS.map((p) => (
           <li>
@@ -105,9 +167,13 @@ const year = new Date().getFullYear();
     </div>
 
     <div class="footer-bottom">
-      <p>© {year} {SITE.name}. Tous droits réservés.</p>
       <p>
-        Les informations de ce site ne remplacent pas une consultation médicale.
+        © {year} {isAr ? UI_AR.brandName : SITE.name}. {isAr ? UI_AR.footerRights + '.' : 'Tous droits réservés.'}
+      </p>
+      <p>
+        {isAr
+          ? 'المعلومات الواردة في هذا الموقع لا تغني عن استشارة طبية.'
+          : 'Les informations de ce site ne remplacent pas une consultation médicale.'}
       </p>
     </div>
   </div>

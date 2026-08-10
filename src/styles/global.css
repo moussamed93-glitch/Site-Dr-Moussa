@@ -358,3 +358,61 @@ strong { font-weight: 600; }
     opacity: 1;
   }
 }
+
+/* ============================================================
+   Version arabe (RTL)
+   Fraunces et Hanken Grotesk ne couvrent pas l'arabe. On bascule
+   sur un couple équivalent : Noto Kufi Arabic pour les titres
+   (son squelette géométrique tient le rôle d'affichage de Fraunces)
+   et IBM Plex Sans Arabic pour le corps (même parenté de dessin
+   que Hanken Grotesk, excellente lisibilité aux petites tailles).
+   ============================================================ */
+
+[dir='rtl'] {
+  --font-display: 'Noto Kufi Arabic', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* L'arabe n'a pas de capitales : les traitements typographiques latins
+   (petites capitales espacées, italiques) n'ont aucun sens et nuisent
+   à la lisibilité. On les neutralise. */
+[dir='rtl'] .eyebrow,
+[dir='rtl'] [class*='eyebrow'] {
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+[dir='rtl'] em,
+[dir='rtl'] i {
+  font-style: normal;
+  color: var(--terracotta-600, inherit);
+}
+
+/* L'écriture arabe a des hampes et des jambages plus amples que le latin :
+   un interlignage un peu plus généreux évite les collisions de diacritiques. */
+[dir='rtl'] body {
+  line-height: 1.85;
+}
+
+[dir='rtl'] h1,
+[dir='rtl'] h2,
+[dir='rtl'] h3,
+[dir='rtl'] h4 {
+  line-height: 1.45;
+  letter-spacing: 0;
+}
+
+/* Les listes à puces doivent basculer leur retrait du bon côté. */
+[dir='rtl'] ul,
+[dir='rtl'] ol {
+  padding-left: 0;
+  padding-right: 1.3rem;
+}
+
+/* Les nombres, numéros de téléphone et unités restent lus de gauche à droite
+   à l'intérieur d'un paragraphe arabe. */
+[dir='rtl'] .ltr-num {
+  direction: ltr;
+  unicode-bidi: embed;
+  display: inline-block;
+}
