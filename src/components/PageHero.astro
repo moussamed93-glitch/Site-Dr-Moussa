@@ -81,11 +81,29 @@ const {
   .ph-crumbs {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     gap: var(--s-2);
     font-size: var(--text-xs);
     letter-spacing: 0.06em;
     color: var(--ink-mute);
     margin-bottom: var(--s-6);
+  }
+
+  /* Cible tactile : les liens du fil d'Ariane faisaient 28px de haut.
+     La zone cliquable est étendue par pseudo-élément, ce qui ne déplace
+     rien visuellement. */
+  .ph-crumbs a {
+    position: relative;
+    display: inline-block;
+  }
+
+  .ph-crumbs a::after {
+    content: '';
+    position: absolute;
+    /* -12px porte la zone à 45px en français (texte plus petit) et 52px en
+       arabe, au-dessus du standard de 44px, sans rien déplacer. */
+    inset-block: -12px;
+    inset-inline: 0;
   }
 
   .ph-crumbs a {
