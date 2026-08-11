@@ -117,6 +117,13 @@ const {
     margin-bottom: var(--s-3);
   }
 
+  /* RTL : le tracking casse la liaison cursive arabe. La règle globale ne
+     suffit pas ici, le style scopé d'Astro a une spécificité supérieure. */
+  :global([dir='rtl']) .ph-eyebrow {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
   .page-hero h1 {
     max-width: 20ch;
   }

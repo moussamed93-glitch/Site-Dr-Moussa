@@ -237,6 +237,44 @@ const HOURS_AR = [
     color: var(--taupe-300);
   }
 
+  /* RTL : le tracking des libellés casse la liaison cursive arabe. */
+  :global([dir='rtl']) .footer-spec,
+  :global([dir='rtl']) .footer-title {
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  /* Cibles tactiles : les liens de pied de page mesuraient 22px de haut,
+     sous le minimum de 24px du critère WCAG 2.2 « 2.5.8 Target Size ».
+     La zone cliquable est étendue par pseudo-élément, ce qui ne déplace
+     rien visuellement et laisse la maquette française inchangée. */
+  .footer-col li a,
+  .footer-social a {
+    position: relative;
+    display: inline-block;
+  }
+
+  .footer-col li a::after,
+  .footer-social a::after {
+    content: '';
+    position: absolute;
+    inset-block: -11px;
+    inset-inline: 0;
+  }
+
+  /* Les logos partenaires sont aussi des liens : 26px de haut, même traitement. */
+  .footer-partners li a {
+    position: relative;
+    display: inline-block;
+  }
+
+  .footer-partners li a::after {
+    content: '';
+    position: absolute;
+    inset-block: -9px;
+    inset-inline: 0;
+  }
+
   .footer-address {
     font-style: normal;
     line-height: 1.8;

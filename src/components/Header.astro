@@ -102,6 +102,9 @@ const isActive = (href: string) =>
     align-items: center;
     gap: var(--s-3);
     flex-shrink: 0;
+    /* Cible tactile : le lien faisait 42px, sous le standard de 44px du projet.
+       L'en-tête mesure 76px, la contrainte ne déplace donc rien. */
+    min-height: 44px;
   }
 
   .brand-text {
@@ -131,6 +134,14 @@ const isActive = (href: string) =>
     /* Plus foncé que --taupe-600 pour un contraste AA suffisant sur fond crème. */
     color: #80683f;
     white-space: nowrap;
+  }
+
+  /* RTL : ni tracking (casse la liaison cursive) ni petit corps. 0.72rem
+     tombait à 11,5px, illisible en arabe. */
+  :global([dir='rtl']) .brand-sub {
+    font-size: 0.95rem;
+    letter-spacing: 0;
+    text-transform: none;
   }
 
   .nav {
@@ -178,7 +189,7 @@ const isActive = (href: string) =>
     right: 0;
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1279px) {
     :global([dir='rtl']) .sub-menu {
       border-left: 0;
       border-right: 2px solid var(--taupe-300);
@@ -250,7 +261,7 @@ const isActive = (href: string) =>
     transition: transform var(--transition), opacity var(--transition);
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1279px) {
     .nav-toggle {
       display: flex;
     }
@@ -313,6 +324,28 @@ const isActive = (href: string) =>
       margin-top: var(--s-4);
     }
 
+    /* Menu empilé : la bascule de langue reprend son libellé complet et
+       s'aligne sur les autres entrées. Même rupture que la navigation, donc
+       aucun état intermédiaire possible entre les deux. */
+    .nav :global(.lang-full) {
+      position: static;
+      width: auto;
+      height: auto;
+      clip-path: none;
+    }
+
+    .nav :global(.lang-short) {
+      display: none;
+    }
+
+    .nav :global(.lang-switch) {
+      justify-content: center;
+      width: 100%;
+      margin-top: var(--s-3);
+      padding-block: 0.7rem;
+      font-size: var(--text-sm);
+    }
+
     body:has(.nav.is-open) .nav-toggle .nav-toggle-bar:nth-child(1) {
       transform: translateY(7px) rotate(45deg);
     }
@@ -341,7 +374,7 @@ const isActive = (href: string) =>
   });
 
   // Sur mobile : premier appui sur un item à sous-menu = déplier.
-  if (window.matchMedia('(max-width: 1199px)').matches) {
+  if (window.matchMedia('(max-width: 1279px)').matches) {
     document.querySelectorAll('.has-sub > .nav-link').forEach((link) => {
       link.addEventListener('click', (e) => {
         const parent = link.parentElement;

@@ -28,7 +28,8 @@ const alt = counterpart(Astro.url.pathname);
           stroke-width="1.5"
         />
       </svg>
-      <span>{alt.lang === 'ar' ? UI_AR.langSwitchToAr : UI_AR.langSwitchToFr}</span>
+      <span class="lang-full">{alt.lang === 'ar' ? UI_AR.langSwitchToAr : UI_AR.langSwitchToFr}</span>
+      <span class="lang-short" aria-hidden="true">{alt.lang === 'ar' ? 'ع' : 'FR'}</span>
     </a>
   )
 }
@@ -37,9 +38,12 @@ const alt = counterpart(Astro.url.pathname);
   .lang-switch {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.45rem;
     flex-shrink: 0;
-    padding: 0.42rem 0.85rem;
+    /* Cible tactile : 44px, le standard déclaré du projet. */
+    min-height: 44px;
+    padding: 0.42rem 0.9rem;
     border: 1px solid var(--line);
     border-radius: 999px;
     font-size: var(--text-xs);
@@ -60,15 +64,22 @@ const alt = counterpart(Astro.url.pathname);
     opacity: 0.65;
   }
 
-  /* Sur le menu déroulant mobile, la pastille passe en pleine largeur
-     pour s'aligner sur les autres entrées de navigation. */
-  @media (max-width: 1199px) {
-    .lang-switch {
-      justify-content: center;
-      width: 100%;
-      margin-top: var(--s-3);
-      padding-block: 0.7rem;
-      font-size: var(--text-sm);
-    }
+  /*
+   * État par défaut : code court. Sur la barre horizontale la place est
+   * comptée, et le libellé complet faisait déborder la navigation française
+   * de 25px. Le nom entier de la langue reste annoncé aux lecteurs d'écran
+   * par aria-label, il n'est donc jamais perdu.
+   *
+   * Le passage au libellé complet est piloté par Header.astro, dans la même
+   * règle qui empile la navigation. Une seule rupture décide des deux, ce qui
+   * évite le trou d'un pixel qu'ouvraient deux media queries complémentaires.
+   */
+  .lang-full {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 </style>

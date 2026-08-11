@@ -371,21 +371,35 @@ strong { font-weight: 600; }
 [dir='rtl'] {
   --font-display: 'Noto Kufi Arabic', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'IBM Plex Sans Arabic', 'Segoe UI', system-ui, sans-serif;
+
+  /* L'arabe demande plus de corps que le latin à lisibilité égale : les points
+     diacritiques deviennent indistincts en petit. On relève les trois échelons
+     bas, ceux qui servent aux libellés et au texte secondaire. Le public du
+     cabinet inclut des patients âgés, la marge de confort n'est pas un luxe. */
+  --text-xs: 0.9375rem;
+  --text-sm: 1rem;
+  --text-base: 1.125rem;
 }
 
-/* L'arabe n'a pas de capitales : les traitements typographiques latins
-   (petites capitales espacées, italiques) n'ont aucun sens et nuisent
-   à la lisibilité. On les neutralise. */
-[dir='rtl'] .eyebrow,
-[dir='rtl'] [class*='eyebrow'] {
-  text-transform: none;
+/*
+ * RÈGLE CRITIQUE : l'arabe est une écriture cursive, ses lettres se lient.
+ * Un letter-spacing les sépare de force et produit un rendu que tout
+ * arabophone lit comme cassé, l'équivalent d'un « b o n j o u r ».
+ * Le systeme typographique latin du site applique du tracking et des
+ * capitales aux petits libellés : les deux doivent sauter en RTL.
+ * `text-transform` n'a pas d'effet visible sur l'arabe, mais on le neutralise
+ * pour que la règle couvre aussi les libellés mixtes (« Med.tn », « Google »).
+ */
+[dir='rtl'] :is(h1, h2, h3, h4, h5, h6, p, span, a, li, summary, strong, em, b,
+  address, figcaption, button, label, td, th, dt, dd, blockquote, time) {
   letter-spacing: 0;
+  text-transform: none;
 }
 
 [dir='rtl'] em,
 [dir='rtl'] i {
   font-style: normal;
-  color: var(--terracotta-600, inherit);
+  color: var(--terra-600);
 }
 
 /* L'écriture arabe a des hampes et des jambages plus amples que le latin :
